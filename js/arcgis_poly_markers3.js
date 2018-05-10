@@ -920,7 +920,8 @@ function populatePanelByCountry(which) {
                                     '<tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em" type="email" value="' + m + '" /></td></tr>' +
                                     '<tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" type="text" value="' + n + '" /></td></tr>' +
                                     '<tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" type="text">' + o + '</textarea></td></tr>' +
-                                      '<tr class="d"><td colspan="2" align="center"><button onclick="updateData(' + sortedcompleted[x].UID  + ')">Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
+                                      '<tr class="d"><td colspan="2" align="center"><button onclick="updateData(' + sortedcompleted[x].UID + ')">Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
+
                                     ' </table>' +
                                  '</div>',
                         player: "html",

@@ -1,0 +1,29 @@
+lulc:
+-----
+sign out and sign in when screen is stuck 
+report problems and add view problems tab
+add multiple countries same data
+
+
+mapviewer:
+----------
+#make layers draggable
+
+make latest checked on top of other layers
+
+make popup tabs-popup to take fields to be displayed from json
+
+complete timeline-prepopulate with extent,adding ticks
+
+add layer from wms url to map-pass param and interpret as wms layer
+
+add admin part
+
+
+
+check errors
+
+ceo testing:
+------------
+tested basic pages
+

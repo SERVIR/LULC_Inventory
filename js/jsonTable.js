@@ -60,3 +60,59 @@ function CreateTableFromJSON(uid_arr, country) {
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
 }
+
+function CreateTableFromJSON(pid_arr) {
+    var data = [];
+    for (var i = 0; i < reportedProblems.length; i++) {
+        
+        data.push(reportedProblems[i]);
+    }
+   
+    var col = [];
+    for (var i = 0; i < reportedProblems.length; i++) {
+        for (var key in reportedProblems[i]) {
+
+            if (col.indexOf(key) === -1) {
+              
+                col.push(key);
+            }
+
+        }
+    }
+
+    // CREATE DYNAMIC TABLE.
+    var table = document.createElement("table");
+    table.id = "jsonTabNew";
+    // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+    var tr = table.insertRow(-1);                   // TABLE ROW.
+
+    for (var i = 0; i < col.length; i++) {
+        var th = document.createElement("th");      // TABLE HEADER.
+        th.innerHTML = col[i];
+        tr.appendChild(th);
+    }
+
+    var x = 0;
+
+    // ADD JSON DATA TO THE TABLE AS ROWS.
+    for (var i = 0; i < data.length; i++) {
+
+        if (contains(pid_arr, data[i].PID)) {
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.class = "xx";
+                tabCell.innerHTML = data[i][col[j]];
+            }
+            x++;
+        }
+
+    }
+
+    // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+    var divContainer = document.getElementById("probs");
+    divContainer.innerHTML = "";
+    divContainer.appendChild(table);
+}

@@ -44,8 +44,10 @@ function onSignIn(googleUser) {
 
             $('#AddAdminsResp').show();
             $('#ViewRequests').show();
+            $('#importDataPop').show();
+            $('#ReportProblems').show();
             $('#ViewRequestsResp').show();
-
+            $('#ViewProblems').show();
             $('#editlink').show();
             $('#deletelink').show();
 
@@ -56,8 +58,10 @@ function onSignIn(googleUser) {
         else {
                  $('#AddAdmins').hide();
                  $('#AddAdminsResp').hide();
-
+                 $('#importDataPop').hide();
                  $('#ViewRequests').hide();
+                 $('#ViewProblems').hide();
+                 $('#ReportProblems').hide();
                  $('#ViewRequestsResp').hide();
 
             $('#ufullname').html(profile.getName());
@@ -92,13 +96,18 @@ function onSignIn(googleUser) {
 
         });
         //Display the user details
-        Shadowbox.open({
-            content: '<div style="color:black;font-size:20px">Click on a country and the <b>"+"</b> button on the right side will let you add more data!' +
-                     '</div>',
-            player: "html",
-            title: "Did you know?",
-            height: "150px"
-        });
+        try{
+            Shadowbox.open({
+                content: '<div style="color:black;font-size:20px">Click on a country and the <b>"+"</b> button on the right side will let you add more data!' +
+                         '</div>',
+                player: "html",
+                title: "Did you know?",
+                height: "150px"
+            });
+        }
+        catch(e){
+            alert("please reload and retry!");
+        }
     });
 
 }
@@ -168,9 +177,19 @@ function closeP() {
 function closeR() {
 
     $('.modal_requests').hide();
-    document.getElementById("jsonTab").style.display = "none";
+    $('.modal_problems').hide();
+    $('.modal_reportproblems').hide();
+    $('.modal_importData').hide();
+    if (typeof (document.getElementById("jsonTab")) != 'undefined' && document.getElementById("jsonTab") != null) {
+        document.getElementById("jsonTab").style.display = "none";
+    }
+    if (typeof (document.getElementById("jsonTabNew")) != 'undefined' && document.getElementById("jsonTabNew") != null) {
+        document.getElementById("jsonTabNew").style.display = "none";
+    }
+
     document.getElementById("selectCountry").selectedIndex = 0;
     document.getElementById("selectUser").selectedIndex = 0;
+    document.getElementById("selectStatus").selectedIndex = 0;
     //location.reload();
     //  window.location="http://localhost:61550/Home.aspx";
 }
@@ -255,13 +274,19 @@ function contains(arr, element) {
     }
     return false;
 }
+function ImportData() {
+    $('.modal_importData').show();
+}
 function ViewRequests() {
   
 
     $('#approve').hide();
     $('#discard').hide();
     $('.modal_requests').show();    
-    document.getElementById('selectCountry').selectedIndex = 0;
+   
+
+
+
     document.getElementById("selectUser").selectedIndex = 0;
     var countries = locationCentroids;
     var usrs = newlyAdded;
@@ -336,5 +361,79 @@ function ViewRequests() {
         //document.getElementById("jsonTab").style.display = "";
    })
    document.getElementById("jsonTab").style.display = "";
+
+}
+
+
+function ViewProblems() {
+    document.getElementById('selectStatus').selectedIndex = 0;
+    $('#close').hide();
+    $('#open').hide();
+    $('.modal_problems').show();
+    var usrs = reportedProblems;
+    //var sel = document.getElementById('selectCountry');
+    //for (var i = 0; i < countries.Locations.length; i++) {
+    //    var opt = document.createElement('option');
+    //    opt.innerHTML = countries.Locations[i].Location;
+    //    opt.value = countries.Locations[i].Location;
+    //    sel.appendChild(opt);
+    //}
+    //var eids = [];
+    ////for (var i = 0; i < usrs.length; i++) {
+    ////    eids.push(usrs[i].FullName);
+
+    ////}
+    var pids = [];
+    for (var i = 0; i < usrs.length; i++) {
+        pids.push(usrs[i].PID);
+    }
+
+    if ( document.getElementById("selectStatus").selectedIndex == 0) {
+       CreateTableFromJSON(pids);
+
+        highlight_row_problems();
+    }
+
+    $('#selectStatus').on('change', function () {
+        var uid_arr1 = [];
+        if ($("select#selectStatus option").filter(":selected").text() == "Choose a status") {
+            uid_arr1 = pids;
+           
+        }
+        else {
+            uid_arr1 = [];
+            for (var i = 0; i < usrs.length; i++) {
+
+               
+                if ($("select#selectStatus option").filter(":selected").text() == usrs[i].Status) {
+                    uid_arr1.push(usrs[i].PID);
+                }
+                
+            }
+        }
+        CreateTableFromJSON(uid_arr1);
+        highlight_row_problems();
+        document.getElementById("jsonTabNew").style.display = "";
+    })
+    //$('#selectUser').on('change', function () {
+    //    var uid_arr2 = [];
+    //    if ($("select#selectUser option").filter(":selected").text() == "Choose a User") {
+
+    //        uid_arr2 = uids;
+    //    }
+    //    else {
+    //        for (var i = 0; i < usrs.length; i++) {
+
+    //            if (usrs[i].FullName == $("select#selectUser option").filter(":selected").text()) {
+    //                uid_arr2.push(usrs[i].UID);
+    //            }
+    //        }
+    //    }
+
+    //    CreateTableFromJSON(uid_arr2, $("select#selectCountry option").filter(":selected").text());
+    //    highlight_row();
+    //    //document.getElementById("jsonTab").style.display = "";
+    //})
+    //document.getElementById("jsonTab").style.display = "";
 
 }

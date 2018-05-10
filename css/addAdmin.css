@@ -1,4 +1,4 @@
-﻿.modal,.modal_requests {
+﻿.modal,.modal_requests,.modal_problems,.modal_reportproblems,.modal_importData {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -16,12 +16,38 @@
 }
 
 
-.modal-content-requests {
+.modal-content-requests{
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width:95vw;
+    overflow:scroll;
+}
+.modal-content-importData{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width:30vw;
+    height:34vw;
+    overflow:scroll;
+}
+.modal-content-problems {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width:45vw;
+    height:38vw;
+    overflow:scroll;
+}
+.modal-content-reportproblems {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width:30vw;
     overflow:scroll;
 }
 /* The Close Button */
@@ -38,5 +64,6 @@
     cursor: pointer;
 }
 
-#jsonTab {margin-left:auto;margin-right:auto;  border-collapse:collapse; table-layout:fixed;}
+#jsonTab,#jsonTabNew {margin-left:auto;margin-right:auto;  border-collapse:collapse; table-layout:fixed;}
        #jsonTab td,th {border:solid 1px rgb(0,0,0); min-width:6vw; word-wrap:break-word;padding:5px;}
+              #jsonTabNew td,th {border:solid 1px rgb(0,0,0); min-width:6vw; word-wrap:break-word;padding:5px;}

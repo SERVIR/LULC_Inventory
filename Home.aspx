@@ -25,12 +25,14 @@
             }
         };
         var adminLoggedIn = 0;
-     
+    
     </script>
     <link rel="stylesheet" href="css/jquery-ui.css">
     <script src="js/users.js"></script>
+        <script src="js/reportedProblems.js"></script>
+
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer>></script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
     <script src="js/gLogin.js"></script>
     <script>
         //Whenever a user logs in, this ,method adds user details to the json file
@@ -87,7 +89,9 @@
         var loggedIn = 0;
         var mail_id;
         var td0, td1, td2, td3, td4, td5, td6, td7, td8, td9, td10, td11, td12, td13, td14;
+        var tdn0, tdn1, tdn2;
         var approved = 0;
+        var closed = 0;
         var sid;
 
         //When the admins views requests, this method helps to highlight the rows for approving or discarding
@@ -129,6 +133,51 @@
 
                         td14 = rowSelected.cells[14].innerHTML;
                         rowSelected.className = "appr";
+
+                    }
+                }
+            }
+
+
+        }
+        //When the admins views requests, this method helps to highlight the rows for approving or discarding
+        function highlight_row_problems() {
+            $('#statusMesg').html("");
+            var table = document.getElementById('jsonTabNew');
+            var rows = document.getElementById('jsonTabNew').rows;
+            for (var j = 0; j < rows.length; j++) {
+                var cells = document.getElementById('jsonTabNew').rows[j].cells;
+                for (var i = 0; i < cells.length; i++) {
+                    var cell = cells[i];
+                    cell.onclick = function () {
+                        if ($("select#selectStatus option").filter(":selected").text() == "Open") {
+                            $("#close").show();
+                            $("#open").hide();
+                        }
+                        else if ($("select#selectStatus option").filter(":selected").text() == "Closed") {
+                            $("#open").show();
+                            $("#close").hide();
+                        }
+                        else {
+                            $("#close").hide();
+                            $("#open").hide();
+                        }
+                        var rowId = this.parentNode.rowIndex;
+                        var rowsNotSelected = table.getElementsByTagName('tr');
+                        for (var row = 0; row < rowsNotSelected.length; row++) {
+                            rowsNotSelected[row].style.backgroundColor = "";
+                            rowsNotSelected[row].classList.remove('selected');
+                        }
+                        var rowSelected = table.getElementsByTagName('tr')[rowId];
+                        rowSelected.style.backgroundColor = "yellow";
+                        rowSelected.className += " selected";
+
+                        tdn0 = rowSelected.cells[0].innerHTML;
+                        tdn1 = rowSelected.cells[1].innerHTML;
+                        tdn2 = rowSelected.cells[2].innerHTML;
+                     
+                   
+                        rowSelected.className = "opn";
 
                     }
                 }
@@ -516,6 +565,70 @@
                 alert('Deleted successfully')
                 Shadowbox.close();
             }
+        }   
+        function reportProblemPopup() {
+            $('.modal_reportproblems').show();
+        }
+        function submitReportProblem() {
+            var problem = document.getElementById("enter_problem").value;
+            if (problem != null) {
+                var uniqueId = Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
+                var jarr = {
+                    "PID": uniqueId,
+                    "Problem": problem,
+                    "Status": "Open"
+                }
+                var j = JSON.stringify(jarr);
+                PageMethods.updateProblemsJson(j);
+            }
+            $('.modal_reportproblems').hide();
+        }
+
+           function closeStatus() {
+            var newData = {
+                "PID": tdn0,
+                "Problem": tdn1,
+                "Status": "Closed"
+            }
+
+            var str = JSON.stringify(newData);
+            document.getElementById('<%=hdn.ClientID%>').value = str;
+            PageMethods.updateProblemJson(tdn0,tdn1,"Closed");
+            reportedProblems.push(newData);
+            closed = 1;
+               $(".opn").hide();
+
+            $('#statusMesg').html("<b style='color:green'>Closed record with PID " + tdn0 + "</b>");
+
+
+           }
+        function openStatus() {
+
+             var newData = {
+                "PID": tdn0,
+                "Problem": tdn1,
+                "Status": "Open"
+            }
+
+            var str = JSON.stringify(newData);
+            document.getElementById('<%=hdn.ClientID%>').value = str;
+            PageMethods.updateProblemJson(tdn0,tdn1,"Open");
+            reportedProblems.push(newData);
+            closed = 0;
+                $(".opn").hide();
+
+            $('#statusMesg').html("<b style='color:green'>Reopened record with PID " + tdn0 + "</b>");
+
+
+        }
+     
+
+
+
+
+
+        function reportProblem(uid) {
+
         }
         //Updates existing records when the admin edits and submits the data
         function updateData(uid) {
@@ -1023,7 +1136,14 @@
         <div class="header">
             <ul id='horiz_menu'>
                 <li><a href="javascript:void(0);" class="iconResponsive" onclick="displayMenu()">&#9776;</a>
-                    <div id="respMenu" style="z-index:40;margin-top:8vw;margin-left:70vw;position:absolute;right:0;" class="icon-content"> <a id="AddAdminsResp" href="#" onclick="AddAdmins()" style="display:none;" ><b>Add Admins</b> </a><a  id="ViewRequestsResp" href="#" onclick="ViewRequests()" style="display:none;"><b>View Requests</b></a><a href="#" onclick="about()"><b>About</b></a><span class="userContent" style="color: white;"></span></div>
+                    <div id="respMenu" style="z-index:40;margin-top:8vw;margin-left:70vw;position:absolute;right:0;" class="icon-content">
+                         <a id="AddAdminsResp" href="#" onclick="AddAdmins()" style="display:none;" ><b>Add Admins</b> </a>
+                        <a  id="ViewRequestsResp" href="#" onclick="ViewRequests()" style="display:none;"><b>View Requests</b></a>
+
+                        <a href="#" onclick="about()"><b>About</b></a>
+                        <span class="userContent" style="color: white;"></span>
+
+                    </div>
 
                   
                 </li>
@@ -1037,6 +1157,10 @@
                 </li>
                 <li id="AddAdmins" class='hmenu' hidden><a href="#" onclick="AddAdmins()"><b>Add Admins</b></a></li>
                 <li id="ViewRequests" class='hmenu' hidden><a href="#" onclick="ViewRequests()"><b>View Requests</b></a></li>
+                <li id="ViewProblems" class='hmenu' hidden><a href="#" onclick="ViewProblems()"><b>View Problems</b></a></li>
+                <li id="ReportProblems" class='hmenu' hidden><a href="#" onclick="reportProblemPopup()"><b>Report a Problem</b></a></li>
+                <li id="importDataPop" class='hmenu' hidden><a href="#" onclick="ImportData()"><b>Bulk Data?</b></a></li>
+
                 <li id="about" class='hmenu'><a href="#" onclick="about()"><b>About</b></a></li>
             </ul>
 
@@ -1184,8 +1308,155 @@
         </div>
 
     </div>
+        <!-- The Modal for problems -->
+    <div id="myModal_problems" class="modal_problems" onload="highlight_row_problems()">
+
+        <!-- Modal content -->
+        <div class="modal-content-problems">
+            <span class="close" onclick="closeR()">&times;</span>
+            <p>Following are the problems.. click on a row to open or close!</p>
+            <select id="selectStatus">
+                <option>Choose a status</option>
+                    <option>Open</option>    <option>Closed</option>
+            </select>
+            <br />
+            <button id="close" style="float:unset" onclick="closeStatus()" hidden>Close</button>
+            <button id="open"  style="float:unset" onclick="openStatus()" hidden>Open</button>
+            <br /><span id="statusMesg"">status</span>
+            <p></p>
+            <div id="probs">
+            </div>
+
+        </div>
+
+    </div>
+            <!-- The Modal for problems -->
+    <div id="myModal_reportproblems" class="modal_reportproblems">
+
+        <!-- Modal content -->
+        <div class="modal-content-reportproblems">
+            <span class="close" onclick="closeR()">&times;</span>
+            <p>Please enter a short description of your problem...</p>
+            <textarea style="margin-left: 0.7vw" id="enter_problem" rows="4" cols="50" placeholder="Enter your problem here..."></textarea>
+            <br />
+            <button style="margin-left: 0.7vw; margin-top: 0.5vw;padding:8px 16px 8px;float:right;" id="submit_problem" onclick="submitReportProblem()">Submit Problem</button>
+        </div>
+
+    </div>
+            <form id="importDataForm" runat="server">
+
+    <div id="myModal_importData"  class="modal_importData">
+            <!-- Modal content -->
+        <div class="modal-content-importData">
+            <span class="close" onclick="closeR()">&times;</span>
+            <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
+            
+            <p>Please upload an excel file to import data to the website!!!</p>
+            <asp:FileUpload ID="FileImportData" runat="server"/>
+            <br />
+            <br />
+            <input style="background-image: none;
+            color: white;
+            background-color: black;
+            padding: 8px 16px 8px;" type="button" id="SubmitImportData" value="Import" runat="server" onserverclick="ImportData_Click" />
+
+            <label id="myl" runat="server"></label>
+                </div>
+                        <br />
+
+          <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
+            <p>Please select a country/multiple countries so that you can download data!!!</p>
+            <div>
+                   <asp:ListBox runat="server" ID="selectCtry" SelectionMode="multiple">
+                            <asp:ListItem Text="Ethiopia" Value="Ethiopia" />
+                            <asp:ListItem Text="Kenya" Value="Kenya" />
+                            <asp:ListItem Text="Lesotho" Value="Lesotho" />
+                            <asp:ListItem Text="Malawi" Value="Malawi" />
+                            <asp:ListItem Text="Mauritius" Value="Mauritius" />
+                            <asp:ListItem Text="Namibia" Value="Namibia" />
+                            <asp:ListItem Text="Somalia" Value="Somalia" />
+                            <asp:ListItem Text="South Africa" Value="South Africa" />
+                            <asp:ListItem Text="Sudan" Value="Sudan" />
+                            <asp:ListItem Text="Swaziland" Value="Swaziland" />
+                            <asp:ListItem Text="Tanzania" Value="Tanzania" />
+                            <asp:ListItem Text="Uganda" Value="Uganda" />
+                            <asp:ListItem Text="Zambia" Value="Zambia" />
+                            <asp:ListItem Text="Rwanda" Value="Rwanda" />
+                            <asp:ListItem Text="Algeria" Value="Algeria" />
+                            <asp:ListItem Text="Libya" Value="Libya" />
+                            <asp:ListItem Text="Morocco" Value="Morocco" />
+                            <asp:ListItem Text="Angola" Value="Angola" />
+                            <asp:ListItem Text="Benin" Value="Benin" />
+                            <asp:ListItem Text="Central African republic" Value="Central African republic" />
+                            <asp:ListItem Text="Cape Verde" Value="Cape Verde" />
+                            <asp:ListItem Text="Cameroon" Value="Cameroon" />
+                            <asp:ListItem Text="Burundi" Value="Burundi" />
+                            <asp:ListItem Text="Burkina Faso" Value="Burkina Faso" />
+                            <asp:ListItem Text="Botswana" Value="Botswana" />
+                            <asp:ListItem Text="Chad" Value="Chad" />
+                            <asp:ListItem Text="Republic Congo" Value="Republic Congo" />
+                            <asp:ListItem Text="Cote Divoire" Value="Cote Divoire" />
+                            <asp:ListItem Text="Djibouti" Value="Djibouti" />
+                            <asp:ListItem Text="Egypt" Value="Egypt" />
+                            <asp:ListItem Text="Equatorial Guinea" Value="Equatorial Guinea" />
+                            <asp:ListItem Text="Guinea" Value="Guinea" />
+                            <asp:ListItem Text="Eritrea" Value="Eritrea" />
+                            <asp:ListItem Text="Gabon" Value="Gabon" />
+                            <asp:ListItem Text="Ghana" Value="Ghana" />
+                            <asp:ListItem Text="Guinea Bissau" Value="Guinea Bissau" />
+                            <asp:ListItem Text="Liberia" Value="Liberia" />
+                            <asp:ListItem Text="Madagascar" Value="Madagascar" />
+                            <asp:ListItem Text="Mali" Value="Mali" />
+                            <asp:ListItem Text="Mauritania" Value="Mauritania" />
+                            <asp:ListItem Text="Mozambique" Value="Mozambique" />
+                            <asp:ListItem Text="Niger" Value="Niger" />
+                            <asp:ListItem Text="Nigeria" Value="Nigeria" />
+                            <asp:ListItem Text="Sao Tome and Principe" Value="Sao Tome and Principe" />
+                            <asp:ListItem Text="Sierra Leone" Value="Sierra Leone" />
+                            <asp:ListItem Text="South Sudan" Value="South Sudan" />
+                            <asp:ListItem Text="The Gambia" Value="The Gambia" />
+                            <asp:ListItem Text="Togo" Value="Togo" />
+                            <asp:ListItem Text="Tunisia" Value="Tunisia" />
+                            <asp:ListItem Text="Western Sahara" Value="Western Sahara" />
+                            <asp:ListItem Text="Zimbabwe" Value="Zimbabwe" />
+                            <asp:ListItem Text="Democratic Congo" Value="Democratic Congo" />
+                            <asp:ListItem Text="Comoros" Value="Comoros" />
+                            <asp:ListItem Text="Seychelles" Value="Seychelles" />
+
+                </asp:ListBox> 
+                <br />
+                <br />
+
+               <input style="background-image: none;
+            color: white;
+            background-color: black;
+            padding: 8px 16px 8px;" type="button" id="SubmitExportData" value="Download" runat="server" onserverclick="ExportData_Click" />
+                </div>
+              </div>
+                        <br />
+
+                <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
+                <p>Update the downloaded excel document and reupload it here to either update or delete existing data.</p>
+                            <asp:FileUpload ID="FileUpdateData" runat="server"/>
+                <br />           
+                <br />
+                <input style="background-image: none;
+            color: white;
+            background-color: black;
+            padding: 8px 16px 8px;
+            " type="button" id="UpdateData" value="Update data" runat="server" onserverclick="UpdateData_Click" />
+
+                <input style="background-image: none;
+            color: white;
+            background-color: black;
+            padding: 8px 16px 8px;
+            " type="button" id="DeleteData" value="Delete Data" runat="server" onserverclick="DeleteData_Click" />
+
+</div>
+            </div>
+</div>
     <!-- Script Manager is necessary to call methods from .cs page-->
-    <form runat="server">
+        
         <asp:ScriptManager ID="ScriptManager2" runat="server" EnablePageMethods="true" />
         <asp:HiddenField ID="hdnUser" runat="server"></asp:HiddenField>
         <asp:HiddenField ID="hdnData" runat="server"></asp:HiddenField>

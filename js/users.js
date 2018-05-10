@@ -1,4 +1,4 @@
-var emails =                    [{
+var emails =                     [{
   "Role": "admin",
   "Email": "francisco.delgadoolivares@nasa.gov",
     "FullName":"Francisco Delgado"

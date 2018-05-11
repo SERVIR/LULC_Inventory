@@ -2,7 +2,7 @@
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 80px; /* Location of the box */
     left: 0;
     top: 146px;
     width: 100%; /* Full width */
@@ -39,7 +39,7 @@
     padding: 20px;
     border: 1px solid #888;
     width:45vw;
-    height:38vw;
+    height:30vw;
     overflow:scroll;
 }
 .modal-content-reportproblems {
@@ -66,4 +66,4 @@
 
 #jsonTab,#jsonTabNew {margin-left:auto;margin-right:auto;  border-collapse:collapse; table-layout:fixed;}
        #jsonTab td,th {border:solid 1px rgb(0,0,0); min-width:6vw; word-wrap:break-word;padding:5px;}
-              #jsonTabNew td,th {border:solid 1px rgb(0,0,0); min-width:6vw; word-wrap:break-word;padding:5px;}
+              #jsonTabNew td,th {border:solid 1px rgb(0,0,0); min-width:6vw; word-wrap:break-word;padding:5px;margin-bottom:50px;}

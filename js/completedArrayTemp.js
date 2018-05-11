@@ -18,6 +18,7 @@ var completedArrayTemp = [
     "PointOfContactName": "Dr Azzeddin Rahoma Elhawej",
     "Email": "Azzeddin47@gmail.com",
     "PhoneNumber": "",
-    "HowToCite": ""
+    "HowToCite": "",
+      "LastUpdatedBy":"",
   }
 ];

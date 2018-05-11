@@ -25,7 +25,8 @@
             }
         };
         var adminLoggedIn = 0;
-    
+
+
     </script>
     <link rel="stylesheet" href="css/jquery-ui.css">
     <script src="js/users.js"></script>
@@ -82,6 +83,7 @@
     <link href="css/shadowbox.css" rel="stylesheet" type="text/css" />
     <link href="css/addAdmin.css" rel="stylesheet" type="text/css" />
     <script>
+
         var testvar;
         var gClusters;
         var email_str;
@@ -89,7 +91,7 @@
         var loggedIn = 0;
         var mail_id;
         var td0, td1, td2, td3, td4, td5, td6, td7, td8, td9, td10, td11, td12, td13, td14;
-        var tdn0, tdn1, tdn2;
+        var tdn0, tdn1, tdn2,tdn3;
         var approved = 0;
         var closed = 0;
         var sid;
@@ -132,6 +134,7 @@
                         td13 = rowSelected.cells[13].innerHTML;
 
                         td14 = rowSelected.cells[14].innerHTML;
+                       
                         rowSelected.className = "appr";
 
                     }
@@ -176,7 +179,7 @@
                         tdn1 = rowSelected.cells[1].innerHTML;
                         tdn2 = rowSelected.cells[2].innerHTML;
                      
-                   
+                        tdn3 = rowSelected.cells[3].innerHTML;
                         rowSelected.className = "opn";
 
                     }
@@ -185,6 +188,7 @@
 
 
         }
+
     </script>
     <script>
 
@@ -314,7 +318,8 @@
                             "PointOfContactName": document.getElementById("poc").value,
                             "Email": document.getElementById("email").value,
                             "PhoneNumber": document.getElementById("ph_num").value,
-                            "HowToCite": document.getElementById("cite").value
+                            "HowToCite": document.getElementById("cite").value,
+                            "LastUpdatedBy": document.getElementById('uemail').innerHTML.split(':')[1].trim()
 
                         }
 
@@ -436,7 +441,8 @@
                 "PointOfContactName": td11,
                 "Email": td12,
                 "PhoneNumber": td13,
-                "HowToCite": td14
+                "HowToCite": td14,
+                "LastUpdatedBy": document.getElementById('uemail').innerHTML.split(':')[1].trim()
 
             }
 
@@ -571,12 +577,22 @@
         }
         function submitReportProblem() {
             var problem = document.getElementById("enter_problem").value;
+            var reportedBy = "";
             if (problem != null) {
                 var uniqueId = Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
+                if (document.getElementById('uemail').innerHTML == "You are not logged in!") {
+                    reportedBy = document.getElementById('emailAddress').value;
+                }
+                else
+                {
+                    reportedBy=document.getElementById('uemail').innerHTML.split(':')[1].trim();
+                }
                 var jarr = {
                     "PID": uniqueId,
                     "Problem": problem,
-                    "Status": "Open"
+                    "Status": "Open",
+
+                    "reportedBy": reportedBy
                 }
                 var j = JSON.stringify(jarr);
                 PageMethods.updateProblemsJson(j);
@@ -588,12 +604,13 @@
             var newData = {
                 "PID": tdn0,
                 "Problem": tdn1,
-                "Status": "Closed"
+                "Status": "Closed",
+                "reportedBy":tdn3
             }
 
             var str = JSON.stringify(newData);
             document.getElementById('<%=hdn.ClientID%>').value = str;
-            PageMethods.updateProblemJson(tdn0,tdn1,"Closed");
+            PageMethods.updateProblemJson(tdn0,tdn1,"Closed",tdn3);
             reportedProblems.push(newData);
             closed = 1;
                $(".opn").hide();
@@ -607,12 +624,13 @@
              var newData = {
                 "PID": tdn0,
                 "Problem": tdn1,
-                "Status": "Open"
+                "Status": "Open",
+                "reportedBy":tdn3
             }
 
             var str = JSON.stringify(newData);
             document.getElementById('<%=hdn.ClientID%>').value = str;
-            PageMethods.updateProblemJson(tdn0,tdn1,"Open");
+            PageMethods.updateProblemJson(tdn0,tdn1,"Open",tdn3);
             reportedProblems.push(newData);
             closed = 0;
                 $(".opn").hide();
@@ -647,6 +665,7 @@
             var phnum = document.getElementById("en").value;
 
             var cite = document.getElementById("eo").value;
+            var lub = document.getElementById('uemail').innerHTML.split(':')[1].trim();
             for (var i = 0; i < completedArray.length; i++) {
                 if (completedArray[i].UID == uid) {
                     completedArray[i].Title = title;
@@ -668,9 +687,10 @@
                     completedArray[i].Email = email;
                     completedArray[i].PhoneNumber = phnum;
                     completedArray[i].HowToCite = cite;
+                    completedArray[i].LastUpdatedBy = lub;
                 }
             }
-            PageMethods.updateExistingData(document.getElementById('<%=hdnData.ClientID%>').value, title, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite);
+            PageMethods.updateExistingData(document.getElementById('<%=hdnData.ClientID%>').value, title, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite,lub);
             map.removeLayer(map.getLayer("completed"));
             map.removeLayer(map.getLayer("planned"));
             map.removeLayer(map.getLayer("inprogress"));
@@ -1158,7 +1178,7 @@
                 <li id="AddAdmins" class='hmenu' hidden><a href="#" onclick="AddAdmins()"><b>Add Admins</b></a></li>
                 <li id="ViewRequests" class='hmenu' hidden><a href="#" onclick="ViewRequests()"><b>View Requests</b></a></li>
                 <li id="ViewProblems" class='hmenu' hidden><a href="#" onclick="ViewProblems()"><b>View Problems</b></a></li>
-                <li id="ReportProblems" class='hmenu' hidden><a href="#" onclick="reportProblemPopup()"><b>Report a Problem</b></a></li>
+                <li id="ReportProblems" class='hmenu'><a href="#" onclick="reportProblemPopup()"><b>Report a Problem</b></a></li>
                 <li id="importDataPop" class='hmenu' hidden><a href="#" onclick="ImportData()"><b>Bulk Data?</b></a></li>
 
                 <li id="about" class='hmenu'><a href="#" onclick="about()"><b>About</b></a></li>
@@ -1339,19 +1359,24 @@
             <p>Please enter a short description of your problem...</p>
             <textarea style="margin-left: 0.7vw" id="enter_problem" rows="4" cols="50" placeholder="Enter your problem here..."></textarea>
             <br />
+           <div id="emailDiv"> <label>Enter email id:</label><input id="emailAddress" type="email" required></div>
+            <br />
             <button style="margin-left: 0.7vw; margin-top: 0.5vw;padding:8px 16px 8px;float:right;" id="submit_problem" onclick="submitReportProblem()">Submit Problem</button>
         </div>
 
     </div>
             <form id="importDataForm" runat="server">
 
-    <div id="myModal_importData"  class="modal_importData">
+             <div id="myModal_importData"  class="modal_importData">
             <!-- Modal content -->
-        <div class="modal-content-importData">
-            <span class="close" onclick="closeR()">&times;</span>
-            <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
-            
-            <p>Please upload an excel file to import data to the website!!!</p>
+                <div class="modal-content-importData">
+                  <span class="close" onclick="closeR()">&times;</span>
+                    <h2>Import Data</h2>
+               <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
+              
+              <p>Please upload an excel file to import data to the website!!!</p>
+                              <p>Download a template <a href="files/template.xlsx">here</a>. Enter the details and import it.</p>
+
             <asp:FileUpload ID="FileImportData" runat="server"/>
             <br />
             <br />
@@ -1363,6 +1388,7 @@
             <label id="myl" runat="server"></label>
                 </div>
                         <br />
+                                        <h2>Download Data</h2>
 
           <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
             <p>Please select a country/multiple countries so that you can download data!!!</p>
@@ -1434,12 +1460,14 @@
                 </div>
               </div>
                         <br />
+                                        <h2>Update/Delete Data</h2>
 
                 <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
                 <p>Update the downloaded excel document and reupload it here to either update or delete existing data.</p>
                             <asp:FileUpload ID="FileUpdateData" runat="server"/>
                 <br />           
                 <br />
+                    <input type="hidden" runat="server" id="foruseremail" />
                 <input style="background-image: none;
             color: white;
             background-color: black;

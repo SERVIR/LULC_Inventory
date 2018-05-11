@@ -5,7 +5,7 @@ function onSignIn(googleUser) {
     loggedIn = 1;
 
     $('#gSignIn').hide();
-
+    $("#emailDiv").hide();
     var profile = googleUser.getBasicProfile();
 
     //console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -17,6 +17,8 @@ function onSignIn(googleUser) {
 
     $('#uname').html('Welcome ' + profile.getName());
     mail_id = profile.getEmail();
+    document.getElementById("foruseremail").value = profile.getEmail();
+
     var found = false;
     var admin = true;
 
@@ -36,6 +38,7 @@ function onSignIn(googleUser) {
     }
 
     if (found) {
+
              if (admin) {
             $('#uemail').html('Admin Login: ' + profile.getEmail());
             $('#ufullname').html(profile.getName());
@@ -45,7 +48,7 @@ function onSignIn(googleUser) {
             $('#AddAdminsResp').show();
             $('#ViewRequests').show();
             $('#importDataPop').show();
-            $('#ReportProblems').show();
+         //   $('#ReportProblems').show();
             $('#ViewRequestsResp').show();
             $('#ViewProblems').show();
             $('#editlink').show();
@@ -61,7 +64,7 @@ function onSignIn(googleUser) {
                  $('#importDataPop').hide();
                  $('#ViewRequests').hide();
                  $('#ViewProblems').hide();
-                 $('#ReportProblems').hide();
+           //      $('#ReportProblems').hide();
                  $('#ViewRequestsResp').hide();
 
             $('#ufullname').html(profile.getName());
@@ -111,10 +114,12 @@ function onSignIn(googleUser) {
     });
 
 }
+
 function signOut() {
     adminLoggedIn = 0;
     var auth2 = gapi.auth2.getAuthInstance();
-    
+    $("#emailDiv").show();
+
     auth2.signOut().then(function () {
         $('#uemail').html('You are not logged in!');
         $('#addmorebutton_link').hide();

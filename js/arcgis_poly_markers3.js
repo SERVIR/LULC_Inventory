@@ -400,7 +400,8 @@ function expandcompletedArray() {
                         PhoneNumber: completedArray[c].PhoneNumber,
                         HowToCite: completedArray[c].HowToCite,
 
-                        Status:completedArray[c].Status
+                        Status: completedArray[c].Status,
+                        LastUpdatedBy:completedArray[c].LastUpdatedBy
                     }
 
                     newcompletedArray.push(newPoint);
@@ -590,7 +591,7 @@ function populatePanelByCountry(which) {
 
                 clone.getElementsByClassName('articlelink')[0].id = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].onclick = function () {
-                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "";
+                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
                             a = sortedcompleted[x].Title;
@@ -616,6 +617,8 @@ function populatePanelByCountry(which) {
                             m = sortedcompleted[x].Email;
                             n = sortedcompleted[x].PhoneNumber;
                             o = sortedcompleted[x].HowToCite;
+                            lub = sortedcompleted[x].LastUpdatedBy;
+
                             break;
                         }
                     }
@@ -658,6 +661,8 @@ function populatePanelByCountry(which) {
                                     ' </table>' +
                                        ' <table id="etable" hidden>' +
                                     '<caption><h1>Edit Data for ' + a + '</h1></caption>' +
+                                  '<tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="eb" >' + lub + '</label></td></tr>' +
+
                                      '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" type="text" value="' + b + '" /></td></tr>' +
                                     '<tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> ' +
                                   ' <option value="Completed">Completed</option> ' +
@@ -710,7 +715,7 @@ function populatePanelByCountry(which) {
 
                 document.getElementById('uid_hidden').innerHTML = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].onclick = function () {
-                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "";
+                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
                             a = sortedcompleted[x].Title;
@@ -736,6 +741,8 @@ function populatePanelByCountry(which) {
                             m = sortedcompleted[x].Email;
                             n = sortedcompleted[x].PhoneNumber;
                             o = sortedcompleted[x].HowToCite;
+                            lub = sortedcompleted[x].LastUpdatedBy;
+
                             break;
                         }
                     }
@@ -778,6 +785,8 @@ function populatePanelByCountry(which) {
                                     ' </table>' +
                                    ' <table id="etable" hidden>' +
                                     '<caption><h1>Edit Data for ' + a + '</h1></caption>' +
+                                  '<tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="eb" >' + lub + '</label></td></tr>' +
+
                                         '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" type="text" value="' + b + '" /></td></tr>' +
                                      '<tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> ' +
                                   ' <option value="Completed">Completed</option> ' +
@@ -830,7 +839,7 @@ function populatePanelByCountry(which) {
                 document.getElementById('uid_hidden').innerHTML = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].id = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].onclick = function () {                        
-                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "";
+                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
 
@@ -857,6 +866,7 @@ function populatePanelByCountry(which) {
                             m = sortedcompleted[x].Email;
                             n = sortedcompleted[x].PhoneNumber;
                             o = sortedcompleted[x].HowToCite;
+                            lub = sortedcompleted[x].LastUpdatedBy;
                             break;
                         }
                     }
@@ -899,6 +909,7 @@ function populatePanelByCountry(which) {
                                     ' </table>' +
                                      ' <table id="etable" hidden>' +
                                     '<caption><h1>Edit Data for ' + a + '</h1></caption>' +
+                                  '<tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="eb" >' + lub + '</label></td></tr>' +
                                      '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" type="text" value="' + b + '" /></td></tr>' +
                                      '<tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> ' +
                                   ' <option value="Completed">Completed</option> ' +

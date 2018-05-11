@@ -17,7 +17,32 @@ public partial class Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-     
+        List<ListItem> list = new List<ListItem>();
+
+        foreach (ListItem li in selectCtry.Items)
+        {
+            list.Add(li);
+        }
+
+        //sort list items alphabetically/ascending
+        List<ListItem> sorted = list.OrderBy(b => b.Text).ToList();
+
+        //empty dropdownlist
+        selectCtry.Items.Clear();
+        //repopulate dropdownlist with sorted items.
+        foreach (ListItem li in sorted)
+        {
+            selectCtry.Items.Add(li);
+        }
+        StreamReader myFile = new StreamReader(HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
+        string myString = myFile.ReadToEnd();
+        myFile.Close();
+        //if (myString.Length == 0)
+        //{
+        //    StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
+        //    file.WriteLine("var completedArray = [];");
+        //    file.Close();
+        //}
         Guid changer = Guid.NewGuid();
         string jsfile = "js/completedArray.js?c=" + changer.ToString();
 
@@ -63,6 +88,7 @@ public partial class Home : System.Web.UI.Page
         STR = STR.Remove(STR.Length - 1);
         STR = STR.Remove(STR.Length - 1);
 
+
         StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
         file.WriteLine("var completedArray = " + STR + ", " + formatted + "];");
 
@@ -70,7 +96,7 @@ public partial class Home : System.Web.UI.Page
 
     }
     [System.Web.Services.WebMethod]
-    public static void updateProblemJson(string pid,string problem,string status)
+    public static void updateProblemJson(string pid,string problem,string status,string email)
     {
         System.IO.StreamReader myFile =
              new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/reportedProblems.js"));
@@ -89,11 +115,12 @@ public partial class Home : System.Web.UI.Page
             {
                 d.Problem = problem;
                 d.Status = status;
-
+                d.reportedBy = email;
 
             }
 
         }
+
         JToken jt = JToken.Parse(data.ToString());
         string formatted = jt.ToString(Formatting.Indented);
 
@@ -187,7 +214,7 @@ public partial class Home : System.Web.UI.Page
     }
 
     [System.Web.Services.WebMethod]
-    public static void updateExistingData(int uid, string title, string mapyear, string org, int cls, string ds, string status, int release, string notes, string poc, string email, string phnum, string cite)
+    public static void updateExistingData(int uid, string title, string mapyear, string org, int cls, string ds, string status, int release, string notes, string poc, string email, string phnum, string cite,string lub)
     {
         System.IO.StreamReader myFile =
              new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
@@ -216,6 +243,7 @@ public partial class Home : System.Web.UI.Page
                 d.Email = email;
                 d.PhoneNumber = phnum;
                 d.HowToCite = cite;
+                d.LastUpdatedBy = lub;
 
             }
 
@@ -343,23 +371,34 @@ public partial class Home : System.Web.UI.Page
 
         JToken jt = JToken.Parse(s);
         string formatted = jt.ToString(Formatting.Indented);
-
+        string existing = "";
 
         //COMPLETED ARRAY JSON STRING
         string STR = myString;
-        STR = STR.Substring(23);
-        STR = STR.TrimEnd('\r', '\n');
-        STR = STR.Remove(STR.Length - 1);
-        STR = STR.Remove(STR.Length - 1);
+        if (STR.Length <26)
+        {
+            existing = "var reportedProblems = [" + formatted + "];";
+        }
+        else
+        {
+            STR = STR.Substring(23);
+            STR = STR.TrimEnd('\r', '\n');
+            STR = STR.Remove(STR.Length - 1);
+            STR = STR.Remove(STR.Length - 1);
+            existing = "var reportedProblems = " + STR + ", " + formatted + "];";
+        }
+           
 
         StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/reportedProblems.js"));
-        file.WriteLine("var reportedProblems = " + STR + ", " + formatted + "];");
+       
+        file.WriteLine(existing);
 
         file.Close();
 
     }
     public void ImportData_Click(object sender, System.EventArgs e)
     {
+      
         string path = ""; 
         if (FileImportData.PostedFile != null && FileImportData.PostedFile.ContentLength > 0)
         {
@@ -444,6 +483,7 @@ public partial class Home : System.Web.UI.Page
                         d.Email = rowlist[12];
                         d.PhoneNumber = rowlist[13];
                         d.HowToCite = rowlist[14];
+                        d.LastUpdatedBy = foruseremail.Value;
                     }
                 }
             }
@@ -547,7 +587,7 @@ public partial class Home : System.Web.UI.Page
             {
                 //new line
                 if (j == 1)
-                    efile.WriteLine("\r\n");
+                    efile.WriteLine("fdsfsf\r\n");
 
                 //write the value to the console
                 if (xlRange.Cells[i, j] != null ) {
@@ -575,6 +615,7 @@ public partial class Home : System.Web.UI.Page
             d.Email = rowlist[12];
             d.PhoneNumber = rowlist[13];
             d.HowToCite = rowlist[14];
+            d.LastUpdatedBy = foruseremail.Value;
             foreach (var nd in ndata)
             {
                 uidList.Add((nd.UID).ToString());
@@ -593,6 +634,7 @@ public partial class Home : System.Web.UI.Page
         JToken jt = JToken.Parse(ndata.ToString());
         string formatted = jt.ToString(Formatting.Indented);
         string formattednew = jt.ToString(Formatting.Indented).Remove(0, 1);
+     
         file.WriteLine("var completedArray = " + STR + ", " + formattednew + ";");
 
         file.Close();
@@ -632,8 +674,8 @@ public partial class Home : System.Web.UI.Page
 
        // var data = JsonConvert.DeserializeObject<Hashtable>(STR)["value"];
         var sb = new StringBuilder();
-        sb.AppendLine("UID,Title,CategoryName,CategoryID,MapYear,Organization,NumberOfClasses,DataSource,Status,ReleasedYear,Notes,PointOfContactName,Email,PhoneNumber,HowTocite");
-
+        sb.AppendLine("UID,Title,CountryName,CountryID,MapYear,Organization,NumberOfClasses,DataSource,Status,ReleasedYear,Notes,PointOfContactName,Email,PhoneNumber,HowTocite");
+     
         foreach (var o in data)
         {
             if (list.Contains((o.CategoryName).ToString()))

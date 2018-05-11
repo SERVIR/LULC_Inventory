@@ -555,10 +555,7 @@ public partial class Home : System.Web.UI.Page
         string myString = myFile.ReadToEnd();
         myFile.Close();
         string STR = myString;
-        STR = STR.Substring(21);
-        STR = STR.TrimEnd('\r', '\n');
-        STR = STR.Remove(STR.Length - 1);
-        STR = STR.Remove(STR.Length - 1);
+     
 
         StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
        
@@ -634,9 +631,20 @@ public partial class Home : System.Web.UI.Page
         JToken jt = JToken.Parse(ndata.ToString());
         string formatted = jt.ToString(Formatting.Indented);
         string formattednew = jt.ToString(Formatting.Indented).Remove(0, 1);
-     
-        file.WriteLine("var completedArray = " + STR + ", " + formattednew + ";");
-
+        string existing = "";
+        if (STR.Length < 26)
+        {
+            existing = "var completedArray = [" + formattednew + ";";
+        }
+        else
+        {
+            STR = STR.Substring(21);
+            STR = STR.TrimEnd('\r', '\n');
+            STR = STR.Remove(STR.Length - 1);
+            STR = STR.Remove(STR.Length - 1);
+            existing = "var completedArray = " + STR + ", " + formattednew + "];";
+        }
+        file.WriteLine(existing);
         file.Close();
         efile.Close();
         GC.Collect();

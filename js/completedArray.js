@@ -1,6 +1,6 @@
-var completedArray = [{}, 
+var completedArray = [
   {
-    "UID": 41586479,
+    "UID": 57287714,
     "Title": "temp",
     "CategoryName": "Libya",
     "CategoryID": [
@@ -22,7 +22,7 @@ var completedArray = [{},
     "LastUpdatedBy": "githika.cs@gmail.com"
   },
   {
-    "UID": 41586514,
+    "UID": 57287772,
     "Title": "temp1",
     "CategoryName": "Libya",
     "CategoryID": [
@@ -44,7 +44,7 @@ var completedArray = [{},
     "LastUpdatedBy": "githika.cs@gmail.com"
   },
   {
-    "UID": 41586544,
+    "UID": 57287815,
     "Title": "temp2",
     "CategoryName": "Libya",
     "CategoryID": [
@@ -66,24 +66,24 @@ var completedArray = [{},
     "LastUpdatedBy": "githika.cs@gmail.com"
   }
 , {
-  "UID": 41586516,
-  "Title": "hyg",
-  "CategoryName": "Libya",
+  "UID": 57287774,
+  "Title": "sdf",
+  "CategoryName": "Egypt",
   "CategoryID": [
-    16
+    30
   ],
-  "MapYear": "3433",
-  "Organization": "kjg",
+  "MapYear": "322",
+  "Organization": "432",
   "NumberOfClasses": [
-    56
+    3
   ],
-  "DataSource": "hgjhg",
+  "DataSource": "fds",
   "Status": "Completed",
-  "ReleasedYear": 334,
+  "ReleasedYear": 34234,
   "Notes": "",
-  "PointOfContactName": "hgjh",
-  "Email": "kjhkl@kugj.com",
-  "PhoneNumber": "1223332222",
-  "HowToCite": "jhkj",
+  "PointOfContactName": "dsf",
+  "Email": "dfsd@s.com",
+  "PhoneNumber": "1132385745",
+  "HowToCite": "dfa",
   "LastUpdatedBy": "githika.cs@gmail.com"
 }];

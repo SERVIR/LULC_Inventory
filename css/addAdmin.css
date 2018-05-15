@@ -1,4 +1,4 @@
-﻿.modal,.modal_requests,.modal_problems,.modal_reportproblems,.modal_importData {
+﻿.modal,.modal_requests,.modal_problems,.modal_reportproblems,.modal_importData,.modal_addAdmins,.modal_about {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -55,7 +55,27 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width:20vw;
+    width:27vw;
+    overflow:scroll;
+}
+.modal-content-addAdmins{
+    border-radius:8px;
+
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width:27vw;
+    overflow:scroll;
+}
+.modal-content-about{
+    border-radius:8px;
+
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width:27vw;
     overflow:scroll;
 }
 /* The Close Button */

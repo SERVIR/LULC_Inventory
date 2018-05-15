@@ -148,25 +148,8 @@ function AddAdmins()
         }
     }
     str = str.substring(0, str.length - 2);
-
-
-    Shadowbox.open({
-        content: '<h1 style="color:black;text-align:center;"><b>Add Administrators</b></h1><div style="color:black;">       ' +
-                        '  <p  style="margin-left: 0.7vw" >Current Admins are:</p>' +
-
-            '  <p id="existingAdmins" style="margin-left: 0.7vw;margin-right: 0.7vw" >' + str + '</p>' +
-          '  <p style="margin-left: 0.7vw">Enter the email ids of admins (separate multiple entries by commas)</p>' +
-           ' <textarea style="margin-left: 0.7vw;border:3px groove;border-radius:10px;" id="entered_ids" rows="4" cols="50" placeholder="xyz@gmail.com,abc@gmail.com"></textarea>'+
-           ' <button style="margin-left: 0.7vw; margin-top: 0.5vw;padding:8px 16px 8px;float:right;" id="submit_ids" onclick="submitIds()">Add Admin(s)</button>' +
-                 '</div>',
-        player: "html",
-        title: "Application Administrators",
-        height: "350px"
-    });
-  
-    //$('.modal').show();
-   // document.getElementById("entered_ids").focus();
-
+    document.getElementById("existingAdmins").innerHTML = str;
+    $('.modal_addAdmins').show();
 }
 
 function closeP() {
@@ -189,6 +172,8 @@ function closeR() {
     $('.modal_problems').hide();
     $('.modal_reportproblems').hide();
     $('.modal_importData').hide();
+    $('.modal_addAdmins').hide();
+    $('.modal_about').hide();
     if (typeof (document.getElementById("jsonTab")) != 'undefined' && document.getElementById("jsonTab") != null) {
         document.getElementById("jsonTab").style.display = "none";
     }

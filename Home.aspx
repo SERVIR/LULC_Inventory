@@ -121,16 +121,7 @@
         });
         //Opens a pop up(shadow box) for the information about the website
         function about() {
-            Shadowbox.open({
-                content: '<div style="color:black;">In the context of the AfriGEOSS Working Group on Land Cover for Africa (WGLCA), the Ecological Monitoring Center (CSE) of Senegal, SERVIR Science Coordination Office and SERVIR West Africa joined efforts to develop a dynamic Land Cover Inventory for Africa<br /><br />' +
-                         'This inventory is a collection of information regarding the multiple efforts on land cover and land use products for the continent of Africa. The input data were originally collected through the members of the AfriGEOSS WGLCA Executive Board. The purpose of this inventory is to have a complete understanding of the available  land cover products  in the continent,  to raise awareness and promote use of the data that exists and avoid duplication of efforts.<br/><br/>' +
-                         'We encourage users to update information about land cover datasets available for the region. Please enter new records by signing-in into this portal. ' +
-                         '<p>App Development: SERVIR, 2017<p>' +
-                         '</div>',
-                player: "html",
-                title: "About website",
-                height: "389px"
-            });
+            $(".modal_about").show();
         }
 
 
@@ -1272,6 +1263,44 @@
             <div id="probs">
             </div>
 
+        </div>
+
+    </div>
+ 
+                <!-- The Modal for about -->
+    <div id="myModal_about" class="modal_about">
+
+        <!-- Modal content -->
+        <div class="modal-content-about">
+            <span class="close" onclick="closeR()">&times;</span>
+            <h1 style="color:black;text-align:center;"><b>About this website</b></h1><br />
+           <div style="color:black;">In the context of the AfriGEOSS Working Group on Land Cover for Africa (WGLCA), the Ecological Monitoring Center (CSE) of Senegal,
+                SERVIR Science Coordination Office and SERVIR West Africa joined efforts to develop a dynamic Land Cover Inventory for Africa<br /><br />
+                         This inventory is a collection of information regarding the multiple efforts on land cover and land use products for the continent of Africa.
+                The input data were originally collected through the members of the AfriGEOSS WGLCA Executive Board. The purpose of this inventory is to have a complete understanding of the available
+                 land cover products  in the continent,  to raise awareness and promote use of the data that exists and avoid duplication of efforts.<br/><br/>
+                         We encourage users to update information about land cover datasets available for the region. Please enter new records by signing-in into this portal.
+                         <p>App Development: SERVIR, 2017<p>
+                         </div>
+          
+        </div>
+
+    </div>
+    
+                <!-- The Modal for add admins -->
+    <div id="myModal_addAdmins" class="modal_addAdmins">
+
+        <!-- Modal content -->
+        <div class="modal-content-addAdmins">
+            <span class="close" onclick="closeR()">&times;</span>
+            <h1 style="color:black;text-align:center;"><b>Add Administrators</b></h1><div style="color:black;"> 
+                          <p  style="margin-left: 0.7vw" >Current Admins are:</p>
+
+             <p id="existingAdmins" style="margin-left: 0.7vw;margin-right: 0.7vw" > </p>
+          <p style="margin-left: 0.7vw">Enter the email ids of admins (separate multiple entries by commas)</p>
+           <textarea style="margin-left: 0.7vw;border:3px groove;border-radius:10px;" id="entered_ids" rows="4" cols="50" placeholder="xyz@gmail.com,abc@gmail.com"></textarea>
+           <button style="margin-left: 0.7vw; margin-top: 0.5vw;padding:8px 16px 8px;float:right;" id="submit_ids" onclick="submitIds()">Add Admin(s)</button>
+                 </div>
         </div>
 
     </div>

@@ -17,6 +17,7 @@ public partial class Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        myl.InnerHtml = "";
         List<ListItem> list = new List<ListItem>();
 
         foreach (ListItem li in selectCtry.Items)
@@ -34,6 +35,7 @@ public partial class Home : System.Web.UI.Page
         {
             selectCtry.Items.Add(li);
         }
+
         StreamReader myFile = new StreamReader(HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
         string myString = myFile.ReadToEnd();
         myFile.Close();
@@ -214,7 +216,7 @@ public partial class Home : System.Web.UI.Page
     }
 
     [System.Web.Services.WebMethod]
-    public static void updateExistingData(string uid, string title, string mapyear, string org, int cls, string ds, string status, int release, string notes, string poc, string email, string phnum, string cite,string lub)
+    public static void updateExistingData(string uid, string title, string mapyear, string org, int cls, string ds, string status, int release, string notes, string poc, string email, string phnum, string cite,string lub,string lut)
     {
         System.IO.StreamReader myFile =
              new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
@@ -244,7 +246,7 @@ public partial class Home : System.Web.UI.Page
                 d.PhoneNumber = phnum;
                 d.HowToCite = cite;
                 d.LastUpdatedBy = lub;
-
+                d.LastUpdatedTime = lut;
             }
 
         }
@@ -410,7 +412,7 @@ public partial class Home : System.Web.UI.Page
             path = Path.Combine(folder, fileName);
             try
             {
-                myl.InnerHtml = "Success,images saved";
+                myl.InnerHtml = "Success,Data added";
                 Response.Write("Uploaded: " + fileName);
 
             }
@@ -484,6 +486,7 @@ public partial class Home : System.Web.UI.Page
                         d.PhoneNumber = rowlist[13];
                         d.HowToCite = rowlist[14];
                         d.LastUpdatedBy = foruseremail.Value;
+                        d.LastUpdatedTime = forusertime.Value;
                     }
                 }
             }
@@ -598,7 +601,7 @@ public partial class Home : System.Web.UI.Page
                 d.PhoneNumber = rowlist[12];
                 d.HowToCite = rowlist[13].Trim().Replace("\r", string.Empty); ;
                 d.LastUpdatedBy = foruseremail.Value;
-
+                d.LastUpdatedTime = forusertime.Value;
 
 
                 foreach (var nd in ndata)

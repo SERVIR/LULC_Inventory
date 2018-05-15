@@ -41,8 +41,11 @@ function CreateTableFromJSONRequests(uid_arr, country) {
                     tabCell.class = "xx";
                     var rep = data[i].Title.replace(' "', '');
                     var coun = data[i].CategoryName.replace(' "', '');
+                    var inp = data[i].Status.replace('" ', '');
+                    var tim = data[i].LastUpdatedTime.replace('" ', '');
+
                     if (j == 0) {
-                        tabCell.innerHTML = '<button onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + data[i].MapYear + '","' + data[i].Organization + '","' + data[i].MapYear + '","' + data[i].NumberOfClasses + '","' + data[i].DataSource + '","' + data[i].Status + '","' + data[i].ReleasedYear + '","' + data[i].Notes + '","' + data[i].PointOfContactName + '","' + data[i].Email + '","' + data[i].PhoneNumber + '","' + data[i].HowToCite + '","' + data[i].LastUpdatedBy + '")><img height="100%" src="approve.png"/></button><button onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
+                        tabCell.innerHTML = '<button  style="background:transparent;background-color:none;" onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + data[i].MapYear + '","' + data[i].Organization + '","' + data[i].MapYear + '","' + data[i].NumberOfClasses + '","' + data[i].DataSource + '","' + escape(inp) + '","' + data[i].ReleasedYear + '","' + data[i].Notes + '","' + data[i].PointOfContactName + '","' + data[i].Email + '","' + data[i].PhoneNumber + '","' + data[i].HowToCite + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")><img height="100%" src="approve.png"/></button><button style="background:transparent;background-color:none;" onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
                     }
                     else tabCell.innerHTML = data[i][col[j]];
                 }
@@ -56,8 +59,10 @@ function CreateTableFromJSONRequests(uid_arr, country) {
                 tabCell.class = "xx";
                 var rep = data[i].Title.replace(/['"]+/g, '');
                 var coun = data[i].CategoryName.replace(' "', '');
+                var inp = data[i].Status.replace(' "', '');
+                var tim = data[i].LastUpdatedTime.replace('" ', '');
                 if (j == 0) {
-                    tabCell.innerHTML = '<button onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + data[i].MapYear + '","' + data[i].Organization + '","' + data[i].MapYear + '","' + data[i].NumberOfClasses + '","' + data[i].DataSource + '","' + data[i].Status + '","' + data[i].ReleasedYear + '","' + data[i].Notes + '","' + data[i].PointOfContactName + '","' + data[i].Email + '","' + data[i].PhoneNumber + '","' + data[i].HowToCite + '","' + data[i].LastUpdatedBy + '")><img height="100%" src="approve.png"/></button><button onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
+                    tabCell.innerHTML = '<button  style="background:transparent;background-color:none;" onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + data[i].MapYear + '","' + data[i].Organization + '","' + data[i].MapYear + '","' + data[i].NumberOfClasses + '","' + data[i].DataSource + '","' + escape(inp) + '","' + data[i].ReleasedYear + '","' + data[i].Notes + '","' + data[i].PointOfContactName + '","' + data[i].Email + '","' + data[i].PhoneNumber + '","' + data[i].HowToCite + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")><img height="100%" src="approve.png"/></button><button  style="background:transparent;background-color:none;" onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
                 }
                 else tabCell.innerHTML = data[i][col[j]];
             }
@@ -120,13 +125,13 @@ function CreateTableFromJSON(pid_arr) {
                     var p = data[i].PID.toString();
                     var rep = data[i][col[j - 3]].toString().replace(/['"]+/g, '');
                     if(data[i].Status.toString()=="Closed")
-                        tabCell.innerHTML = '<button onclick=openStatus("' + p + '","' + escape(rep) + '","' + data[i][col[j - 1]].toString() + '")>Open</button>';
+                        tabCell.innerHTML = '<button style="width:150px;" onclick=openStatus("' + p + '","' + escape(rep) + '","' + data[i][col[j - 1]].toString() + '")>Open</button>';
                     else if (data[i].Status.toString() == "Open")
-                        tabCell.innerHTML = '<button onclick=closeStatus("' + p + '","' + escape(rep) + '","' + data[i][col[j - 1]].toString() + '")>Close</button>';
+                        tabCell.innerHTML = '<button  style="width:150px;"  onclick=closeStatus("' + p + '","' + escape(rep) + '","' + data[i][col[j - 1]].toString() + '")>Close</button>';
 
 
                 }
-                else tabCell.innerHTML = data[i][col[j]];
+                else tabCell.innerHTML = decodeURIComponent(data[i][col[j]]);
                 
             }
             x++;

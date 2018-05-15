@@ -401,7 +401,8 @@ function expandcompletedArray() {
                         HowToCite: completedArray[c].HowToCite,
 
                         Status: completedArray[c].Status,
-                        LastUpdatedBy:completedArray[c].LastUpdatedBy
+                        LastUpdatedBy: completedArray[c].LastUpdatedBy,
+                        LastUpdatedTime:completedArray[c].LastUpdatedTime
                     }
 
                     newcompletedArray.push(newPoint);
@@ -591,7 +592,7 @@ function populatePanelByCountry(which) {
 
                 clone.getElementsByClassName('articlelink')[0].id = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].onclick = function () {
-                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="";
+                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
                             a = sortedcompleted[x].Title;
@@ -618,7 +619,7 @@ function populatePanelByCountry(which) {
                             n = sortedcompleted[x].PhoneNumber;
                             o = sortedcompleted[x].HowToCite;
                             lub = sortedcompleted[x].LastUpdatedBy;
-
+                            lut = sortedcompleted[x].LastUpdatedTime;
                             break;
                         }
                     }
@@ -627,13 +628,13 @@ function populatePanelByCountry(which) {
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
                         anchor = '<a id="editlink" href="#" onclick="editData('+-1+')" title="Edit"><img src="images/pencilfont.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick="deleteData(' + sortedcompleted[x].UID + ')" title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick="unapproveData(' + sortedcompleted[x].UID + ')" title="Unapprove"><img src="images/unapprovefont.png" width="30" height="30"/></a>';
+                        del = '<a id="deletelink" href="#" onclick=deleteData("' + sortedcompleted[x].UID + '") title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>';
+                        unapprove = '<a id="unapprovelink" href="#" onclick=unapproveData("' + sortedcompleted[x].UID + '") title="Unapprove"><img src="images/unapprovefont.png" width="30" height="30"/></a>';
                     }
                     else {
                         anchor = '<a id="editlink" href="#" onclick="editData(' + -1 + ')" hidden><img src="images/pencilfont.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick="deleteData(' + sortedcompleted[x].UID + ')" hidden><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick="unapproveData(' + sortedcompleted[x].UID + ')" hidden><img src="images/unapprovefont.png" width="30" height="30"/></a>';
+                        del = '<a id="deletelink" href="#" onclick=deleteData("' + sortedcompleted[x].UID + '") hidden><img src="images/trashfont.png" width="30" height="30"/></a>';
+                        unapprove = '<a id="unapprovelink" href="#" onclick=unapproveData("' + sortedcompleted[x].UID + '") hidden><img src="images/unapprovefont.png" width="30" height="30"/></a>';
 
 
                     }
@@ -662,29 +663,30 @@ function populatePanelByCountry(which) {
                                        ' <table id="etable" hidden>' +
                                     '<caption><h1>Edit Data for ' + a + '</h1></caption>' +
                                   '<tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="eb" >' + lub + '</label></td></tr>' +
+                                                                    '<tr class="d"><td colspan="2"><b>Last Updated Time:</b><label id="eb" >' + lut + '</label></td></tr>' +
 
-                                     '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" type="text" value="' + b + '" /></td></tr>' +
+                                     '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" class="textbox" type="text" value="' + b + '" /></td></tr>' +
                                     '<tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> ' +
                                   ' <option value="Completed">Completed</option> ' +
 
                                   ' <option value="In progress">In progress</option> ' +
                                    ' <option value="Planned">Planned</option> ' +
                                 ' </select></td></tr>' +
-                                    '<tr class="d"><td><b>Title: </b></td></tr><tr><td><input id="ea" type="text" value="' + a + '"/></td></tr>' +
+                                    '<tr class="d"><td><b>Title: </b></td></tr><tr><td><input id="ea" class="textbox" type="text" value="' + a + '"/></td></tr>' +
                                    
-                                    '<tr class="d"><td><b>Map Year:</b></td></tr><tr><td><input id="ec" type="text" value="' + c + '" /></td></tr>' +
-                                                                    '<tr class="d"><td><b>Released Year: </b></td></tr><tr><td><input id="eh" type="text" value="' + h + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>Map Year:</b></td></tr><tr><td><input id="ec" class="textbox" type="text" value="' + c + '" /></td></tr>' +
+                                                                    '<tr class="d"><td><b>Released Year: </b></td></tr><tr><td><input class="textbox" id="eh" type="text" value="' + h + '" /></td></tr>' +
 
-                                    '<tr class="d"><td><b>Organization: </b></td></tr><tr><td><textarea id="ed" cols="23" rows="4" type="text">' + d + '</textarea></td></tr>' +
-                                    '<tr class="d"><td><b>Number of Classes: </b></td></tr><tr><td><input id="ee" type="text" value="' + e + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Data Source: </b></td></tr><tr><td><input id="ef" type="text" value="' + f + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>Organization: </b></td></tr><tr><td><textarea class="textboxcite" id="ed" cols="23" rows="4" type="text">' + d + '</textarea></td></tr>' +
+                                    '<tr class="d"><td><b>Number of Classes: </b></td></tr><tr><td><input id="ee" class="textbox" type="text" value="' + e + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>Data Source: </b></td></tr><tr><td><input id="ef" class="textbox" type="text" value="' + f + '" /></td></tr>' +
                                     
-                                    '<tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" cols="23" rows="4" type="text">' + k + '</textarea></td></tr>' +
-                                    '<tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" type="text" value="' + l + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em" type="email" value="' + m + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" type="text" value="' + n + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" type="text">' + o + '</textarea></td></tr>' +
-                                      '<tr class="d"><td colspan="2" align="center"><button onclick="updateData(' + sortedcompleted[x].UID + ')">Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
+                                    '<tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" class="textboxcite" cols="23" rows="4" type="text">' + k + '</textarea></td></tr>' +
+                                    '<tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" class="textbox" type="text" value="' + l + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em"class="textbox" type="email" value="' + m + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" class="textbox" type="text" value="' + n + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" class="textboxcite" type="text">' + o + '</textarea></td></tr>' +
+                                      '<tr class="d"><td colspan="2" align="center"><button onclick=updateData("'+sortedcompleted[x].UID+'")>Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
                                     ' </table>' +
                                  '</div>',
                         player: "html",
@@ -715,7 +717,7 @@ function populatePanelByCountry(which) {
 
                 document.getElementById('uid_hidden').innerHTML = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].onclick = function () {
-                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="";
+                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
                             a = sortedcompleted[x].Title;
@@ -742,7 +744,7 @@ function populatePanelByCountry(which) {
                             n = sortedcompleted[x].PhoneNumber;
                             o = sortedcompleted[x].HowToCite;
                             lub = sortedcompleted[x].LastUpdatedBy;
-
+                            lut = sortedcompleted[x].LastUpdatedTime;
                             break;
                         }
                     }
@@ -751,13 +753,13 @@ function populatePanelByCountry(which) {
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
                         anchor = '<a id="editlink" href="#" onclick="editData('+0+')" title="Edit"><img src="images/pencilfont.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick="deleteData(' + sortedcompleted[x].UID + ')" title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick="unapproveData(' + sortedcompleted[x].UID + ')" title="Unapprove"><img src="images/unapprovefont.png" width="30" height="30"/></a>';
+                        del = '<a id="deletelink" href="#" onclick=deleteData("'+sortedcompleted[x].UID+'") title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>';
+                        unapprove = '<a id="unapprovelink" href="#" onclick=unapproveData("' + sortedcompleted[x].UID + '") title="Unapprove"><img src="images/unapprovefont.png" width="30" height="30"/></a>';
                     }
                     else {
                         anchor = '<a id="editlink" href="#" onclick="editData(' + 0 + ')" hidden><img src="images/pencilfont.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick="deleteData(' + sortedcompleted[x].UID + ')" hidden><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick="unapproveData(' + sortedcompleted[x].UID + ')" hidden><img src="images/unapprovefont.png" width="30" height="30"/></a>';
+                        del = '<a id="deletelink" href="#" onclick=deleteData("'+sortedcompleted[x].UID +'") hidden><img src="images/trashfont.png" width="30" height="30"/></a>';
+                        unapprove = '<a id="unapprovelink" href="#" onclick=unapproveData("' + sortedcompleted[x].UID + '") hidden><img src="images/unapprovefont.png" width="30" height="30"/></a>';
 
 
                     }
@@ -786,29 +788,30 @@ function populatePanelByCountry(which) {
                                    ' <table id="etable" hidden>' +
                                     '<caption><h1>Edit Data for ' + a + '</h1></caption>' +
                                   '<tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="eb" >' + lub + '</label></td></tr>' +
+                                                                                                      '<tr class="d"><td colspan="2"><b>Last Updated Time:</b><label id="eb" >' + lut + '</label></td></tr>' +
 
-                                        '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" type="text" value="' + b + '" /></td></tr>' +
+                                        '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" class="textbox" type="text" value="' + b + '" /></td></tr>' +
                                      '<tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> ' +
                                   ' <option value="Completed">Completed</option> ' +
                                   ' <option value="In progress">In progress</option> ' +
                                                                     ' <option value="Planned">Planned</option> ' +
 
                                 ' </select></td></tr>' +
-                                    '<tr class="d"><td><b>Title: </b></td></tr><tr><td><input id="ea" type="text" value="' + a + '"/></td></tr>' +
+                                    '<tr class="d"><td><b>Title: </b></td></tr><tr><td><input id="ea" class="textbox" type="text" value="' + a + '"/></td></tr>' +
                                 
-                                    '<tr class="d"><td><b>Map Year:</b></td></tr><tr><td><input id="ec" type="text" value="' + c + '" /></td></tr>' +
-                                                                    '<tr class="d"><td><b>Released Year: </b></td></tr><tr><td><input id="eh" type="text" value="' + h + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>Map Year:</b></td></tr><tr><td><input id="ec" class="textbox" type="text" value="' + c + '" /></td></tr>' +
+                                                                    '<tr class="d"><td><b>Released Year: </b></td></tr><tr><td><input id="eh" class="textbox" type="text" value="' + h + '" /></td></tr>' +
 
-                                    '<tr class="d"><td><b>Organization: </b></td></tr><tr><td><textarea id="ed" cols="23" rows="4" type="text">' + d + '</textarea></td></tr>' +
-                                    '<tr class="d"><td><b>Number of Classes: </b></td></tr><tr><td><input id="ee" type="text" value="' + e + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Data Source: </b></td></tr><tr><td><input id="ef" type="text" value="' + f + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>Organization: </b></td></tr><tr><td><textarea id="ed" cols="23" rows="4" type="text" class="textboxcite">' + d + '</textarea></td></tr>' +
+                                    '<tr class="d"><td><b>Number of Classes: </b></td></tr><tr><td><input id="ee" class="textbox" type="text" value="' + e + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>Data Source: </b></td></tr><tr><td><input id="ef" class="textbox" type="text" value="' + f + '" /></td></tr>' +
                                    
-                                    '<tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" cols="23" rows="4" type="text">' + k + '</textarea></td></tr>' +
-                                    '<tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" type="text" value="' + l + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em" type="email" value="' + m + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" type="text" value="' + n + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" type="text">' + o + '</textarea></td></tr>' +
-                                      '<tr class="d"><td colspan="2" align="center"><button onclick="updateData(' + sortedcompleted[x].UID + ')">Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
+                                    '<tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" class="textboxcite" cols="23" rows="4" type="text">' + k + '</textarea></td></tr>' +
+                                    '<tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" class="textbox" type="text" value="' + l + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em" class="textbox" type="email" value="' + m + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" class="textbox" type="text" value="' + n + '" /></td></tr>' +
+                                    '<tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" type="text" class="textboxcite">' + o + '</textarea></td></tr>' +
+                                      '<tr class="d"><td colspan="2" align="center"><button onclick=updateData("'+sortedcompleted[x].UID+'")>Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
                                     ' </table>' +
                                  '</div>',
                         player: "html",
@@ -839,7 +842,7 @@ function populatePanelByCountry(which) {
                 document.getElementById('uid_hidden').innerHTML = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].id = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].onclick = function () {                        
-                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="";
+                    var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
 
@@ -867,6 +870,7 @@ function populatePanelByCountry(which) {
                             n = sortedcompleted[x].PhoneNumber;
                             o = sortedcompleted[x].HowToCite;
                             lub = sortedcompleted[x].LastUpdatedBy;
+                            lut = sortedcompleted[x].LastUpdatedTime;
                             break;
                         }
                     }
@@ -875,13 +879,13 @@ function populatePanelByCountry(which) {
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
                         anchor = '<a id="editlink" href="#" onclick="editData('+1+')" title="Edit"><img src="images/pencilfont.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick="deleteData(' + sortedcompleted[x].UID + ')" title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>';
+                        del = '<a id="deletelink" href="#" onclick=deleteData("' + sortedcompleted[x].UID + '") title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>';
                         unapprove = '<a id="unapprovelink" href="#" onclick="unapproveData(' + sortedcompleted[x].UID + ')" title="Unapprove"><img src="images/unapprovefont.png" width="30" height="30"/></a>';
                     }
                     else {
                         anchor = '<a id="editlink" href="#" onclick="editData()" hidden><img src="images/pencil1.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick="deleteData(' + sortedcompleted[x].UID + ')" hidden><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick="unapproveData(' + sortedcompleted[x].UID + ')" hidden><img src="images/unapprovefont.png" width="30" height="30"/></a>';
+                        del = '<a id="deletelink" href="#" onclick=deleteData("' + sortedcompleted[x].UID + '") hidden><img src="images/trashfont.png" width="30" height="30"/></a>';
+                        unapprove = '<a id="unapprovelink" href="#" onclick=unapproveData("' + sortedcompleted[x].UID + '") hidden><img src="images/unapprovefont.png" width="30" height="30"/></a>';
 
 
                     }
@@ -910,6 +914,8 @@ function populatePanelByCountry(which) {
                                      ' <table id="etable" hidden>' +
                                     '<caption><h1>Edit Data for ' + a + '</h1></caption>' +
                                   '<tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="eb" >' + lub + '</label></td></tr>' +
+                                                                                                      '<tr class="d"><td colspan="2"><b>Last Updated Time:</b><label id="eb" >' + lut + '</label></td></tr>' +
+
                                      '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" type="text" value="' + b + '" /></td></tr>' +
                                      '<tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> ' +
                                   ' <option value="Completed">Completed</option> ' +
@@ -931,7 +937,7 @@ function populatePanelByCountry(which) {
                                     '<tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em" type="email" value="' + m + '" /></td></tr>' +
                                     '<tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" type="text" value="' + n + '" /></td></tr>' +
                                     '<tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" type="text">' + o + '</textarea></td></tr>' +
-                                      '<tr class="d"><td colspan="2" align="center"><button onclick="updateData(' + sortedcompleted[x].UID + ')">Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
+                                      '<tr class="d"><td colspan="2" align="center"><button onclick=updateData("'+sortedcompleted[x].UID.toString()+'")>Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
 
                                     ' </table>' +
                                  '</div>',

@@ -80,7 +80,6 @@
     <script src="data/countryPoly.js"></script>
     <script src="js/arcgis_poly_markers3.js" type="text/javascript"></script>
     <link href="css/Popup.css" rel="stylesheet">
-    <link href="css/sliderstyle2.css" rel="stylesheet" type="text/css" />
     <script src="js/shadowbox.js" type="text/javascript"></script>
     <script src="js/jsonTable.js" type="text/javascript"></script>
     <link href="css/shadowbox.css" rel="stylesheet" type="text/css" />
@@ -207,7 +206,10 @@
                         if (document.getElementById("ph_num").value == "") document.getElementById("ph_num").value = "000-000-0000";
                         var newUID = Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
 
-
+                        var today = new Date();
+                        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                        var dateTime = date + ' ' + time;
                         var newData = {
                             "UID": newUID,
                             "Title": document.getElementById("title").value,
@@ -224,8 +226,8 @@
                             "Email": document.getElementById("email").value,
                             "PhoneNumber": document.getElementById("ph_num").value,
                             "HowToCite": document.getElementById("cite").value,
-                            "LastUpdatedBy": document.getElementById('uemail').innerHTML.split(':')[1].trim()
-
+                            "LastUpdatedBy": document.getElementById('uemail').innerHTML.split(':')[1].trim(),
+                            "LastUpdatedTime":dateTime
                         }
 
                         newData["CategoryID"].push(parseInt(newCatId));
@@ -330,7 +332,7 @@
             }
         }
         //this method is called when admin clicks on "Approve" button in ViewRequests
-        function approveData(uid, title, catname, catid, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite, lub) {
+        function approveData(uid, title, catname, catid, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite, lub,lut) {
             var newData = {
                 "UID": uid,
                 "Title": title,
@@ -340,14 +342,15 @@
                 "Organization": org,
                 "NumberOfClasses": [],
                 "DataSource": ds,
-                "Status": status,
+                "Status":  decodeURIComponent(status),
                 "ReleasedYear": parseInt(release),
                 "Notes": notes,
                 "PointOfContactName": poc,
                 "Email": email,
                 "PhoneNumber": phnum,
                 "HowToCite": cite,
-                "LastUpdatedBy": lub
+                "LastUpdatedBy": lub,
+                "LastUpdatedTime": decodeURIComponent(lut)
 
             }
 
@@ -496,30 +499,32 @@
 
                     "reportedBy": reportedBy
                 }
+                reportedProblems.push(jarr);
                 var j = JSON.stringify(jarr);
                 PageMethods.updateProblemsJson(j);
             }
             $('.modal_reportproblems').hide();
+            document.getElementById("enter_problem").value = "";
         }
 
         function closeStatus(pid, problem, reportedby) {
             for (var i in reportedProblems) {
                 if (reportedProblems[i].PID == pid) {
-                    reportedProblems[i].Problem = problem;
+                    reportedProblems[i].Problem = decodeURIComponent(problem);
                     reportedProblems[i].Status = "Closed";
                     reportedProblems[i].reportedBy = reportedby;
                 }
             }
             var newData = {
                 "PID": pid,
-                "Problem": problem,
+                "Problem": decodeURIComponent(problem),
                 "Status": "Closed",
                 "reportedBy": reportedby
             }
 
             var str = JSON.stringify(newData);
             document.getElementById('<%=hdn.ClientID%>').value = str;
-            PageMethods.updateProblemJson(pid, problem, "Closed", reportedby);
+            PageMethods.updateProblemJson(pid, decodeURIComponent(problem), "Closed", reportedby);
             var row = document.getElementById(pid);
             row.parentNode.removeChild(row);
 
@@ -530,21 +535,21 @@
         function openStatus(pid, problem, reportedby) {
             for (var i in reportedProblems) {
                 if (reportedProblems[i].PID == pid) {
-                    reportedProblems[i].Problem = problem;
+                    reportedProblems[i].Problem = decodeURIComponent(problem);
                     reportedProblems[i].Status = "Open";
                     reportedProblems[i].reportedBy = reportedby;
                 }
             }
             var newData = {
                 "PID": pid,
-                "Problem": problem,
+                "Problem": decodeURIComponent(problem),
                 "Status": "Open",
                 "reportedBy": reportedby
             }
 
             var str = JSON.stringify(newData);
             document.getElementById('<%=hdn.ClientID%>').value = str;
-            PageMethods.updateProblemJson(pid, problem, "Open", reportedby);
+            PageMethods.updateProblemJson(pid, decodeURIComponent(problem), "Open", reportedby);
             var row = document.getElementById(pid);
             row.parentNode.removeChild(row);
             $('#statusMesg').html("<b style='color:green'>Reopened record with PID " + pid + "</b>");
@@ -558,6 +563,10 @@
 
         //Updates existing records when the admin edits and submits the data
         function updateData(uid) {
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            var dateTime = date + ' ' + time;
             document.getElementById('<%=hdnData.ClientID%>').value = uid;
             var title = document.getElementById("ea").value;
 
@@ -574,6 +583,7 @@
 
             var cite = document.getElementById("eo").value;
             var lub = document.getElementById('uemail').innerHTML.split(':')[1].trim();
+            var lut = document.getElementById('uemail').innerHTML.split(':')[1].trim();
             for (var i = 0; i < completedArray.length; i++) {
                 if (completedArray[i].UID == uid) {
                     completedArray[i].Title = title;
@@ -596,6 +606,7 @@
                     completedArray[i].PhoneNumber = phnum;
                     completedArray[i].HowToCite = cite;
                     completedArray[i].LastUpdatedBy = lub;
+                    completedArray[i].LastUpdatedTime = dateTime;
                 }
             }
             PageMethods.updateExistingData(document.getElementById('<%=hdnData.ClientID%>').value, title, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite,lub);
@@ -747,6 +758,7 @@
              padding: 8px 16px 8px;
     border-radius: 10px;
     height: 50px;
+    font-family:monospace;
         }
 
        
@@ -895,6 +907,8 @@
             background-color: black;
             padding: 8px 16px 8px;
             float:right;
+            border:3px;
+            border-radius:10px;
         }
 
         #horiz_menu {
@@ -973,6 +987,7 @@
             width: 200px;
             margin-bottom: 5px;
             font-size: 12px;
+            font-family:monospace;
         }
           
             #horiz_menu {
@@ -1213,12 +1228,13 @@
 
 
     <!-- The Modal for requests -->
-    <div id="myModal_requests" class="modal_requests">
+    <div id="myModal_requests" class="modal_requests" >
 
         <!-- Modal content -->
         <div class="modal-content-requests">
             <span class="close" onclick="closeR()">&times;</span>
-            <h2>View data addition requests from users</h2>
+                                <h1 style="text-align:center;"><b>View requests from users</b></h1>
+
             <p>Following are the requests.. click on a row to approve or discard!</p>
             <select id="selectCountry">
                 <option>Choose a country</option>
@@ -1242,7 +1258,8 @@
         <!-- Modal content -->
         <div class="modal-content-problems">
             <span class="close" onclick="closeR()">&times;</span>
-               <h2>View reported problems</h2>
+                                  <h1 style="text-align:center;"><b>View reported problems</b></h1>
+
             <p>Following are the problems.. click on a row to open or close!</p>
             <select id="selectStatus">
                 <option>Choose a status</option>
@@ -1264,12 +1281,11 @@
         <!-- Modal content -->
         <div class="modal-content-reportproblems">
             <span class="close" onclick="closeR()">&times;</span>
-            <h2>Report a problem</h2>
-            <p>Please enter a short description of your problem...</p>
-            <textarea style="margin-left: 0.7vw;border:3px groove;border-radius:10px;" id="enter_problem" rows="4" cols="50" placeholder="Enter your problem here..."></textarea>
+                               <h1 style="text-align:center;"><b>Report a problem</b></h1>
+
+            <textarea class="textboxcite" style="width:450px;height:250px;" id="enter_problem" rows="7" cols="70" placeholder="Enter your problem here..."></textarea>
             <br />
-           <div id="emailDiv"> <p>Enter email id:</p><input style="margin-left: 0.7vw;border:3px groove;border-radius:10px;height:30px;width:250px;font-family:monospace" id="emailAddress" type="email" placeholder="Enter your email id here" required></div>
-            <br />
+           <div id="emailDiv"> <p>Enter email id:</p><input class="textbox" id="emailAddress" type="email" placeholder="Enter your email id here" required></div>
             <button style="margin-left: 0.7vw; margin-top: 0.5vw;padding:8px 16px 8px;float:right;" id="submit_problem" onclick="submitReportProblem()">Submit Problem</button>
         </div>
 
@@ -1280,12 +1296,15 @@
             <!-- Modal content -->
                 <div class="modal-content-importData">
                   <span class="close" onclick="closeR()">&times;</span>
+                    <h1 style="text-align:center;"><b>Bulk Data Operations</b></h1>
                     <h2>Import Data</h2>
                <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
-              
-              <p>Please upload a csv file to import data to the website!!!</p>
-                              <p>Download a template <a href="files/template.xlsx">here</a>. Edit and save this as .csv and import it.</p>
-
+              <h4>Instructions:</h4>
+                   <ul>
+                       <li>Download a template <a href="files/template.xlsx">here</a>.</li>
+                       <li>Edit and save two copies of this excel file(.xlsx and .csv files).</li>
+                       <li>Upload the .csv file and click on "Import" button to add data.</li>
+                   </ul>
             <asp:FileUpload ID="FileImportData" runat="server"/>
             <br />
             <br />
@@ -1301,7 +1320,7 @@
                                         <h2>Download Data</h2>
 
           <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
-            <p>Please select a country/multiple countries so that you can download data!!!</p>
+            <p>Please select a country/multiple countries so that you can download data. The downloaded file will be available in your "Downloads" folder.</p>
             <div>
                    <asp:ListBox runat="server" ID="selectCtry" SelectionMode="multiple">
                             <asp:ListItem Text="Ethiopia" Value="Ethiopia" />
@@ -1371,14 +1390,20 @@
                 </div>
               </div>
                         <br />
-                                        <h2>Update/Delete Data</h2>
+                <h2>Update/Delete Data</h2>
 
                 <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
-                <p>Update the downloaded excel document and reupload it here to either update or delete existing data.</p>
-                            <asp:FileUpload ID="FileUpdateData" runat="server"/>
+               <h4>To update data:</h4>
+                     <p>Edit the downloaded excel document and upload the .csv copy of the same. Click on "Update data" button to update existing data.</p>
+               <h4>To delete data:</h4>
+                                         <p>Leave the entries that you want to delete in the downloaded excel document and upload the .csv copy of the same. Click on "Delete data" button to delete existing data.</p>
+
+               <asp:FileUpload ID="FileUpdateData" runat="server"/>
                 <br />           
                 <br />
                     <input type="hidden" runat="server" id="foruseremail" />
+                                        <input type="hidden" runat="server" id="forusertime" />
+
                 <input style="background-image: none;
             color: white;
             background-color: black;

@@ -1,4 +1,4 @@
-var newlyAdded =  [
+var newlyAdded = [
   {
     "UID": 57287817,
     "Email": "gxt76550@ucmo.edu",
@@ -23,9 +23,10 @@ var newlyAdded =  [
     "UID": "jcbzaha9g9jh7vjyta",
     "Email": "gxt76550@ucmo.edu",
     "FullName": "Githika Tondapu"
+  },
+  {
+    "UID": "ho7ni6rlr3rjh866krd",
+    "Email": "gxt76550@ucmo.edu",
+    "FullName": "Githika Tondapu"
   }
-, {
-  "UID": "2d4mi5s9aoejh7vw1pa",
-  "Email": "gxt76550@ucmo.edu",
-  "FullName": "Githika Tondapu"
-}];
+];

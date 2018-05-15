@@ -19,27 +19,7 @@ var completedArrayTemp = [
     "Email": "Azzeddin47@gmail.com",
     "PhoneNumber": "",
     "HowToCite": "",
-    "LastUpdatedBy": ""
+    "LastUpdatedBy": "",
+    "LastUpdatedTime": "2018-5-15 14:16:34"
   }
-, {
-  "UID": "2d4mi5s9aoejh7vw1pa",
-  "Title": "fdf",
-  "CategoryName": "Chad",
-  "CategoryID": [
-    26
-  ],
-  "MapYear": "33",
-  "Organization": "fds",
-  "NumberOfClasses": [
-    23
-  ],
-  "DataSource": "fdf",
-  "Status": "Completed",
-  "ReleasedYear": 33,
-  "Notes": "",
-  "PointOfContactName": "fdf",
-  "Email": "fdf@dsd.com",
-  "PhoneNumber": "2333322221",
-  "HowToCite": "fdxf",
-  "LastUpdatedBy": "gxt76550@ucmo.edu"
-}];
+];

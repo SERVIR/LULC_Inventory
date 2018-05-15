@@ -1,96 +1,6 @@
 var completedArray = [
   {
-    "UID": "6df71cdb067f4e89a0f",
-    "Title": "testing",
-    "CategoryName": "Algeria",
-    "CategoryID": [
-      16
-    ],
-    "MapYear": "121",
-    "Organization": "131",
-    "NumberOfClasses": [
-      31
-    ],
-    "DataSource": "3dsxd",
-    "Status": "In progress",
-    "ReleasedYear": 344,
-    "Notes": "fdf",
-    "PointOfContactName": "vc",
-    "Email": "vcv@dfd.co",
-    "PhoneNumber": "1123343444",
-    "HowToCite": "dfgsg\r",
-    "LastUpdatedBy": "githika.cs@gmail.com"
-  },
-  {
-    "UID": "ecf0a96c6fd4410ea39",
-    "Title": "fkjhkj",
-    "CategoryName": "Cameroon",
-    "CategoryID": [
-      23
-    ],
-    "MapYear": "55",
-    "Organization": "454",
-    "NumberOfClasses": [
-      435
-    ],
-    "DataSource": "fgfdg",
-    "Status": "Completed",
-    "ReleasedYear": 545,
-    "Notes": "fg",
-    "PointOfContactName": "gf",
-    "Email": "f@d.bnb",
-    "PhoneNumber": "1234567890",
-    "HowToCite": "fgdg\r",
-    "LastUpdatedBy": "githika.cs@gmail.com"
-  }
-, 
-  {
-    "UID": "035981332a6f4407a9d",
-    "Title": "testing",
-    "CategoryName": "Algeria",
-    "CategoryID": [
-      16
-    ],
-    "MapYear": "121",
-    "Organization": "131",
-    "NumberOfClasses": [
-      31
-    ],
-    "DataSource": "3dsxd",
-    "Status": "In progress",
-    "ReleasedYear": 344,
-    "Notes": "fdf",
-    "PointOfContactName": "vc",
-    "Email": "vcv@dfd.co",
-    "PhoneNumber": "1123343444",
-    "HowToCite": "dfgsg\r",
-    "LastUpdatedBy": "githika.cs@gmail.com"
-  },
-  {
-    "UID": "7e1b0fcbe98249c58ef",
-    "Title": "fkjhkj",
-    "CategoryName": "Cameroon",
-    "CategoryID": [
-      23
-    ],
-    "MapYear": "55",
-    "Organization": "454",
-    "NumberOfClasses": [
-      435
-    ],
-    "DataSource": "fgfdg",
-    "Status": "Completed",
-    "ReleasedYear": 545,
-    "Notes": "fg",
-    "PointOfContactName": "gf",
-    "Email": "f@d.bnb",
-    "PhoneNumber": "1234567890",
-    "HowToCite": "fgdg\r",
-    "LastUpdatedBy": "githika.cs@gmail.com"
-  }
-, 
-  {
-    "UID": "c5f62701ce6a4dcbb26",
+    "UID": "8fefb0a2eb764d55b20",
     "Title": "testing",
     "CategoryName": "Algeria",
     "CategoryID": [
@@ -109,10 +19,11 @@ var completedArray = [
     "Email": "vcv@dfd.co",
     "PhoneNumber": "1123343444",
     "HowToCite": "dfgsg",
-    "LastUpdatedBy": "githika.cs@gmail.com"
+    "LastUpdatedBy": "githika.cs@gmail.com",
+    "LastUpdatedTime": "2018-5-15 14:16:34"
   },
   {
-    "UID": "ab2fb223e163499ebd1",
+    "UID": "e07e6c76f7bf4636beb",
     "Title": "fkjhkj",
     "CategoryName": "Cameroon",
     "CategoryID": [
@@ -131,90 +42,51 @@ var completedArray = [
     "Email": "f@d.bnb",
     "PhoneNumber": "1234567890",
     "HowToCite": "fgdg",
-    "LastUpdatedBy": "githika.cs@gmail.com"
+    "LastUpdatedBy": "githika.cs@gmail.com",
+    "LastUpdatedTime": "2018-5-15 14:16:34"
   }
 , {
-  "UID": "p07pvc05n7ljh7uww13",
-  "Title": "fdsfs",
-  "CategoryName": "Sudan",
+  "UID": "dm28s3m01y8jh847cxv",
+  "Title": "hhh",
+  "CategoryName": "Libya",
   "CategoryID": [
-    9
+    16
   ],
-  "MapYear": "343",
-  "Organization": "fdf",
+  "MapYear": "23",
+  "Organization": "jhkjl",
   "NumberOfClasses": [
-    343
+    34
   ],
-  "DataSource": "5",
-  "Status": "gfdg",
-  "ReleasedYear": null,
-  "Notes": "434",
-  "PointOfContactName": "",
-  "Email": "fg",
-  "PhoneNumber": "ffgtstg@fdf.com",
-  "HowToCite": "1123233333",
-  "LastUpdatedBy": "sas"
+  "DataSource": "fds",
+  "Status": "Completed",
+  "ReleasedYear": 33,
+  "Notes": "",
+  "PointOfContactName": "ds",
+  "Email": "fsdf@dsd.cm",
+  "PhoneNumber": "4454545454",
+  "HowToCite": "vcf",
+  "LastUpdatedBy": "githika.cs@gmail.com",
+  "LastUpdatedTime": "2018-5-15 15:13:28"
 }, {
-  "UID": "p07pvc05n7ljh7uww13",
-  "Title": "fdsfs",
-  "CategoryName": "Sudan",
+  "UID": "ho7ni6rlr3rjh866krd",
+  "Title": "ds",
+  "CategoryName": "Egypt",
   "CategoryID": [
-    9
+    30
   ],
-  "MapYear": "343",
-  "Organization": "fdf",
+  "MapYear": "45",
+  "Organization": "d",
   "NumberOfClasses": [
-    343
+    45
   ],
-  "DataSource": "5",
-  "Status": "gfdg",
+  "DataSource": "4",
+  "Status": "fg",
   "ReleasedYear": null,
-  "Notes": "434",
+  "Notes": "54",
   "PointOfContactName": "",
-  "Email": "fg",
-  "PhoneNumber": "ffgtstg@fdf.com",
-  "HowToCite": "1123233333",
-  "LastUpdatedBy": "sas"
-}, {
-  "UID": "p07pvc05n7ljh7uww13",
-  "Title": "fdsfs",
-  "CategoryName": "Sudan",
-  "CategoryID": [
-    9
-  ],
-  "MapYear": "343",
-  "Organization": "fdf",
-  "NumberOfClasses": [
-    343
-  ],
-  "DataSource": "5",
-  "Status": "gfdg",
-  "ReleasedYear": null,
-  "Notes": "434",
-  "PointOfContactName": "",
-  "Email": "fg",
-  "PhoneNumber": "ffgtstg@fdf.com",
-  "HowToCite": "1123233333",
-  "LastUpdatedBy": "sas"
-}, {
-  "UID": "jcbzaha9g9jh7vjyta",
-  "Title": "jkhk",
-  "CategoryName": "Niger",
-  "CategoryID": [
-    42
-  ],
-  "MapYear": "67",
-  "Organization": "ukh",
-  "NumberOfClasses": [
-    67
-  ],
-  "DataSource": "7667",
-  "Status": "hgh",
-  "ReleasedYear": null,
-  "Notes": "76",
-  "PointOfContactName": "",
-  "Email": "jg",
-  "PhoneNumber": "fg@ds.com",
-  "HowToCite": "1223333444",
-  "LastUpdatedBy": "hjgj"
+  "Email": "gfd",
+  "PhoneNumber": "fgdg@df.ce",
+  "HowToCite": "3345555553",
+  "LastUpdatedBy": "fs",
+  "LastUpdatedTime": "gxt76550@ucmo.edu"
 }];

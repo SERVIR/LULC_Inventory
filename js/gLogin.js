@@ -14,11 +14,14 @@ function onSignIn(googleUser) {
     //console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
     //console.log('token: ' + googleUser.getAuthResponse().id_token);
     $('#addmorebutton_link').show();
-
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date + ' ' + time;
     $('#uname').html('Welcome ' + profile.getName());
     mail_id = profile.getEmail();
     document.getElementById("foruseremail").value = profile.getEmail();
-
+    document.getElementById("forusertime").value = dateTime;
     var found = false;
     var admin = true;
 
@@ -131,7 +134,8 @@ function signOut() {
         $('.userContent').html("");
         $('#ufullname').html("");
     });
-    window.location.href = "http://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://servirglobal.net/MapResources/LULC_Africa/Home.aspx";
+   // window.location.href = "http://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://servirglobal.net/MapResources/LULC_Africa/Home.aspx";
+    window.location.href = "http://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue="+ window.location.protocol + "//" + window.location.host + "/Home.aspx";
 }
 
 function AddAdmins()
@@ -147,7 +151,7 @@ function AddAdmins()
 
 
     Shadowbox.open({
-        content: '<h2 style="color:black;">Add Administrators</h2><div style="color:black;">       ' +
+        content: '<h1 style="color:black;text-align:center;"><b>Add Administrators</b></h1><div style="color:black;">       ' +
                         '  <p  style="margin-left: 0.7vw" >Current Admins are:</p>' +
 
             '  <p id="existingAdmins" style="margin-left: 0.7vw;margin-right: 0.7vw" >' + str + '</p>' +
@@ -303,6 +307,34 @@ function ViewRequests() {
         opt.value = countries.Locations[i].Location;
         sel.appendChild(opt);
     }
+     //sorting countries
+        var tmpAry = new Array();
+        for (var i = 0; i < sel.options.length; i++) {
+            tmpAry[i] = new Array();
+            if (i == 0) {
+              
+            }
+            else {
+                tmpAry[i][0] = sel.options[i].text;
+                tmpAry[i][1] = sel.options[i].value;
+            }
+            
+        }
+        tmpAry.sort();
+        while (sel.options.length > 0) {
+            sel.options[0] = null;
+        }
+        for (var i = 0; i < tmpAry.length; i++) {
+            if (i == 0) {
+                var op = new Option("Choose a country", "Choose a country");
+                sel.options[i] = op;
+            }
+            else {
+                var op = new Option(tmpAry[i][0], tmpAry[i][1]);
+                sel.options[i] = op;
+            }
+        }
+    
     var eids = [];
     for (var i = 0; i < usrs.length; i++) {
             eids.push(usrs[i].FullName);

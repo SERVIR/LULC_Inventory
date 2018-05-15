@@ -147,12 +147,12 @@ function AddAdmins()
 
 
     Shadowbox.open({
-        content: '<div style="color:black;">       ' +
+        content: '<h2 style="color:black;">Add Administrators</h2><div style="color:black;">       ' +
                         '  <p  style="margin-left: 0.7vw" >Current Admins are:</p>' +
 
             '  <p id="existingAdmins" style="margin-left: 0.7vw;margin-right: 0.7vw" >' + str + '</p>' +
           '  <p style="margin-left: 0.7vw">Enter the email ids of admins (separate multiple entries by commas)</p>' +
-           ' <textarea style="margin-left: 0.7vw" id="entered_ids" rows="4" cols="50" placeholder="xyz@gmail.com,abc@gmail.com"></textarea>'+
+           ' <textarea style="margin-left: 0.7vw;border:3px groove;border-radius:10px;" id="entered_ids" rows="4" cols="50" placeholder="xyz@gmail.com,abc@gmail.com"></textarea>'+
            ' <button style="margin-left: 0.7vw; margin-top: 0.5vw;padding:8px 16px 8px;float:right;" id="submit_ids" onclick="submitIds()">Add Admin(s)</button>' +
                  '</div>',
         player: "html",
@@ -296,7 +296,6 @@ function ViewRequests() {
     var countries = locationCentroids;
     var usrs = newlyAdded;
 
-
     var sel = document.getElementById('selectCountry');
     for (var i = 0; i < countries.Locations.length; i++) {
         var opt = document.createElement('option');
@@ -324,9 +323,8 @@ function ViewRequests() {
             usel.appendChild(opt);
     }
     if (document.getElementById("selectUser").selectedIndex == 0 && document.getElementById("selectCountry").selectedIndex == 0) {
-        CreateTableFromJSON(uids, "Choose a country");
-        
-        highlight_row();
+        CreateTableFromJSONRequests(uids, "Choose a country");
+        //highlight_row();
     }
 
     $('#selectCountry').on('change', function () {
@@ -342,8 +340,8 @@ function ViewRequests() {
                 }
             }
         }
-        CreateTableFromJSON(uid_arr1, this.value);
-        highlight_row();
+        CreateTableFromJSONRequests(uid_arr1, this.value);
+      //  highlight_row();
         // document.getElementById("jsonTab").style.display = "";
     })
    $('#selectUser').on('change', function () {
@@ -361,9 +359,8 @@ function ViewRequests() {
            }
        }
 
-       CreateTableFromJSON(uid_arr2, $("select#selectCountry option").filter(":selected").text());
-       highlight_row();
-        //document.getElementById("jsonTab").style.display = "";
+       CreateTableFromJSONRequests(uid_arr2, $("select#selectCountry option").filter(":selected").text());
+     //  highlight_row();
    })
    document.getElementById("jsonTab").style.display = "";
 
@@ -372,22 +369,8 @@ function ViewRequests() {
 
 function ViewProblems() {
     document.getElementById('selectStatus').selectedIndex = 0;
-    $('#close').hide();
-    $('#open').hide();
     $('.modal_problems').show();
     var usrs = reportedProblems;
-    //var sel = document.getElementById('selectCountry');
-    //for (var i = 0; i < countries.Locations.length; i++) {
-    //    var opt = document.createElement('option');
-    //    opt.innerHTML = countries.Locations[i].Location;
-    //    opt.value = countries.Locations[i].Location;
-    //    sel.appendChild(opt);
-    //}
-    //var eids = [];
-    ////for (var i = 0; i < usrs.length; i++) {
-    ////    eids.push(usrs[i].FullName);
-
-    ////}
     var pids = [];
     for (var i = 0; i < usrs.length; i++) {
         pids.push(usrs[i].PID);
@@ -395,50 +378,27 @@ function ViewProblems() {
 
     if ( document.getElementById("selectStatus").selectedIndex == 0) {
        CreateTableFromJSON(pids);
-
-        highlight_row_problems();
     }
 
     $('#selectStatus').on('change', function () {
         var uid_arr1 = [];
         if ($("select#selectStatus option").filter(":selected").text() == "Choose a status") {
             uid_arr1 = pids;
-           
+            CreateTableFromJSON(uid_arr1);
+
         }
         else {
             uid_arr1 = [];
             for (var i = 0; i < usrs.length; i++) {
 
-               
+
                 if ($("select#selectStatus option").filter(":selected").text() == usrs[i].Status) {
                     uid_arr1.push(usrs[i].PID);
                 }
-                
+
             }
+            CreateTableFromJSON(uid_arr1);
         }
-        CreateTableFromJSON(uid_arr1);
-        highlight_row_problems();
         document.getElementById("jsonTabNew").style.display = "";
     })
-    //$('#selectUser').on('change', function () {
-    //    var uid_arr2 = [];
-    //    if ($("select#selectUser option").filter(":selected").text() == "Choose a User") {
-
-    //        uid_arr2 = uids;
-    //    }
-    //    else {
-    //        for (var i = 0; i < usrs.length; i++) {
-
-    //            if (usrs[i].FullName == $("select#selectUser option").filter(":selected").text()) {
-    //                uid_arr2.push(usrs[i].UID);
-    //            }
-    //        }
-    //    }
-
-    //    CreateTableFromJSON(uid_arr2, $("select#selectCountry option").filter(":selected").text());
-    //    highlight_row();
-    //    //document.getElementById("jsonTab").style.display = "";
-    //})
-    //document.getElementById("jsonTab").style.display = "";
-
 }

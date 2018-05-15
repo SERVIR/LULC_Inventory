@@ -214,7 +214,7 @@ public partial class Home : System.Web.UI.Page
     }
 
     [System.Web.Services.WebMethod]
-    public static void updateExistingData(int uid, string title, string mapyear, string org, int cls, string ds, string status, int release, string notes, string poc, string email, string phnum, string cite,string lub)
+    public static void updateExistingData(string uid, string title, string mapyear, string org, int cls, string ds, string status, int release, string notes, string poc, string email, string phnum, string cite,string lub)
     {
         System.IO.StreamReader myFile =
              new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
@@ -260,7 +260,7 @@ public partial class Home : System.Web.UI.Page
 
 
     [System.Web.Services.WebMethod]
-    public static void DeleteFromTemp(int uid)
+    public static void DeleteFromTemp(string uid)
     {
         System.IO.StreamReader myFile =
              new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArrayTemp.js"));
@@ -275,7 +275,7 @@ public partial class Home : System.Web.UI.Page
         dynamic ndata=new JArray();
         foreach (var d in data)
         {
-            if (d.UID == uid)
+            if ((d.UID).ToString() == uid)
             {
             }
             else
@@ -292,7 +292,7 @@ public partial class Home : System.Web.UI.Page
 
     }
     [System.Web.Services.WebMethod]
-    public static void DeleteFromnewlyAddedData(int uid)
+    public static void DeleteFromnewlyAddedData(string uid)
     {
         System.IO.StreamReader myFile =
              new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/newlyAddedData.js"));
@@ -307,7 +307,7 @@ public partial class Home : System.Web.UI.Page
         dynamic ndata = new JArray();
         foreach (var d in data)
         {
-            if (d.UID == uid)
+            if ((d.UID).ToString() == uid)
             {
             }
             else
@@ -326,7 +326,7 @@ public partial class Home : System.Web.UI.Page
     }
     [System.Web.Services.WebMethod]
 
-    public static void DeleteFromOriginal(int uid)
+    public static void DeleteFromOriginal(string uid)
     {
         System.IO.StreamReader myFile =
              new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
@@ -560,74 +560,56 @@ public partial class Home : System.Web.UI.Page
         StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
        
         List<List<string>> excelrows = new List<List<string>>();
-        //Create COM Objects. Create a COM object for everything that is referenced
-        Excel.Application xlApp = new Excel.Application();
-        Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(path);
-        Excel._Worksheet xlWorksheet = (Excel._Worksheet)xlWorkbook.Sheets[1];
-        Excel.Range xlRange = xlWorksheet.UsedRange;
 
-        int rowCount = xlRange.Rows.Count;
-        int colCount = xlRange.Columns.Count;
         StreamWriter efile = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/test.txt"));
-        List<string> rowlist = null;
+        // List<string> rowlist = null;
         dynamic d = null;
         List<string> uidList = new List<string>();
-        
-        //iterate over the rows and columns and print to the console as it appears in the file
-        //excel is not zero based!!
-        for (int i = 2; i <= rowCount; i++)
+        using (StreamReader readFile = new StreamReader(path))
         {
-            d = JsonConvert.DeserializeObject("{  'UID':0,'Title':'','CategoryName':'','CategoryID':[],'MapYear':'','Organization':'','NumberOfClasses':[],'DataSource':'','Status':'','ReleasedYear':0,'Notes':'','PointOfContactName':'','Email':'','PhoneNumber':'','HowToCite':'' }"); 
-            rowlist = new List<string>();
-            rowlist.Add(Guid.NewGuid().ToString("N").Substring(0, 19));
-            for (int j = 1; j <= colCount; j++)
+           // string line;
+            //   string[] rowlist;
+          //  string[] rowlist;
+          
+            var contents = File.ReadAllText("D://template.csv").Split('\n');
+            var rowlistb4 = from line in contents select line.Split(',').ToArray();
+            foreach (var rowlist in rowlistb4.Skip(1).TakeWhile(r => r.Length > 1 && r.Last().Trim().Length > 0))
             {
-                //new line
-                if (j == 1)
-                    efile.WriteLine("fdsfsf\r\n");
 
-                //write the value to the console
-                if (xlRange.Cells[i, j] != null ) {
-                    rowlist.Add(((Excel.Range)xlRange.Cells[i, j]).Value2.ToString());
+
+                d = JsonConvert.DeserializeObject("{  'UID':0,'Title':'','CategoryName':'','CategoryID':[],'MapYear':'','Organization':'','NumberOfClasses':[],'DataSource':'','Status':'','ReleasedYear':0,'Notes':'','PointOfContactName':'','Email':'','PhoneNumber':'','HowToCite':'' }");
+                var now = DateTime.Now;
+                var zeroDate = DateTime.MinValue.AddHours(now.Hour).AddMinutes(now.Minute).AddSeconds(now.Second).AddMilliseconds(now.Millisecond);
+                int uniqueId = (int)(zeroDate.Ticks / 10000);
+                d.UID = Guid.NewGuid().ToString("N").Substring(0, 19);
+                d.Title = rowlist[0];
+                d.CategoryName = rowlist[1];
+                d.CategoryID.Add(Convert.ToInt32(rowlist[2]));
+                d.MapYear = rowlist[3];
+                d.Organization = rowlist[4];
+
+                d.NumberOfClasses.Add(Convert.ToInt32(rowlist[5]));
+                d.DataSource = rowlist[6];
+                d.Status = rowlist[7];
+                d.ReleasedYear = Convert.ToInt32(rowlist[8]);
+                d.Notes = rowlist[9];
+                d.PointOfContactName = rowlist[10];
+                d.Email = rowlist[11];
+                d.PhoneNumber = rowlist[12];
+                d.HowToCite = rowlist[13].Trim().Replace("\r", string.Empty); ;
+                d.LastUpdatedBy = foruseremail.Value;
+
+
+
+                foreach (var nd in ndata)
+                {
+                    uidList.Add((nd.UID).ToString());
                 }
-            }
-         
-            excelrows.Add(rowlist);
-            var now = DateTime.Now;
-            var zeroDate = DateTime.MinValue.AddHours(now.Hour).AddMinutes(now.Minute).AddSeconds(now.Second).AddMilliseconds(now.Millisecond);
-            int uniqueId = (int)(zeroDate.Ticks / 10000);
-            d.UID = uniqueId;
-            d.Title = rowlist[1];
-            d.CategoryName = rowlist[2];
-                d.CategoryID.Add(Convert.ToInt32(rowlist[3])); 
-            d.MapYear = rowlist[4];
-            d.Organization = rowlist[5];
-
-            d.NumberOfClasses.Add(Convert.ToInt32(rowlist[6]) );
-            d.DataSource = rowlist[7];
-            d.Status = rowlist[8];
-            d.ReleasedYear = Convert.ToInt32(rowlist[9]);
-            d.Notes = rowlist[10];
-            d.PointOfContactName = rowlist[11];
-            d.Email = rowlist[12];
-            d.PhoneNumber = rowlist[13];
-            d.HowToCite = rowlist[14];
-            d.LastUpdatedBy = foruseremail.Value;
-            foreach (var nd in ndata)
-            {
-                uidList.Add((nd.UID).ToString());
-            }
-            if(!uidList.Contains((d.UID).ToString()))
-            ndata.Add(d);
-        }
-
-        for (int i = 0; i < excelrows.Count; i++)
-        {
-            for (int j = 0; j < excelrows[i].Count; j++)
-            {
-                efile.WriteLine(excelrows[i][j] + "\t");
+                if (!uidList.Contains((d.UID).ToString()))
+                    ndata.Add(d);
             }
         }
+
         JToken jt = JToken.Parse(ndata.ToString());
         string formatted = jt.ToString(Formatting.Indented);
         string formattednew = jt.ToString(Formatting.Indented).Remove(0, 1);
@@ -642,29 +624,12 @@ public partial class Home : System.Web.UI.Page
             STR = STR.TrimEnd('\r', '\n');
             STR = STR.Remove(STR.Length - 1);
             STR = STR.Remove(STR.Length - 1);
-            existing = "var completedArray = " + STR + ", " + formattednew + "];";
+            existing = "var completedArray = " + STR + ", " + formattednew + ";";
         }
         file.WriteLine(existing);
         file.Close();
         efile.Close();
-        GC.Collect();
-        GC.WaitForPendingFinalizers();
 
-        //rule of thumb for releasing com objects:
-        //  never use two dots, all COM objects must be referenced and released individually
-        //  ex: [somthing].[something].[something] is bad
-
-        //release com objects to fully kill excel process from running in the background
-        Marshal.ReleaseComObject(xlRange);
-        Marshal.ReleaseComObject(xlWorksheet);
-
-        //close and release
-        xlWorkbook.Close();
-        Marshal.ReleaseComObject(xlWorkbook);
-
-        //quit and release
-        xlApp.Quit();
-        Marshal.ReleaseComObject(xlApp);
     }
 
     public void generateExcelfromJSON(List<string> list)

@@ -21,7 +21,7 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width:95vw;
+    width:70vw;
     overflow:scroll;
 }
 .modal-content-importData{
@@ -29,7 +29,7 @@
     margin: auto;
     padding: 30px;
     border: 1px solid #888;
-    width:30vw;
+    width:37vw;
     height:34vw;
     overflow:scroll;
 }

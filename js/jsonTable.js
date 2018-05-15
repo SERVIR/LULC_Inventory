@@ -1,9 +1,10 @@
 ﻿
-function CreateTableFromJSON(uid_arr, country) {
-
+function CreateTableFromJSONRequests(uid_arr, country) {
     var data = completedArrayTemp;
 
     var col = [];
+    col.push("Action");
+
     for (var i = 0; i < data.length; i++) {
         for (var key in data[i]) {
            
@@ -34,22 +35,31 @@ function CreateTableFromJSON(uid_arr, country) {
     for (var i = 0; i < data.length; i++) {
         if (country == "Choose a country" && contains(uid_arr, data[i].UID)) {
                 tr = table.insertRow(-1);
-
+                tr.id = data[i].UID.toString();
                 for (var j = 0; j < col.length; j++) {
                     var tabCell = tr.insertCell(-1);
                     tabCell.class = "xx";
-                    tabCell.innerHTML = data[i][col[j]];
+                    var rep = data[i].Title.replace(' "', '');
+                    var coun = data[i].CategoryName.replace(' "', '');
+                    if (j == 0) {
+                        tabCell.innerHTML = '<button onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + data[i].MapYear + '","' + data[i].Organization + '","' + data[i].MapYear + '","' + data[i].NumberOfClasses + '","' + data[i].DataSource + '","' + data[i].Status + '","' + data[i].ReleasedYear + '","' + data[i].Notes + '","' + data[i].PointOfContactName + '","' + data[i].Email + '","' + data[i].PhoneNumber + '","' + data[i].HowToCite + '","' + data[i].LastUpdatedBy + '")><img height="100%" src="approve.png"/></button><button onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
+                    }
+                    else tabCell.innerHTML = data[i][col[j]];
                 }
             
         }
         else if (data[i].CategoryName == country && contains(uid_arr,data[i].UID)) {
             tr = table.insertRow(-1);
-
+            tr.id = data[i].UID.toString();
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
                 tabCell.class = "xx";
-
-                tabCell.innerHTML = data[i][col[j]];
+                var rep = data[i].Title.replace(/['"]+/g, '');
+                var coun = data[i].CategoryName.replace(' "', '');
+                if (j == 0) {
+                    tabCell.innerHTML = '<button onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + data[i].MapYear + '","' + data[i].Organization + '","' + data[i].MapYear + '","' + data[i].NumberOfClasses + '","' + data[i].DataSource + '","' + data[i].Status + '","' + data[i].ReleasedYear + '","' + data[i].Notes + '","' + data[i].PointOfContactName + '","' + data[i].Email + '","' + data[i].PhoneNumber + '","' + data[i].HowToCite + '","' + data[i].LastUpdatedBy + '")><img height="100%" src="approve.png"/></button><button onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
+                }
+                else tabCell.innerHTML = data[i][col[j]];
             }
         }
   
@@ -79,6 +89,7 @@ function CreateTableFromJSON(pid_arr) {
 
         }
     }
+    col.push("Action");
 
     // CREATE DYNAMIC TABLE.
     var table = document.createElement("table");
@@ -100,11 +111,23 @@ function CreateTableFromJSON(pid_arr) {
 
         if (contains(pid_arr, data[i].PID)) {
             tr = table.insertRow(-1);
-
+            tr.id = data[i].PID.toString();
             for (var j = 0; j < col.length; j++) {
                 var tabCell = tr.insertCell(-1);
                 tabCell.class = "xx";
-                tabCell.innerHTML = data[i][col[j]];
+                if (j == col.length - 1)
+                {
+                    var p = data[i].PID.toString();
+                    var rep = data[i][col[j - 3]].toString().replace(/['"]+/g, '');
+                    if(data[i].Status.toString()=="Closed")
+                        tabCell.innerHTML = '<button onclick=openStatus("' + p + '","' + escape(rep) + '","' + data[i][col[j - 1]].toString() + '")>Open</button>';
+                    else if (data[i].Status.toString() == "Open")
+                        tabCell.innerHTML = '<button onclick=closeStatus("' + p + '","' + escape(rep) + '","' + data[i][col[j - 1]].toString() + '")>Close</button>';
+
+
+                }
+                else tabCell.innerHTML = data[i][col[j]];
+                
             }
             x++;
         }

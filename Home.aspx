@@ -3,6 +3,8 @@
 <html>
 <head runat="server">
     <title>Land Use/Land Cover Inventory for Africa</title>
+       
+
 </head>
 <body>
     <meta name="google-signin-client_id" content="140425635617-nkebib8gikq31h7ju0o3qk27c3s681dd.apps.googleusercontent.com">
@@ -28,6 +30,7 @@
 
 
     </script>
+     
     <link rel="stylesheet" href="css/jquery-ui.css">
     <script src="js/users.js"></script>
         <script src="js/reportedProblems.js"></script>
@@ -90,105 +93,7 @@
         var submitted = 0;
         var loggedIn = 0;
         var mail_id;
-        var td0, td1, td2, td3, td4, td5, td6, td7, td8, td9, td10, td11, td12, td13, td14;
-        var tdn0, tdn1, tdn2,tdn3;
-        var approved = 0;
-        var closed = 0;
         var sid;
-
-        //When the admins views requests, this method helps to highlight the rows for approving or discarding
-        function highlight_row() {
-            $('#statusMsg').html("");
-            var table = document.getElementById('jsonTab');
-            var rows = document.getElementById('jsonTab').rows;
-            for (var j = 0; j < rows.length; j++) {
-                var cells = document.getElementById('jsonTab').rows[j].cells;
-                for (var i = 0; i < cells.length; i++) {
-                    var cell = cells[i];
-                    cell.onclick = function () {
-                        $("#approve").show();
-                        $("#discard").show();
-                        var rowId = this.parentNode.rowIndex;
-                        var rowsNotSelected = table.getElementsByTagName('tr');
-                        for (var row = 0; row < rowsNotSelected.length; row++) {
-                            rowsNotSelected[row].style.backgroundColor = "";
-                            rowsNotSelected[row].classList.remove('selected');
-                        }
-                        var rowSelected = table.getElementsByTagName('tr')[rowId];
-                        rowSelected.style.backgroundColor = "yellow";
-                        rowSelected.className += " selected";
-
-                        td0 = rowSelected.cells[0].innerHTML;
-                        td1 = rowSelected.cells[1].innerHTML;
-                        td2 = rowSelected.cells[2].innerHTML;
-                        td3 = rowSelected.cells[3].innerHTML;
-                        td4 = rowSelected.cells[4].innerHTML;
-                        td5 = rowSelected.cells[5].innerHTML;
-                        td6 = rowSelected.cells[6].innerHTML;
-                        td7 = rowSelected.cells[7].innerHTML;
-                        td8 = rowSelected.cells[8].innerHTML;
-                        td9 = rowSelected.cells[9].innerHTML;
-                        td10 = rowSelected.cells[10].innerHTML;
-                        td11 = rowSelected.cells[11].innerHTML;
-                        td12 = rowSelected.cells[12].innerHTML;
-                        td13 = rowSelected.cells[13].innerHTML;
-
-                        td14 = rowSelected.cells[14].innerHTML;
-                       
-                        rowSelected.className = "appr";
-
-                    }
-                }
-            }
-
-
-        }
-        //When the admins views requests, this method helps to highlight the rows for approving or discarding
-        function highlight_row_problems() {
-            $('#statusMesg').html("");
-            var table = document.getElementById('jsonTabNew');
-            var rows = document.getElementById('jsonTabNew').rows;
-            for (var j = 0; j < rows.length; j++) {
-                var cells = document.getElementById('jsonTabNew').rows[j].cells;
-                for (var i = 0; i < cells.length; i++) {
-                    var cell = cells[i];
-                    cell.onclick = function () {
-                        if ($("select#selectStatus option").filter(":selected").text() == "Open") {
-                            $("#close").show();
-                            $("#open").hide();
-                        }
-                        else if ($("select#selectStatus option").filter(":selected").text() == "Closed") {
-                            $("#open").show();
-                            $("#close").hide();
-                        }
-                        else {
-                            $("#close").hide();
-                            $("#open").hide();
-                        }
-                        var rowId = this.parentNode.rowIndex;
-                        var rowsNotSelected = table.getElementsByTagName('tr');
-                        for (var row = 0; row < rowsNotSelected.length; row++) {
-                            rowsNotSelected[row].style.backgroundColor = "";
-                            rowsNotSelected[row].classList.remove('selected');
-                        }
-                        var rowSelected = table.getElementsByTagName('tr')[rowId];
-                        rowSelected.style.backgroundColor = "yellow";
-                        rowSelected.className += " selected";
-
-                        tdn0 = rowSelected.cells[0].innerHTML;
-                        tdn1 = rowSelected.cells[1].innerHTML;
-                        tdn2 = rowSelected.cells[2].innerHTML;
-                     
-                        tdn3 = rowSelected.cells[3].innerHTML;
-                        rowSelected.className = "opn";
-
-                    }
-                }
-            }
-
-
-        }
-
     </script>
     <script>
 
@@ -300,11 +205,11 @@
                         if (document.getElementById("release").value == "" || isNaN(document.getElementById("release").value)) document.getElementById("release").value = "0";
 
                         if (document.getElementById("ph_num").value == "") document.getElementById("ph_num").value = "000-000-0000";
-                        var newUID = Math.max(sortedcompleted[sortedcompleted.length - 2].UID + 2, completedArrayTemp[completedArrayTemp.length - 1].UID + 1);
+                        var newUID = Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
 
 
                         var newData = {
-                            "UID": parseInt(newUID),
+                            "UID": newUID,
                             "Title": document.getElementById("title").value,
                             "CategoryName": document.getElementById("ctry_hidden").innerHTML,
                             "CategoryID": [],
@@ -335,7 +240,7 @@
 
                         var toAdd = {
 
-                            "UID": parseInt(newUID),
+                            "UID": newUID,
                             "Email": recent[1],
                             "FullName": document.getElementById('ufullname').innerHTML
                         }
@@ -425,29 +330,29 @@
             }
         }
         //this method is called when admin clicks on "Approve" button in ViewRequests
-        function approveData() {
+        function approveData(uid, title, catname, catid, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite, lub) {
             var newData = {
-                "UID": parseInt(td0),
-                "Title": td1,
-                "CategoryName": td2,
+                "UID": uid,
+                "Title": title,
+                "CategoryName": catname,
                 "CategoryID": [],
-                "MapYear": td4,
-                "Organization": td5,
+                "MapYear": mapyear,
+                "Organization": org,
                 "NumberOfClasses": [],
-                "DataSource": td7,
-                "Status": td8,
-                "ReleasedYear": parseInt(td9),
-                "Notes": td10,
-                "PointOfContactName": td11,
-                "Email": td12,
-                "PhoneNumber": td13,
-                "HowToCite": td14,
-                "LastUpdatedBy": document.getElementById('uemail').innerHTML.split(':')[1].trim()
+                "DataSource": ds,
+                "Status": status,
+                "ReleasedYear": parseInt(release),
+                "Notes": notes,
+                "PointOfContactName": poc,
+                "Email": email,
+                "PhoneNumber": phnum,
+                "HowToCite": cite,
+                "LastUpdatedBy": lub
 
             }
 
-            newData["CategoryID"].push(parseInt(td3));
-            newData["NumberOfClasses"].push(parseInt(td6));
+            newData["CategoryID"].push(parseInt(catid));
+            newData["NumberOfClasses"].push(parseInt(cls));
 
 
             var str = JSON.stringify(newData);
@@ -470,11 +375,11 @@
             //map.destroy();
             //gToggle.destroy();
             //initMap();
-            PageMethods.DeleteFromTemp(parseInt(td0));
-            removeFromObj(parseInt(td0), completedArrayTemp);
-            approved = 1;
-            $(".appr").hide();
-            $('#statusMsg').html("<b style='color:green'>Approved record with UID " + td0 + "</b>");
+            PageMethods.DeleteFromTemp(uid);
+            removeFromObj(uid, completedArrayTemp);
+            var row = document.getElementById(uid);
+            row.parentNode.removeChild(row);
+            $('#statusMsg').html("<b style='color:green'>Approved record with UID " + uid + "</b>");
 
 
         }
@@ -526,16 +431,12 @@
             Shadowbox.close();
         }
         //this method is called when admin clicks on "Discard" button in ViewRequests
-        function discardData() {
-            PageMethods.DeleteFromnewlyAddedData(parseInt(td0));
-
-            PageMethods.DeleteFromTemp(parseInt(td0));
-
-
-            $('.appr').hide();
-            $('#statusMsg').html("<b style='color:red'>Discarded record with UID " + td0 + "</b>");
-            removeFromObj(parseInt(td0), newlyAdded);
-            removeFromObj(parseInt(td0), completedArrayTemp);
+        function discardData(uid) {
+            PageMethods.DeleteFromnewlyAddedData(uid);
+            PageMethods.DeleteFromTemp(uid);
+            $('#statusMsg').html("<b style='color:red'>Discarded record with UID " + uid + "</b>");
+            removeFromObj(uid, newlyAdded);
+            removeFromObj(uid, completedArrayTemp);
             map.removeLayer(map.getLayer("completed"));
             map.removeLayer(map.getLayer("planned"));
             map.removeLayer(map.getLayer("inprogress"));
@@ -545,7 +446,8 @@
             completed = [];
             total = [];
             expandcompletedArray();
-
+            var row = document.getElementById(uid);
+            row.parentNode.removeChild(row);
             gClusters(completedArray, 50);
             populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
 
@@ -553,8 +455,8 @@
         //Deletes the data permanently from the files
         function deleteData(_uid) {
             if (confirm('Are you sure to delete this data?')) {
-                PageMethods.DeleteFromOriginal(parseInt(_uid));
-                removeFromObj(parseInt(_uid), completedArray);
+                PageMethods.DeleteFromOriginal(_uid);
+                removeFromObj(_uid, completedArray);
                 map.removeLayer(map.getLayer("completed"));
                 map.removeLayer(map.getLayer("planned"));
                 map.removeLayer(map.getLayer("inprogress"));
@@ -600,54 +502,60 @@
             $('.modal_reportproblems').hide();
         }
 
-           function closeStatus() {
+        function closeStatus(pid, problem, reportedby) {
+            for (var i in reportedProblems) {
+                if (reportedProblems[i].PID == pid) {
+                    reportedProblems[i].Problem = problem;
+                    reportedProblems[i].Status = "Closed";
+                    reportedProblems[i].reportedBy = reportedby;
+                }
+            }
             var newData = {
-                "PID": tdn0,
-                "Problem": tdn1,
+                "PID": pid,
+                "Problem": problem,
                 "Status": "Closed",
-                "reportedBy":tdn3
+                "reportedBy": reportedby
             }
 
             var str = JSON.stringify(newData);
             document.getElementById('<%=hdn.ClientID%>').value = str;
-            PageMethods.updateProblemJson(tdn0,tdn1,"Closed",tdn3);
-            reportedProblems.push(newData);
-            closed = 1;
-               $(".opn").hide();
+            PageMethods.updateProblemJson(pid, problem, "Closed", reportedby);
+            var row = document.getElementById(pid);
+            row.parentNode.removeChild(row);
 
-            $('#statusMesg').html("<b style='color:green'>Closed record with PID " + tdn0 + "</b>");
+            $('#statusMesg').html("<b style='color:green'>Closed record with PID " + pid + "</b>");
 
 
-           }
-        function openStatus() {
-
-             var newData = {
-                "PID": tdn0,
-                "Problem": tdn1,
+        }
+        function openStatus(pid, problem, reportedby) {
+            for (var i in reportedProblems) {
+                if (reportedProblems[i].PID == pid) {
+                    reportedProblems[i].Problem = problem;
+                    reportedProblems[i].Status = "Open";
+                    reportedProblems[i].reportedBy = reportedby;
+                }
+            }
+            var newData = {
+                "PID": pid,
+                "Problem": problem,
                 "Status": "Open",
-                "reportedBy":tdn3
+                "reportedBy": reportedby
             }
 
             var str = JSON.stringify(newData);
             document.getElementById('<%=hdn.ClientID%>').value = str;
-            PageMethods.updateProblemJson(tdn0,tdn1,"Open",tdn3);
-            reportedProblems.push(newData);
-            closed = 0;
-                $(".opn").hide();
-
-            $('#statusMesg').html("<b style='color:green'>Reopened record with PID " + tdn0 + "</b>");
+            PageMethods.updateProblemJson(pid, problem, "Open", reportedby);
+            var row = document.getElementById(pid);
+            row.parentNode.removeChild(row);
+            $('#statusMesg').html("<b style='color:green'>Reopened record with PID " + pid + "</b>");
 
 
         }
      
-
-
-
-
-
         function reportProblem(uid) {
 
         }
+
         //Updates existing records when the admin edits and submits the data
         function updateData(uid) {
             document.getElementById('<%=hdnData.ClientID%>').value = uid;
@@ -1305,11 +1213,12 @@
 
 
     <!-- The Modal for requests -->
-    <div id="myModal_requests" class="modal_requests" onload="highlight_row()">
+    <div id="myModal_requests" class="modal_requests">
 
         <!-- Modal content -->
         <div class="modal-content-requests">
             <span class="close" onclick="closeR()">&times;</span>
+            <h2>View data addition requests from users</h2>
             <p>Following are the requests.. click on a row to approve or discard!</p>
             <select id="selectCountry">
                 <option>Choose a country</option>
@@ -1319,8 +1228,7 @@
                 <option>Choose a User</option>
 
             </select>
-            <button id="approve" style="float:unset" onclick="approveData()" hidden>Approve</button>
-            <button id="discard"  style="float:unset" onclick="discardData()" hidden>Discard</button><span id="statusMsg" style="margin-right: 30%; margin-left: 30%">status</span>
+                <span id="statusMsg" style="margin-right: 30%; margin-left: 30%"></span>
             <p></p>
             <div id="reqs">
             </div>
@@ -1329,20 +1237,20 @@
 
     </div>
         <!-- The Modal for problems -->
-    <div id="myModal_problems" class="modal_problems" onload="highlight_row_problems()">
+    <div id="myModal_problems" class="modal_problems">
 
         <!-- Modal content -->
         <div class="modal-content-problems">
             <span class="close" onclick="closeR()">&times;</span>
+               <h2>View reported problems</h2>
             <p>Following are the problems.. click on a row to open or close!</p>
             <select id="selectStatus">
                 <option>Choose a status</option>
-                    <option>Open</option>    <option>Closed</option>
+                <option>Open</option>   
+                <option>Closed</option>
             </select>
             <br />
-            <button id="close" style="float:unset" onclick="closeStatus()" hidden>Close</button>
-            <button id="open"  style="float:unset" onclick="openStatus()" hidden>Open</button>
-            <br /><span id="statusMesg"">status</span>
+            <br /><span id="statusMesg""></span>
             <p></p>
             <div id="probs">
             </div>
@@ -1356,10 +1264,11 @@
         <!-- Modal content -->
         <div class="modal-content-reportproblems">
             <span class="close" onclick="closeR()">&times;</span>
+            <h2>Report a problem</h2>
             <p>Please enter a short description of your problem...</p>
-            <textarea style="margin-left: 0.7vw" id="enter_problem" rows="4" cols="50" placeholder="Enter your problem here..."></textarea>
+            <textarea style="margin-left: 0.7vw;border:3px groove;border-radius:10px;" id="enter_problem" rows="4" cols="50" placeholder="Enter your problem here..."></textarea>
             <br />
-           <div id="emailDiv"> <label>Enter email id:</label><input id="emailAddress" type="email" required></div>
+           <div id="emailDiv"> <p>Enter email id:</p><input style="margin-left: 0.7vw;border:3px groove;border-radius:10px;height:30px;width:250px;font-family:monospace" id="emailAddress" type="email" placeholder="Enter your email id here" required></div>
             <br />
             <button style="margin-left: 0.7vw; margin-top: 0.5vw;padding:8px 16px 8px;float:right;" id="submit_problem" onclick="submitReportProblem()">Submit Problem</button>
         </div>
@@ -1374,8 +1283,8 @@
                     <h2>Import Data</h2>
                <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
               
-              <p>Please upload an excel file to import data to the website!!!</p>
-                              <p>Download a template <a href="files/template.xlsx">here</a>. Enter the details and import it.</p>
+              <p>Please upload a csv file to import data to the website!!!</p>
+                              <p>Download a template <a href="files/template.xlsx">here</a>. Edit and save this as .csv and import it.</p>
 
             <asp:FileUpload ID="FileImportData" runat="server"/>
             <br />
@@ -1383,7 +1292,8 @@
             <input style="background-image: none;
             color: white;
             background-color: black;
-            padding: 8px 16px 8px;" type="button" id="SubmitImportData" value="Import" runat="server" onserverclick="ImportData_Click" />
+            padding: 8px 16px 8px;border: 1px solid #fff;
+    border-radius: 10px;" type="button" id="SubmitImportData" value="Import" runat="server" onserverclick="ImportData_Click" />
 
             <label id="myl" runat="server"></label>
                 </div>
@@ -1456,7 +1366,8 @@
                <input style="background-image: none;
             color: white;
             background-color: black;
-            padding: 8px 16px 8px;" type="button" id="SubmitExportData" value="Download" runat="server" onserverclick="ExportData_Click" />
+            padding: 8px 16px 8px;    border: 1px solid #fff;
+    border-radius: 10px;" type="button" id="SubmitExportData" value="Download" runat="server" onserverclick="ExportData_Click" />
                 </div>
               </div>
                         <br />
@@ -1471,14 +1382,14 @@
                 <input style="background-image: none;
             color: white;
             background-color: black;
-            padding: 8px 16px 8px;
-            " type="button" id="UpdateData" value="Update data" runat="server" onserverclick="UpdateData_Click" />
+            padding: 8px 16px 8px;    border: 1px solid #fff;
+    border-radius: 10px;" type="button" id="UpdateData" value="Update data" runat="server" onserverclick="UpdateData_Click" />
 
                 <input style="background-image: none;
             color: white;
             background-color: black;
-            padding: 8px 16px 8px;
-            " type="button" id="DeleteData" value="Delete Data" runat="server" onserverclick="DeleteData_Click" />
+            padding: 8px 16px 8px;    border: 1px solid #fff;
+    border-radius: 10px;" type="button" id="DeleteData" value="Delete Data" runat="server" onserverclick="DeleteData_Click" />
 
 </div>
             </div>

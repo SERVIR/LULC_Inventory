@@ -595,31 +595,35 @@ function populatePanelByCountry(which) {
                     var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
-                            a = sortedcompleted[x].Title;
-                            b = sortedcompleted[x].CategoryName;
-                            c = sortedcompleted[x].MapYear;
-                            d = sortedcompleted[x].Organization;
+                            document.getElementById("spanfora").innerHTML = sortedcompleted[x].Title;
+                            document.getElementById("spanforb").innerHTML = sortedcompleted[x].CategoryName;
+                            document.getElementById("spanforc").innerHTML = sortedcompleted[x].MapYear;
+                            document.getElementById("spanford").innerHTML = sortedcompleted[x].Organization;
 
                             if (sortedcompleted[x].NumberOfClasses == 0)
-                                e = "Not specified";
+                                document.getElementById("spanfore").innerHTML = "Not specified";
                             else
-                                e = sortedcompleted[x].NumberOfClasses;
+                                document.getElementById("spanfore").innerHTML = sortedcompleted[x].NumberOfClasses;
 
-                            f = sortedcompleted[x].DataSource;
+                            document.getElementById("spanforf").innerHTML = sortedcompleted[x].DataSource;
 
-                            g = "Planned";
+                            document.getElementById("spanforg").innerHTML = "Planned";
                             if (sortedcompleted[x].ReleasedYear==0)
-                                h = "Not specified";
-                            else h = sortedcompleted[x].ReleasedYear;
+                                document.getElementById("spanforh").innerHTML = "Not specified";
+                            else document.getElementById("spanforh").innerHTML = sortedcompleted[x].ReleasedYear;
 
 
-                            k = sortedcompleted[x].Notes;
-                            l = sortedcompleted[x].PointOfContactName;
-                            m = sortedcompleted[x].Email;
-                            n = sortedcompleted[x].PhoneNumber;
-                            o = sortedcompleted[x].HowToCite;
-                            lub = sortedcompleted[x].LastUpdatedBy;
-                            lut = sortedcompleted[x].LastUpdatedTime;
+                            document.getElementById("spanfork").innerHTML = sortedcompleted[x].Notes;
+                            document.getElementById("spanforl").innerHTML = sortedcompleted[x].PointOfContactName;
+                            document.getElementById("spanform").innerHTML = sortedcompleted[x].Email;
+                            document.getElementById("spanforn").innerHTML = sortedcompleted[x].PhoneNumber;
+                            document.getElementById("spanforo").innerHTML = sortedcompleted[x].HowToCite;
+                            document.getElementById("spanforlub").innerHTML = sortedcompleted[x].LastUpdatedBy;
+                            document.getElementById("spanforlut").innerHTML = sortedcompleted[x].LastUpdatedTime;
+                            document.getElementById("updatePanelButton").onclick = function () { updateData(sortedcompleted[x].UID) };
+                            document.getElementById("updateCancelButton").onclick = function () { $('.modal_editUpdate').hide(); };
+
+
                             break;
                         }
                     }
@@ -627,72 +631,30 @@ function populatePanelByCountry(which) {
                     var del = "";
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
-                        anchor = '<a id="editlink" href="#" onclick="editData('+-1+')" title="Edit"><img src="images/pencilfont.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick=deleteData("' + sortedcompleted[x].UID + '") title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick=unapproveData("' + sortedcompleted[x].UID + '") title="Unapprove"><img src="images/unapprovefont.png" width="30" height="30"/></a>';
-                    }
+                        document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(-1) };
+                        document.getElementById("editlink").style.display = "inline";
+
+                        document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
+                        document.getElementById("deletelink").style.display = "inline";
+
+                        document.getElementById("unapprovelink").onclick = function () { unapproveData(sortedcompleted[x].UID) };
+                        document.getElementById("unapprovelink").style.display = "inline";
+
+                 }
                     else {
-                        anchor = '<a id="editlink" href="#" onclick="editData(' + -1 + ')" hidden><img src="images/pencilfont.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick=deleteData("' + sortedcompleted[x].UID + '") hidden><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick=unapproveData("' + sortedcompleted[x].UID + '") hidden><img src="images/unapprovefont.png" width="30" height="30"/></a>';
+                        document.getElementById("editlink").onclick = function () { editData(-1) } ;
+                        document.getElementById("editlink").style.display = "none";
+                        document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
+                        document.getElementById("deletelink").style.display = "none";
 
+                        document.getElementById("unapprovelink").onclick = function () { unapproveData(sortedcompleted[x].UID) };
+                        document.getElementById("unapprovelink").style.display = "none";
+              
 
                     }
-                    Shadowbox.open({
-                        content: '<div CLASS="data_d"> ' +
-                                    ' <table id="dtable">' +
-                                    '<caption><h1>Data for ' + a + '</h1></caption>' +
-                                    '<tr><td colspan="2"><div id="links">' + anchor + del + unapprove + '</div><br/><br/></td></tr>' +
-                                         '<tr class="d"><td><b>Country Name:</b></td><td>' + b + '</td></tr>' +
-                                                                        '<tr class="d"><td><b>Status: </b></td><td>' + g + '</td></tr>' +
-                                 '<tr class="d"><td><b>Title: </b></td><td>' + a + '</td></tr>' +
-                               
-
-                                    '<tr class="d"><td><b>Map Year:</b></td><td>' + c + '</td></tr>' +
-                                                                        '<tr class="d"><td><b>Released Year: </b></td><td>' + h + '</td></tr>' +
-
-                                    '<tr class="d"><td><b>Organization: </b></td><td>' + d + '</td></tr>' +
-                                    '<tr class="d"><td><b>Number of Classes: </b></td><td>' + e + '</td></tr>' +
-                                    '<tr class="d"><td><b>Data Source: </b></td><td>' + f + '</td></tr>' +
-                                    '<tr class="d"><td><b>Notes: </b></td><td>' + k + '</td></tr>' +
-                                    '<tr class="d"><td><b>Point of Contact: </b></td><td>' + l + '</td></tr>' +
-                                    '<tr class="d"><td><b>Email: </b></td><td>' + m + '</td></tr>' +
-                                    '<tr class="d"><td><b>Phone Number: </b></td><td>' + n + '</td></tr>' +
-                                    '<tr class="d"><td><b>How to cite: </b></td><td>' + o + '</td></tr>' +
-                                    ' </table>' +
-                                       ' <table id="etable" hidden>' +
-                                    '<caption><h1>Edit Data for ' + a + '</h1></caption>' +
-                                  '<tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="eb" >' + lub + '</label></td></tr>' +
-                                                                    '<tr class="d"><td colspan="2"><b>Last Updated Time:</b><label id="eb" >' + lut + '</label></td></tr>' +
-
-                                     '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" class="textbox" type="text" value="' + b + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> ' +
-                                  ' <option value="Completed">Completed</option> ' +
-
-                                  ' <option value="In progress">In progress</option> ' +
-                                   ' <option value="Planned">Planned</option> ' +
-                                ' </select></td></tr>' +
-                                    '<tr class="d"><td><b>Title: </b></td></tr><tr><td><input id="ea" class="textbox" type="text" value="' + a + '"/></td></tr>' +
-                                   
-                                    '<tr class="d"><td><b>Map Year:</b></td></tr><tr><td><input id="ec" class="textbox" type="text" value="' + c + '" /></td></tr>' +
-                                                                    '<tr class="d"><td><b>Released Year: </b></td></tr><tr><td><input class="textbox" id="eh" type="text" value="' + h + '" /></td></tr>' +
-
-                                    '<tr class="d"><td><b>Organization: </b></td></tr><tr><td><textarea class="textboxcite" id="ed" cols="23" rows="4" type="text">' + d + '</textarea></td></tr>' +
-                                    '<tr class="d"><td><b>Number of Classes: </b></td></tr><tr><td><input id="ee" class="textbox" type="text" value="' + e + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Data Source: </b></td></tr><tr><td><input id="ef" class="textbox" type="text" value="' + f + '" /></td></tr>' +
-                                    
-                                    '<tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" class="textboxcite" cols="23" rows="4" type="text">' + k + '</textarea></td></tr>' +
-                                    '<tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" class="textbox" type="text" value="' + l + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em"class="textbox" type="email" value="' + m + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" class="textbox" type="text" value="' + n + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" class="textboxcite" type="text">' + o + '</textarea></td></tr>' +
-                                      '<tr class="d"><td colspan="2" align="center"><button onclick=updateData("'+sortedcompleted[x].UID+'")>Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
-                                    ' </table>' +
-                                 '</div>',
-                        player: "html",
-                        title: "Details of " + a + " in " + b,
-                        height: "565px"
-                    });
+                    $('.modal_editUpdate').show();
+                    $('#dtable').show();
+                    $('#etable').hide();
 
 
                 }
@@ -720,31 +682,52 @@ function populatePanelByCountry(which) {
                     var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
-                            a = sortedcompleted[x].Title;
-                            b = sortedcompleted[x].CategoryName;
-                            c = sortedcompleted[x].MapYear;
-                            d = sortedcompleted[x].Organization;
+                            document.getElementById("spanfora").innerHTML = sortedcompleted[x].Title;
+                            document.getElementById("ea").value = sortedcompleted[x].Title;
+                            document.getElementById("spanforb").innerHTML = sortedcompleted[x].CategoryName;
+                            document.getElementById("eb").value = sortedcompleted[x].CategoryName;
+                            document.getElementById("spanforc").innerHTML = sortedcompleted[x].MapYear;
+                            document.getElementById("ec").value = sortedcompleted[x].MapYear;
+                            document.getElementById("spanford").innerHTML = sortedcompleted[x].Organization;
+                            document.getElementById("ed").value = sortedcompleted[x].Organization;
+                            if (sortedcompleted[x].NumberOfClasses == 0) {
+                                document.getElementById("spanfore").innerHTML = "Not specified";
+                                document.getElementById("ee").value = "Not specified";
+                            }
+                            else {
+                                document.getElementById("ee").value = sortedcompleted[x].NumberOfClasses;
+                                document.getElementById("spanfore").innerHTML = sortedcompleted[x].NumberOfClasses;
+                            }
+                            document.getElementById("spanforf").innerHTML = sortedcompleted[x].DataSource;
+                            document.getElementById("ef").value = sortedcompleted[x].DataSource;
+                            document.getElementById("spanforg").innerHTML = "In progress";
+                            document.getElementById("eg").value = "In progress";
+                            if (sortedcompleted[x].ReleasedYear == 0) {
+                                document.getElementById("spanforh").innerHTML = "Not specified";
+                                document.getElementById("eh").value = "Not specified";
+                            }
+                            else {
+                                document.getElementById("spanforh").innerHTML = sortedcompleted[x].ReleasedYear;
+                                document.getElementById("eh").value = sortedcompleted[x].ReleasedYear;
 
-                            if (sortedcompleted[x].NumberOfClasses == 0)
-                                e = "Not specified";
-                            else
-                                e = sortedcompleted[x].NumberOfClasses;
+                            }
 
-                            f = sortedcompleted[x].DataSource;
+                            document.getElementById("spanfork").innerHTML = sortedcompleted[x].Notes;
+                            document.getElementById("ek").value = sortedcompleted[x].Notes;
+                            document.getElementById("spanforl").innerHTML = sortedcompleted[x].PointOfContactName;
+                            document.getElementById("el").value = sortedcompleted[x].PointOfContactName;
+                            document.getElementById("spanform").innerHTML = sortedcompleted[x].Email;
+                            document.getElementById("em").value = sortedcompleted[x].Email;
+                            document.getElementById("spanforn").innerHTML = sortedcompleted[x].PhoneNumber;
+                            document.getElementById("en").value = sortedcompleted[x].PhoneNumber;
+                            document.getElementById("spanforo").innerHTML = sortedcompleted[x].HowToCite;
+                            document.getElementById("eo").value = sortedcompleted[x].HowToCite;
+                            document.getElementById("spanforlub").innerHTML = sortedcompleted[x].LastUpdatedBy;
 
-                            g = "In progress";
-                            if (sortedcompleted[x].ReleasedYear == 0)
-                                h = "Not specified";
-                            else h = sortedcompleted[x].ReleasedYear;
+                            document.getElementById("spanforlut").innerHTML = sortedcompleted[x].LastUpdatedTime;
+                            document.getElementById("updatePanelButton").onclick = function () { updateData(sortedcompleted[x].UID) };
+                            document.getElementById("updateCancelButton").onclick = function () { $('.modal_editUpdate').hide(); };
 
-
-                            k = sortedcompleted[x].Notes;
-                            l = sortedcompleted[x].PointOfContactName;
-                            m = sortedcompleted[x].Email;
-                            n = sortedcompleted[x].PhoneNumber;
-                            o = sortedcompleted[x].HowToCite;
-                            lub = sortedcompleted[x].LastUpdatedBy;
-                            lut = sortedcompleted[x].LastUpdatedTime;
                             break;
                         }
                     }
@@ -752,74 +735,28 @@ function populatePanelByCountry(which) {
                     var del = "";
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
-                        anchor = '<a id="editlink" href="#" onclick="editData('+0+')" title="Edit"><img src="images/pencilfont.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick=deleteData("'+sortedcompleted[x].UID+'") title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick=unapproveData("' + sortedcompleted[x].UID + '") title="Unapprove"><img src="images/unapprovefont.png" width="30" height="30"/></a>';
+                        document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(0) } ;
+                        document.getElementById("editlink").style.display = "inline";
+
+                        document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
+                        document.getElementById("deletelink").style.display = "inline";
+
+                        document.getElementById("unapprovelink").onclick = function () { unapproveData(sortedcompleted[x].UID) };
+                        document.getElementById("unapprovelink").style.display = "inline";
                     }
                     else {
-                        anchor = '<a id="editlink" href="#" onclick="editData(' + 0 + ')" hidden><img src="images/pencilfont.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick=deleteData("'+sortedcompleted[x].UID +'") hidden><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick=unapproveData("' + sortedcompleted[x].UID + '") hidden><img src="images/unapprovefont.png" width="30" height="30"/></a>';
+                        document.getElementById("editlink").onclick = function () { editData(0) } ;
+                        document.getElementById("editlink").style.display = "none";
+                        document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
+                        document.getElementById("deletelink").style.display = "none";
 
+                        document.getElementById("unapprovelink").onclick = function () { unapproveData(sortedcompleted[x].UID) };
+                        document.getElementById("unapprovelink").style.display = "none";
 
                     }
-                    Shadowbox.open({
-                        content: '<div CLASS="data_d"> ' +
-                                    ' <table id="dtable">' +
-                                    '<caption><h1>Data for ' + a + '</h1></caption>' +
-                                    '<tr><td colspan="2"><div id="links">' + anchor + del + unapprove + '</div><br/><br/></td></tr>' +
-                                              '<tr class="d"><td><b>Country Name:</b></td><td>' + b + '</td></tr>' +
-                                                                        '<tr class="d"><td><b>Status: </b></td><td>' + g + '</td></tr>' +
-                                    '<tr class="d"><td><b>Title: </b></td><td>' + a + '</td></tr>' +
-                          
-
-                                    '<tr class="d"><td><b>Map Year:</b></td><td>' + c + '</td></tr>' +
-                                                                        '<tr class="d"><td><b>Released Year: </b></td><td>' + h + '</td></tr>' +
-
-                                    '<tr class="d"><td><b>Organization: </b></td><td>' + d + '</td></tr>' +
-                                    '<tr class="d"><td><b>Number of Classes: </b></td><td>' + e + '</td></tr>' +
-                                    '<tr class="d"><td><b>Data Source: </b></td><td>' + f + '</td></tr>' +
-                                    '<tr class="d"><td><b>Notes: </b></td><td>' + k + '</td></tr>' +
-                                    '<tr class="d"><td><b>Point of Contact: </b></td><td>' + l + '</td></tr>' +
-                                    '<tr class="d"><td><b>Email: </b></td><td>' + m + '</td></tr>' +
-                                    '<tr class="d"><td><b>Phone Number: </b></td><td>' + n + '</td></tr>' +
-                                    '<tr class="d"><td><b>How to cite: </b></td><td>' + o + '</td></tr>' +
-                                    ' </table>' +
-                                   ' <table id="etable" hidden>' +
-                                    '<caption><h1>Edit Data for ' + a + '</h1></caption>' +
-                                  '<tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="eb" >' + lub + '</label></td></tr>' +
-                                                                                                      '<tr class="d"><td colspan="2"><b>Last Updated Time:</b><label id="eb" >' + lut + '</label></td></tr>' +
-
-                                        '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" class="textbox" type="text" value="' + b + '" /></td></tr>' +
-                                     '<tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> ' +
-                                  ' <option value="Completed">Completed</option> ' +
-                                  ' <option value="In progress">In progress</option> ' +
-                                                                    ' <option value="Planned">Planned</option> ' +
-
-                                ' </select></td></tr>' +
-                                    '<tr class="d"><td><b>Title: </b></td></tr><tr><td><input id="ea" class="textbox" type="text" value="' + a + '"/></td></tr>' +
-                                
-                                    '<tr class="d"><td><b>Map Year:</b></td></tr><tr><td><input id="ec" class="textbox" type="text" value="' + c + '" /></td></tr>' +
-                                                                    '<tr class="d"><td><b>Released Year: </b></td></tr><tr><td><input id="eh" class="textbox" type="text" value="' + h + '" /></td></tr>' +
-
-                                    '<tr class="d"><td><b>Organization: </b></td></tr><tr><td><textarea id="ed" cols="23" rows="4" type="text" class="textboxcite">' + d + '</textarea></td></tr>' +
-                                    '<tr class="d"><td><b>Number of Classes: </b></td></tr><tr><td><input id="ee" class="textbox" type="text" value="' + e + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Data Source: </b></td></tr><tr><td><input id="ef" class="textbox" type="text" value="' + f + '" /></td></tr>' +
-                                   
-                                    '<tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" class="textboxcite" cols="23" rows="4" type="text">' + k + '</textarea></td></tr>' +
-                                    '<tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" class="textbox" type="text" value="' + l + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em" class="textbox" type="email" value="' + m + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" class="textbox" type="text" value="' + n + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" type="text" class="textboxcite">' + o + '</textarea></td></tr>' +
-                                      '<tr class="d"><td colspan="2" align="center"><button onclick=updateData("'+sortedcompleted[x].UID+'")>Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
-                                    ' </table>' +
-                                 '</div>',
-                        player: "html",
-                        title: "Details of " + a + " in " + b,
-                        height: "565px"
-                    });
-
-
+                    $('.modal_editUpdate').show();
+                    $('#dtable').show();
+                    $('#etable').hide();
                 }
 
                 clone.getElementsByClassName('articlelink')[0].innerHTML = sortedcompleted[i].Title;
@@ -845,32 +782,52 @@ function populatePanelByCountry(which) {
                     var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
+                            document.getElementById("spanfora").innerHTML = sortedcompleted[x].Title;
+                            document.getElementById("ea").value = sortedcompleted[x].Title;
+                            document.getElementById("spanforb").innerHTML = sortedcompleted[x].CategoryName;
+                            document.getElementById("eb").value = sortedcompleted[x].CategoryName;
+                            document.getElementById("spanforc").innerHTML = sortedcompleted[x].MapYear;
+                            document.getElementById("ec").value = sortedcompleted[x].MapYear;
+                            document.getElementById("spanford").innerHTML = sortedcompleted[x].Organization;
+                            document.getElementById("ed").value = sortedcompleted[x].Organization;
+                            if (sortedcompleted[x].NumberOfClasses == 0) {
+                                document.getElementById("spanfore").innerHTML = "Not specified";
+                                document.getElementById("ee").value = "Not specified";
+                            }
+                            else {
+                                document.getElementById("ee").value = sortedcompleted[x].NumberOfClasses;
+                                document.getElementById("spanfore").innerHTML = sortedcompleted[x].NumberOfClasses;
+                            }
+                            document.getElementById("spanforf").innerHTML = sortedcompleted[x].DataSource;
+                            document.getElementById("ef").value = sortedcompleted[x].DataSource;
+                            document.getElementById("spanforg").innerHTML = "Completed";
+                            document.getElementById("eg").value = "Completed";
+                            if (sortedcompleted[x].ReleasedYear == 0) {
+                                document.getElementById("spanforh").innerHTML = "Not specified";
+                                document.getElementById("eh").value = "Not specified";
+                            }
+                            else {
+                                document.getElementById("spanforh").innerHTML = sortedcompleted[x].ReleasedYear;
+                                document.getElementById("eh").value = sortedcompleted[x].ReleasedYear;
 
-                            a = sortedcompleted[x].Title;
-                            b = sortedcompleted[x].CategoryName;
-                            c = sortedcompleted[x].MapYear;
-                            d = sortedcompleted[x].Organization;
+                            }
 
-                            if (sortedcompleted[x].NumberOfClasses == 0)
-                                e = "Not specified";
-                            else
-                                e = sortedcompleted[x].NumberOfClasses;
+                            document.getElementById("spanfork").innerHTML = sortedcompleted[x].Notes;
+                            document.getElementById("ek").value = sortedcompleted[x].Notes;
+                            document.getElementById("spanforl").innerHTML = sortedcompleted[x].PointOfContactName;
+                            document.getElementById("el").value = sortedcompleted[x].PointOfContactName;
+                            document.getElementById("spanform").innerHTML = sortedcompleted[x].Email;
+                            document.getElementById("em").value = sortedcompleted[x].Email;
+                            document.getElementById("spanforn").innerHTML = sortedcompleted[x].PhoneNumber;
+                            document.getElementById("en").value = sortedcompleted[x].PhoneNumber;
+                            document.getElementById("spanforo").innerHTML = sortedcompleted[x].HowToCite;
+                            document.getElementById("eo").value = sortedcompleted[x].HowToCite;
+                            document.getElementById("spanforlub").innerHTML = sortedcompleted[x].LastUpdatedBy;
 
-                            f = sortedcompleted[x].DataSource;
+                            document.getElementById("spanforlut").innerHTML = sortedcompleted[x].LastUpdatedTime;
+                            document.getElementById("updatePanelButton").onclick = function () { updateData(sortedcompleted[x].UID) };
+                            document.getElementById("updateCancelButton").onclick = function () { $('.modal_editUpdate').hide();};
 
-                            g = "Completed";
-                            if (sortedcompleted[x].ReleasedYear == 0)
-                                h = "Not specified";
-                            else h = sortedcompleted[x].ReleasedYear;
-
-
-                            k = sortedcompleted[x].Notes;
-                            l = sortedcompleted[x].PointOfContactName;
-                            m = sortedcompleted[x].Email;
-                            n = sortedcompleted[x].PhoneNumber;
-                            o = sortedcompleted[x].HowToCite;
-                            lub = sortedcompleted[x].LastUpdatedBy;
-                            lut = sortedcompleted[x].LastUpdatedTime;
                             break;
                         }
                     }
@@ -878,75 +835,28 @@ function populatePanelByCountry(which) {
                     var del = "";
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
-                        anchor = '<a id="editlink" href="#" onclick="editData('+1+')" title="Edit"><img src="images/pencilfont.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick=deleteData("' + sortedcompleted[x].UID + '") title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick="unapproveData(' + sortedcompleted[x].UID + ')" title="Unapprove"><img src="images/unapprovefont.png" width="30" height="30"/></a>';
+                        document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(1) };
+                        document.getElementById("editlink").style.display = "inline";
+
+                        document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
+                        document.getElementById("deletelink").style.display = "inline";
+
+                        document.getElementById("unapprovelink").onclick = function () { unapproveData(sortedcompleted[x].UID) };
+                        document.getElementById("unapprovelink").style.display = "inline";
                     }
                     else {
-                        anchor = '<a id="editlink" href="#" onclick="editData()" hidden><img src="images/pencil1.png" width="30" height="30"/></a>';
-                        del = '<a id="deletelink" href="#" onclick=deleteData("' + sortedcompleted[x].UID + '") hidden><img src="images/trashfont.png" width="30" height="30"/></a>';
-                        unapprove = '<a id="unapprovelink" href="#" onclick=unapproveData("' + sortedcompleted[x].UID + '") hidden><img src="images/unapprovefont.png" width="30" height="30"/></a>';
+                        document.getElementById("editlink").onclick = function () { editData(1) } ;
+                        document.getElementById("editlink").style.display = "none";
+                        document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
+                        document.getElementById("deletelink").style.display = "none";
 
+                        document.getElementById("unapprovelink").onclick = function () { unapproveData(sortedcompleted[x].UID) };
+                        document.getElementById("unapprovelink").style.display = "none";
 
                     }
-                    Shadowbox.open({
-                        content: '<div CLASS="data_d"> ' +
-                                    ' <table id="dtable">' +
-                                    '<caption><h1>Data for ' + a + '</h1></caption>' +
-                                    '<tr><td colspan="2"><div id="links">' + anchor + del + unapprove + '</div><br/><br/></td></tr>' +
-                                     '<tr class="d"><td><b>Country Name:</b></td><td>' + b + '</td></tr>' +
-                                                                        '<tr class="d"><td><b>Status: </b></td><td>' + g + '</td></tr>' +
-                                    '<tr class="d"><td><b>Title: </b></td><td>' + a + '</td></tr>' +
-                                   
-
-                                    '<tr class="d"><td><b>Map Year:</b></td><td>' + c + '</td></tr>' +
-                                                                        '<tr class="d"><td><b>Released Year: </b></td><td>' + h + '</td></tr>' +
-
-                                    '<tr class="d"><td><b>Organization: </b></td><td>' + d + '</td></tr>' +
-                                    '<tr class="d"><td><b>Number of Classes: </b></td><td>' + e + '</td></tr>' +
-                                    '<tr class="d"><td><b>Data Source: </b></td><td>' + f + '</td></tr>' +
-                                    '<tr class="d"><td><b>Notes: </b></td><td>' + k + '</td></tr>' +
-                                    '<tr class="d"><td><b>Point of Contact: </b></td><td>' + l + '</td></tr>' +
-                                    '<tr class="d"><td><b>Email: </b></td><td>' + m + '</td></tr>' +
-                                    '<tr class="d"><td><b>Phone Number: </b></td><td>' + n + '</td></tr>' +
-                                    '<tr class="d"><td><b>How to cite: </b></td><td>' + o + '</td></tr>' +
-                                    ' </table>' +
-                                     ' <table id="etable" hidden>' +
-                                    '<caption><h1>Edit Data for ' + a + '</h1></caption>' +
-                                  '<tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="eb" >' + lub + '</label></td></tr>' +
-                                                                                                      '<tr class="d"><td colspan="2"><b>Last Updated Time:</b><label id="eb" >' + lut + '</label></td></tr>' +
-
-                                     '<tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" type="text" value="' + b + '" /></td></tr>' +
-                                     '<tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> ' +
-                                  ' <option value="Completed">Completed</option> ' +
-                                  ' <option value="In progress">In progress</option> ' +
-                                                                    ' <option value="Planned">Planned</option> ' +
-
-                                ' </select></td></tr>' +
-                                    '<tr class="d"><td><b>Title: </b></td></tr><tr><td><input id="ea" type="text" value="' + a + '"/></td></tr>' +
-                                   
-                                    '<tr class="d"><td><b>Map Year:</b></td></tr><tr><td><input id="ec" type="text" value="' + c + '" /></td></tr>' +
-                                                                    '<tr class="d"><td><b>Released Year: </b></td></tr><tr><td><input id="eh" type="text" value="' + h + '" /></td></tr>' +
-
-                                    '<tr class="d"><td><b>Organization: </b></td></tr><tr><td><textarea id="ed" cols="23" rows="4" type="text">' + d + '</textarea></td></tr>' +
-                                    '<tr class="d"><td><b>Number of Classes: </b></td></tr><tr><td><input id="ee" type="text" value="' + e + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Data Source: </b></td></tr><tr><td><input id="ef" type="text" value="' + f + '" /></td></tr>' +
-                                   
-                                    '<tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" cols="23" rows="4" type="text">' + k + '</textarea></td></tr>' +
-                                    '<tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" type="text" value="' + l + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em" type="email" value="' + m + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" type="text" value="' + n + '" /></td></tr>' +
-                                    '<tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" type="text">' + o + '</textarea></td></tr>' +
-                                      '<tr class="d"><td colspan="2" align="center"><button onclick=updateData("'+sortedcompleted[x].UID.toString()+'")>Update</button><button onclick="Shadowbox.close();">Cancel</button></td></tr>' +
-
-                                    ' </table>' +
-                                 '</div>',
-                        player: "html",
-                        title: "Details of " + a + " in " + b,
-                        height: "565px"
-                    });
-
-                    
+                    $('.modal_editUpdate').show();
+                    $('#dtable').show();
+                    $('#etable').hide();
                 }
               
                 clone.getElementsByClassName('articlelink')[0].innerHTML = sortedcompleted[i].Title;
@@ -970,7 +880,7 @@ function populatePanelByCountry(which) {
     document.getElementById("numinprogress").innerHTML = inprogressCounter;
     document.getElementById("accordionTitle").innerHTML = which;
     document.getElementById("ctry_hidden").innerHTML = which;
-
+    document.getElementById("ctry").innerHTML = which;
     if (!foundcompleted) {
         document.getElementById('completedarticleholder').appendChild(getNoArticleElement(which, "Completed"));
     }

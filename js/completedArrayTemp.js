@@ -22,4 +22,26 @@ var completedArrayTemp = [
     "LastUpdatedBy": "",
     "LastUpdatedTime": "2018-5-15 14:16:34"
   }
-];
+, {
+  "UID": "e07e6c76f7bf4636beb",
+  "Title": "fkjhkj",
+  "CategoryID": [
+    23
+  ],
+  "CategoryName": "Burundi",
+  "MapYear": "55",
+  "Organization": "454",
+  "DataSource": "fgfdg",
+  "NumberOfClasses": [
+    435
+  ],
+  "ReleasedYear": 545,
+  "Notes": "fg",
+  "PointOfContactName": "gf",
+  "Email": "f@d.bnb",
+  "PhoneNumber": "1234567890",
+  "HowToCite": "fgdg",
+  "Status": "Completed",
+  "LastUpdatedBy": "githika.cs@gmail.com",
+  "LastUpdatedTime": "2018-5-15 14:16:34"
+}];

@@ -80,6 +80,7 @@
     <script src="data/countryPoly.js"></script>
     <script src="js/arcgis_poly_markers3.js" type="text/javascript"></script>
     <link href="css/Popup.css" rel="stylesheet">
+    <link href="css/sliderstyle2.css" rel="stylesheet" type="text/css" />
     <script src="js/shadowbox.js" type="text/javascript"></script>
     <script src="js/jsonTable.js" type="text/javascript"></script>
     <link href="css/shadowbox.css" rel="stylesheet" type="text/css" />
@@ -127,47 +128,7 @@
 
         //When the "+" button is clicked  by admin to add data to a country
         function addMoreData() {
-                Shadowbox.open({
-                    content: '<div id="welcome-msg"> ' +
-                                ' <table class="addmore_table">' +
-
-                                  ' <tr><td>Country:</td></tr><tr><td><span  id="ctry" class="ctry"><b>' + document.getElementById("ctry_hidden").innerHTML + '</b></span></tr>' +
-
-                                ' <tr><td>Status:<br><span style="font-size:12px;">(Condition of development for the map)<span></td></tr><tr><td>' +
-                                ' <select id="dd" class="status"> ' +
-                                  ' <option value="completed">Completed</option> ' +
-                                  ' <option value="inprogress">In progress</option> ' +
-                                                                    ' <option value="planned">Planned</option> ' +
-
-                                ' </select></td></tr>' +
-                                ' <tr><td>Title:</td></tr><tr><td><input placeholder="Name of the land cover dataset" id="title" class="textbox" type="text"/></td><td class="Req" style="color:red;font-size:25px;" hidden>*</td><td id="Row1" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgTitle" ></span></td></tr>' +
-
-                                ' <tr><td>Map Year:</td></tr><tr><td><textarea placeholder="Year that the map represents on the ground " id="map_year" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>' +
-                                                                ' <tr><td>Released Year:</td></tr><tr><td><textarea placeholder="Year of publication. It may be different from Map year. " id="release" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>' +
-
-                                ' <tr><td>Organization:</td></tr><tr><td><textarea placeholder="Name of the institution and/or organization that generated the land cover map" id="org" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>' +
-
-                                ' <tr><td>Number of classes:</td></tr><tr><td><textarea placeholder="Number of land cover classes available in the map" id="cls" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>' +
-
-                                ' <tr><td>Data Source:</td></tr><tr><td><textarea placeholder="Original dataset on which the map is based (i.e. Landsat satellite images)" id="ds" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>' +
-
-                              
-                                ' <tr><td>Notes:</td></tr><tr><td><textarea placeholder="Any additional information of relevance about the land cover map. If dataset available online please provide link here" id="notes" cols="20" rows="4" class="textboxcite" type="text"></textarea></td></tr>' +
-
-                                ' <tr><td>Point of contact:</td></tr><tr><td><input placeholder="Point of contact name" id="poc" class="textbox" type="email"/></td></tr>' +
-
-                                ' <tr><td>Email:</td></tr><tr><td><textarea placeholder="email of the person that can provide further information about this land cover map" id="email" cols="20" rows="1" class="textboxcite" type="text"></textarea></td><td id="Row2" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPoc" ></span></td></tr>' +
-                                ' <tr><td>Phone Number:</td></tr><tr><td><input placeholder="Point of contact phone number" id="ph_num" class="textbox" type="text"/></td><td id="Row3" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPhn" ></span></td></tr>' +
-                                ' <tr><td>How to cite:</td></tr><tr><td><textarea placeholder="Enter how users should reference this map" id="cite" cols="20" rows="4" class="textboxcite" type="text"></textarea></td></tr>' +
-                                ' <tr><td></td></tr><tr><td><button type="button" class="btn" onclick="AddJsonData()">Submit data!</button></tr>' +
-
-                                ' </table>' +
-                             '</div>',
-                    player: "html",
-                    title: "Add More Data",
-                    height: "565px"
-                });
-
+            $('.modal_addMoreData').show();
         }
         //this method is used inside addMoreData() to update the json file with new data
         function AddJsonData() {
@@ -280,8 +241,7 @@
                         document.getElementById("ph_num").value = "";
                         document.getElementById("cite").value = "";
                         document.getElementById("cls").value = "";
-                        Shadowbox.close();
-
+                        $('.modal_addMoreData').hide();
 
                     }
 
@@ -314,6 +274,7 @@
                 $("#title").focus();
 
             }
+           
 
         }
         function removeFromObj(num, arr) {
@@ -574,7 +535,7 @@
 
             var cite = document.getElementById("eo").value;
             var lub = document.getElementById('uemail').innerHTML.split(':')[1].trim();
-            var lut = document.getElementById('uemail').innerHTML.split(':')[1].trim();
+            var lut = dateTime;
             for (var i = 0; i < completedArray.length; i++) {
                 if (completedArray[i].UID == uid) {
                     completedArray[i].Title = title;
@@ -600,7 +561,7 @@
                     completedArray[i].LastUpdatedTime = dateTime;
                 }
             }
-            PageMethods.updateExistingData(document.getElementById('<%=hdnData.ClientID%>').value, title, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite,lub);
+            PageMethods.updateExistingData(document.getElementById('<%=hdnData.ClientID%>').value, title, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite,lub,lut);
             map.removeLayer(map.getLayer("completed"));
             map.removeLayer(map.getLayer("planned"));
             map.removeLayer(map.getLayer("inprogress"));
@@ -693,7 +654,7 @@
 
         .data_d {
             text-align: center;
-            border: dotted;
+            /*border: dotted;*/
             padding: 5px;
         }
 
@@ -1215,7 +1176,114 @@
         </div>
 
     </div>
+    <!-- The Modal for editUpdate -->
+    <div id="myModal_editUpdate" class="modal_editUpdate" >
 
+        <!-- Modal content -->
+        <div class="modal-content-editUpdate">
+            <span class="close" onclick="closeR()">&times;</span>
+        <div CLASS="data_d"> 
+                                     <table id="dtable" style="margin:auto;">
+                                    <caption><h1 style="text-align:center;">View Data <%--for <span id="spanfora"></span>--%></h1></caption>
+                                    <tr><td colspan="2" style="position:relative;">
+                                        
+                                        <div id="links">
+                                        <a id="editlink" href="#" title="Edit"><img src="images/pencilfont.png" width="30" height="30"/></a>
+                                            <a id="deletelink" href="#"  title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>
+                                            <a id="unapprovelink" href="#" title="Unapprove"><img src="images/unapprovefont.png" width="30" height="30"/></a>
+
+                                                        </div>
+                                        <br/><br/></td></tr>
+                                    <tr class="d"><td><b>Country Name:</b></td><td><span id="spanforb"></span></td></tr>
+                                    <tr class="d"><td><b>Status: </b></td><td><span id="spanforg"></span></td></tr>
+                                    <tr class="d"><td><b>Title: </b></td><td> <span id="spanfora"></span></td></tr>
+                          
+
+                                    <tr class="d"><td><b>Map Year:</b></td><td><span id="spanforc"></span></td></tr>
+                                    <tr class="d"><td><b>Released Year: </b></td><td><span id="spanforh"></span></td></tr>
+
+                                    <tr class="d"><td><b>Organization: </b></td><td><span id="spanford"></span></td></tr>
+                                    <tr class="d"><td><b>Number of Classes: </b></td><td><span id="spanfore"></span></td></tr>
+                                    <tr class="d"><td><b>Data Source: </b></td><td><span id="spanforf"></span></td></tr>
+                                    <tr class="d"><td><b>Notes: </b></td><td><span id="spanfork"></span></td></tr>
+                                    <tr class="d"><td><b>Point of Contact: </b></td><td><span id="spanforl"></span></td></tr>
+                                    <tr class="d"><td><b>Email: </b></td><td><span id="spanform"></span></td></tr>
+                                    <tr class="d"><td><b>Phone Number: </b></td><td><span id="spanforn"></span></td></tr>
+                                    <tr class="d"><td><b>How to cite: </b></td><td><span id="spanforo"></span></td></tr>
+                                     </table>
+                                   <table id="etable" hidden>
+                                   <caption><h1 style="text-align:center;">Edit Data</h1></caption>
+                                 <tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="spanforlub" ></label></td></tr>
+                                 <tr class="d"><td colspan="2"><b>Last Updated Time:</b><label id="spanforlut" ></label></td></tr>
+
+                                 <tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" class="textbox" type="text" /></td></tr>
+                                 <tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> 
+                                  <option value="Completed">Completed</option> 
+                                  <option value="In progress">In progress</option>
+                                  <option value="Planned">Planned</option> 
+
+                                 </select></td></tr>
+                                <tr class="d"><td><b>Title: </b></td></tr><tr><td><input id="ea" class="textbox" type="text" /></td></tr>
+                                
+                                <tr class="d"><td><b>Map Year:</b></td></tr><tr><td><input id="ec" class="textbox" type="text"  /></td></tr>
+                                <tr class="d"><td><b>Released Year: </b></td></tr><tr><td><input id="eh" class="textbox" type="text" /></td></tr>
+
+                                <tr class="d"><td><b>Organization: </b></td></tr><tr><td><textarea id="ed" cols="23" rows="4" class="textboxcite"></textarea></td></tr>
+                                <tr class="d"><td><b>Number of Classes: </b></td></tr><tr><td><input id="ee" class="textbox" type="text" /></td></tr>
+                                <tr class="d"><td><b>Data Source: </b></td></tr><tr><td><input id="ef" class="textbox" type="text"/></td></tr>
+                                   
+                                <tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" class="textboxcite" cols="23" rows="4"></textarea></td></tr>
+                                <tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" class="textbox" type="text" /></td></tr>
+                                <tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em" class="textbox" type="email" /></td></tr>
+                                <tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" class="textbox" type="text"/></td></tr>
+                                <tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" class="textboxcite"></textarea></td></tr>
+                                <tr class="d"><td colspan="2" align="center"><button id="updatePanelButton">Update</button><button id="updateCancelButton">Cancel</button></td></tr>
+                                 </table>
+                                </div>
+                
+
+        </div>
+
+    </div>
+    <!-- The Modal for addmore data -->
+    <div id="myModal_addMoreData" class="modal_addMoreData" >
+
+        <!-- Modal content -->
+        <div class="modal-content-addMoreData">
+            <span class="close" onclick="closeR()">&times;</span>
+                                <h1 style="text-align:center;"><b>Add data</b></h1>
+
+           <div id="welcome-msg"> 
+                                 <table class="addmore_table">
+
+                                  <tr><td>Country:</td></tr><tr><td><span  id="ctry" class="ctry"></span></tr>
+
+                                <tr><td>Status:<br><span style="font-size:12px;">(Condition of development for the map)</span></td></tr><tr><td>
+                                 <select id="dd" class="status"> 
+                                 <option value="completed">Completed</option> 
+                                 <option value="inprogress">In progress</option> 
+                                 <option value="planned">Planned</option> 
+
+                                 </select></td></tr>
+                                 <tr><td>Title:</td></tr><tr><td><input placeholder="Name of the land cover dataset" id="title" class="textbox" type="text"/></td><td class="Req" style="color:red;font-size:25px;" hidden>*</td><td id="Row1" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgTitle" ></span></td></tr>
+                                 <tr><td>Map Year:</td></tr><tr><td><textarea placeholder="Year that the map represents on the ground " id="map_year" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
+                                 <tr><td>Released Year:</td></tr><tr><td><textarea placeholder="Year of publication. It may be different from Map year. " id="release" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
+                                 <tr><td>Organization:</td></tr><tr><td><textarea placeholder="Name of the institution and/or organization that generated the land cover map" id="org" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
+                                 <tr><td>Number of classes:</td></tr><tr><td><textarea placeholder="Number of land cover classes available in the map" id="cls" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
+                                 <tr><td>Data Source:</td></tr><tr><td><textarea placeholder="Original dataset on which the map is based (i.e. Landsat satellite images)" id="ds" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
+                                 <tr><td>Notes:</td></tr><tr><td><textarea placeholder="Any additional information of relevance about the land cover map. If dataset available online please provide link here" id="notes" cols="20" rows="4" class="textboxcite" type="text"></textarea></td></tr>
+                                 <tr><td>Point of contact:</td></tr><tr><td><input placeholder="Point of contact name" id="poc" class="textbox" type="email"/></td></tr>
+                                 <tr><td>Email:</td></tr><tr><td><textarea placeholder="email of the person that can provide further information about this land cover map" id="email" cols="20" rows="1" class="textboxcite" type="text"></textarea></td><td id="Row2" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPoc" ></span></td></tr>
+                                <tr><td>Phone Number:</td></tr><tr><td><input placeholder="Point of contact phone number" id="ph_num" class="textbox" type="text"/></td><td id="Row3" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPhn" ></span></td></tr>
+                                <tr><td>How to cite:</td></tr><tr><td><textarea placeholder="Enter how users should reference this map" id="cite" cols="20" rows="4" class="textboxcite" type="text"></textarea></td></tr>
+                                 <tr><td></td></tr><tr><td><button type="button" class="btn" onclick="AddJsonData()">Submit data!</button></tr>
+
+                                </table>
+                             </div>
+
+        </div>
+
+    </div>
 
 
     <!-- The Modal for requests -->
@@ -1286,7 +1354,18 @@
         </div>
 
     </div>
-    
+             <!-- The Modal for add admins -->
+    <div id="myModal_first" class="modal_first">
+
+        <!-- Modal content -->
+        <div class="modal-content-first">
+            <span class="close" onclick="closeR()">&times;</span>
+<%--            <h1 style="color:black;text-align:center;"><b>Add Administrators</b></h1>--%>
+            <div style="color:black;font-size:20px">Click on a country and the <b>"+"</b> button on the right side will let you add more data!
+                         </div>
+                 </div>
+
+    </div>
                 <!-- The Modal for add admins -->
     <div id="myModal_addAdmins" class="modal_addAdmins">
 

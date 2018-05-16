@@ -103,13 +103,7 @@ function onSignIn(googleUser) {
         });
         //Display the user details
         try{
-            Shadowbox.open({
-                content: '<div style="color:black;font-size:20px">Click on a country and the <b>"+"</b> button on the right side will let you add more data!' +
-                         '</div>',
-                player: "html",
-                title: "Did you know?",
-                height: "150px"
-            });
+            $('.modal_first').show();
         }
         catch(e){
             alert("please reload and retry!");
@@ -174,6 +168,9 @@ function closeR() {
     $('.modal_importData').hide();
     $('.modal_addAdmins').hide();
     $('.modal_about').hide();
+    $('.modal_first').hide();
+    $('.modal_addMoreData').hide();
+    $('.modal_editupdate').hide();
     if (typeof (document.getElementById("jsonTab")) != 'undefined' && document.getElementById("jsonTab") != null) {
         document.getElementById("jsonTab").style.display = "none";
     }
@@ -292,33 +289,7 @@ function ViewRequests() {
         opt.value = countries.Locations[i].Location;
         sel.appendChild(opt);
     }
-     //sorting countries
-        var tmpAry = new Array();
-        for (var i = 0; i < sel.options.length; i++) {
-            tmpAry[i] = new Array();
-            if (i == 0) {
-              
-            }
-            else {
-                tmpAry[i][0] = sel.options[i].text;
-                tmpAry[i][1] = sel.options[i].value;
-            }
-            
-        }
-        tmpAry.sort();
-        while (sel.options.length > 0) {
-            sel.options[0] = null;
-        }
-        for (var i = 0; i < tmpAry.length; i++) {
-            if (i == 0) {
-                var op = new Option("Choose a country", "Choose a country");
-                sel.options[i] = op;
-            }
-            else {
-                var op = new Option(tmpAry[i][0], tmpAry[i][1]);
-                sel.options[i] = op;
-            }
-        }
+     
     
     var eids = [];
     for (var i = 0; i < usrs.length; i++) {

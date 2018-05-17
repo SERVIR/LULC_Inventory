@@ -87,4 +87,51 @@ var completedArray = [
   "HowToCite": "lkjlkhl",
   "LastUpdatedBy": "githika.cs@gmail.com",
   "LastUpdatedTime": "2018-5-16 18:53:5"
-}];
+}, 
+  {
+    "UID": "a10abbfb22d34849924",
+    "Title": "testing",
+    "CategoryName": "Algeria",
+    "CategoryID": [
+      16
+    ],
+    "MapYear": "121",
+    "Organization": "131",
+    "NumberOfClasses": [
+      31
+    ],
+    "DataSource": "3dsxd",
+    "Status": "In progress",
+    "ReleasedYear": 344,
+    "Notes": "fdf",
+    "PointOfContactName": "vc",
+    "Email": "vcv@dfd.co",
+    "PhoneNumber": "1123343444",
+    "HowToCite": "dfgsg",
+    "LastUpdatedBy": "githika.cs@gmail.com",
+    "LastUpdatedTime": "2018-5-17 11:1:8"
+  },
+  {
+    "UID": "c7c6a302f919464982e",
+    "Title": "fkjhkj",
+    "CategoryName": "Cameroon",
+    "CategoryID": [
+      23
+    ],
+    "MapYear": "55",
+    "Organization": "454",
+    "NumberOfClasses": [
+      435
+    ],
+    "DataSource": "fgfdg",
+    "Status": "Completed",
+    "ReleasedYear": 545,
+    "Notes": "fg",
+    "PointOfContactName": "gf",
+    "Email": "f@d.bnb",
+    "PhoneNumber": "1234567890",
+    "HowToCite": "fgdg",
+    "LastUpdatedBy": "githika.cs@gmail.com",
+    "LastUpdatedTime": "2018-5-17 11:1:8"
+  }
+];

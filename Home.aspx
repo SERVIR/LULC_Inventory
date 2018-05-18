@@ -1184,7 +1184,7 @@
             <span class="close" onclick="closeR()">&times;</span>
         <div CLASS="data_d"> 
                                      <table id="dtable" style="margin:auto;">
-                                    <caption><h1 style="text-align:center;">View Data <%--for <span id="spanfora"></span>--%></h1></caption>
+                                    <caption><h1 style="text-align:center;">View Data <%--for <span id="spanfora"></span>--%></h1><br /></caption>
                                     <tr><td colspan="2" style="position:relative;">
                                         
                                         <div id="links">
@@ -1212,7 +1212,8 @@
                                     <tr class="d"><td><b>How to cite: </b></td><td><span id="spanforo"></span></td></tr>
                                      </table>
                                    <table id="etable" hidden>
-                                   <caption><h1 style="text-align:center;">Edit Data</h1></caption>
+                                   <caption><h1 style="text-align:center;">Edit Data</h1><br /></caption>
+                                       <tr></tr>
                                  <tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="spanforlub" ></label></td></tr>
                                  <tr class="d"><td colspan="2"><b>Last Updated Time:</b><label id="spanforlut" ></label></td></tr>
 

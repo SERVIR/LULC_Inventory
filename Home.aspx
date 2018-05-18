@@ -81,9 +81,7 @@
     <script src="js/arcgis_poly_markers3.js" type="text/javascript"></script>
     <link href="css/Popup.css" rel="stylesheet">
     <link href="css/sliderstyle2.css" rel="stylesheet" type="text/css" />
-    <script src="js/shadowbox.js" type="text/javascript"></script>
     <script src="js/jsonTable.js" type="text/javascript"></script>
-    <link href="css/shadowbox.css" rel="stylesheet" type="text/css" />
     <link href="css/addAdmin.css" rel="stylesheet" type="text/css" />
     <script>
 
@@ -112,14 +110,7 @@
         $(window).resize(function () {
             $("#accordion").accordion("refresh");
         });
-        $(function () {
-            Shadowbox.init({
-                continuous: false,
-                counterType: "none",
-                modal: true,
-                enableKeys: false
-            });
-        });
+ 
         //Opens a pop up(shadow box) for the information about the website
         function about() {
             $(".modal_about").show();
@@ -383,7 +374,6 @@
             populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
 
             alert("Unapproved this record.. View requests to approve it!");
-            Shadowbox.close();
         }
         //this method is called when admin clicks on "Discard" button in ViewRequests
         function discardData(uid) {
@@ -426,7 +416,6 @@
                 populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
 
                 alert('Deleted successfully')
-                Shadowbox.close();
             }
         }   
         function reportProblemPopup() {
@@ -577,11 +566,8 @@
 
             alert("Data is updated successfully");
            
-            Shadowbox.close();
         }
-        //$(document).ready(function () {
-        //    initMap();
-        //});
+
     </script>
     <style>
        

@@ -633,7 +633,7 @@
         }
 
         #ea, #eb, #ec, #ed, #ee, #ef, #eh, #ek, #el, #em, #en, #eo {
-            width: 300px;
+            width: 30vw;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             font-size: 15px;
         }
@@ -649,7 +649,7 @@
         }
 
         #etable {
-            margin-left: 18%;
+            /*margin-left: 18%;*/
         }
 
         .d {
@@ -678,7 +678,7 @@
             border: 3px groove;
             outline: 0;
             height: 40px;
-            width:300px;
+            width:30vw;
             margin-bottom: 5px;
              padding: 8px 16px 8px;
     border-radius: 10px;
@@ -690,7 +690,7 @@
             border: 3px groove;
             outline: 0;
             height: 25px;
-            width: 300px;
+            width: 30vw;
             margin-bottom: 5px;
             font-size: 12px;
              padding: 8px 16px 8px;
@@ -837,6 +837,7 @@
             font-size: 14px;
             line-height: 20px;
             margin: 10px;
+            margin-right:20vw;
         }
 
         button, button:hover {
@@ -1329,7 +1330,7 @@
         <div class="modal-content-about">
             <span class="close" onclick="closeR()">&times;</span>
             <h1 style="color:black;text-align:center;"><b>About this website</b></h1><br />
-           <div style="color:black;">In the context of the AfriGEOSS Working Group on Land Cover for Africa (WGLCA), the Ecological Monitoring Center (CSE) of Senegal,
+           <div style="color:black;height:22vw;">In the context of the AfriGEOSS Working Group on Land Cover for Africa (WGLCA), the Ecological Monitoring Center (CSE) of Senegal,
                 SERVIR Science Coordination Office and SERVIR West Africa joined efforts to develop a dynamic Land Cover Inventory for Africa<br /><br />
                          This inventory is a collection of information regarding the multiple efforts on land cover and land use products for the continent of Africa.
                 The input data were originally collected through the members of the AfriGEOSS WGLCA Executive Board. The purpose of this inventory is to have a complete understanding of the available
@@ -1378,7 +1379,7 @@
             <span class="close" onclick="closeR()">&times;</span>
                                <h1 style="text-align:center;"><b>Report a problem</b></h1>
 
-            <textarea class="textboxcite" style="width:450px;height:250px;" id="enter_problem" rows="7" cols="70" placeholder="Enter your problem here..."></textarea>
+            <textarea class="textboxcite" style="width:35vw;height:25vw;" id="enter_problem" rows="7" cols="70" placeholder="Enter your problem here..."></textarea>
             <br />
            <div id="emailDiv"> <p>Enter email id:</p><input class="textbox" id="emailAddress" type="email" placeholder="Enter your email id here" required></div>
             <button style="margin-left: 0.7vw; margin-top: 0.5vw;padding:8px 16px 8px;float:right;" id="submit_problem" onclick="submitReportProblem()">Submit Problem</button>

@@ -33,8 +33,8 @@
     margin: auto;
     padding: 30px;
     border: 1px solid #888;
-    width:37vw;
-    height:34vw;
+    width:80vw;
+    height:40vw;
     overflow:scroll;
 }
 .modal-content-addMoreData{
@@ -44,7 +44,7 @@
     margin: auto;
     padding: 30px;
     border: 1px solid #888;
-    width:20vw;
+    width:40vw;
     height:34vw;
     overflow:scroll;
 }
@@ -55,7 +55,7 @@
     margin: auto;
     padding: 30px;
     border: 1px solid #888;
-    width:20vw;
+    width:35vw;
     height:34vw;
     overflow:scroll;
 }
@@ -66,8 +66,8 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width:45vw;
-    height:30vw;
+    width:60vw;
+    height:39vw;
     overflow:scroll;
 }
 .modal-content-reportproblems {
@@ -77,8 +77,10 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width:20vw;
+    width:40vw;
     overflow:scroll;
+    padding-left:2vw;
+    padding-right:2vw;
 }
 .modal-content-addAdmins{
     border-radius:8px;
@@ -97,7 +99,9 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width:27vw;
+    width:50vw;
+    height:35vw;
+    overflow:scroll;
 }
 .modal-content-first{
     border-radius:8px;

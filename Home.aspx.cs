@@ -412,13 +412,14 @@ public partial class Home : System.Web.UI.Page
             path = Path.Combine(folder, fileName);
             try
             {
-                myl.InnerHtml = "Success,Data added";
+               // myl.InnerHtml = "Success,Data added";
                 Response.Write("Uploaded: " + fileName);
 
             }
             catch
             {
-                myl.InnerHtml = "Operation Failed!!!";
+                Response.Write("Could not upload!");
+                // myl.InnerHtml = "Operation Failed!!!";
             }
         }
         getExcelFile(path);

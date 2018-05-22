@@ -406,7 +406,7 @@ public partial class Home : System.Web.UI.Page
         string fileNametoupload = Server.MapPath("~/files/") + e.FileName.ToString();
  //       AjaxFileUpload afu=(AjaxFileUpload)(importDataForm.FindControl("AjaxFileUpload1"));
         //afu.SaveAs(fileNametoupload);
-       getExcelFile(fileNametoupload, foruseremail.Value, forusertime.Value);
+     //  getExcelFile(fileNametoupload, foruseremail.Value, forusertime.Value);
        
     }
    
@@ -536,18 +536,22 @@ public partial class Home : System.Web.UI.Page
         file.Close();
     }
     //gets excel from user and populates panels
-    public void getExcelFile(string path,string email,string time)
+    [System.Web.Services.WebMethod]
+    public static object getExcelFile(string email, string time)
     {
 
+        Page page = (Page)HttpContext.Current.Handler;
+
+        string path = page.Server.MapPath("~/files/template.csv");
         dynamic ndata = new JArray();
         System.IO.StreamReader myFile = new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
         string myString = myFile.ReadToEnd();
         myFile.Close();
         string STR = myString;
-     
+
 
         StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
-       
+
         List<List<string>> excelrows = new List<List<string>>();
 
         StreamWriter efile = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/test.txt"));
@@ -556,10 +560,10 @@ public partial class Home : System.Web.UI.Page
         List<string> uidList = new List<string>();
         using (StreamReader readFile = new StreamReader(path))
         {
-           // string line;
+            // string line;
             //   string[] rowlist;
-          //  string[] rowlist;
-          
+            //  string[] rowlist;
+
             var contents = File.ReadAllText(path).Split('\n');
             var rowlistb4 = from line in contents select line.Split(',').ToArray();
             foreach (var rowlist in rowlistb4.Skip(1).TakeWhile(r => r.Length > 1 && r.Last().Trim().Length > 0))
@@ -607,7 +611,7 @@ public partial class Home : System.Web.UI.Page
         if (STR.Length < 26)
         {
             existing = "var completedArray = [" + formattednew + ";";
-            script =  "completedArray=[" + formattednew + ";";
+            script = "completedArray=[" + formattednew + ";";
         }
         else
         {
@@ -620,15 +624,12 @@ public partial class Home : System.Web.UI.Page
         }
         file.WriteLine(existing);
 
-        
-            //this.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true /* addScriptTags */);
-            ScriptManager.RegisterStartupScript(Page,this.GetType(), "anything", "alert(0)", true);
 
-        
+
         file.Close();
         efile.Close();
 
-
+        return script;
     }
   
 

@@ -88,6 +88,7 @@
     <link href="css/sliderstyle2.css" rel="stylesheet" type="text/css" />
     <script src="js/jsonTable.js" type="text/javascript"></script>
     <link href="css/addAdmin.css" rel="stylesheet" type="text/css" />
+    
     <script>
 
         var testvar;
@@ -605,6 +606,66 @@
         }
 
     </script>
+   
+    <script type="text/javascript">  
+                var gResult;
+                function onupload() {  
+                    $(function() {  
+                        var fileUpload = $('#<%=FileUpload.ClientID%>').get(0);  
+                        var files = fileUpload.files;  
+                        var test = new FormData();  
+                        for (var i = 0; i < files.length; i++) {  
+                            test.append(files[i].name, files[i]);  
+                        }  
+                        $.ajax({  
+                            url: "FileHandler.ashx",  
+                            type: "POST",  
+                            contentType: false,  
+                            processData: false,  
+                            data: test,  
+                            success: function(result) {  
+                                if (result.split(':')[0] = "File Uploaded Successfully") {  
+                                    document.getElementById("<%=lbl_smsg.ClientID%>").innerText = result.split(':')[0];  
+                                } else {  
+                                    document.getElementById("<%=lbl_emsg.ClientID%>").innerText = result;  
+                                }
+                                var obj = {};
+                                obj.email = document.getElementById("foruseremail").value;
+                                obj.time = document.getElementById("forusertime").value;
+                                $.ajax({
+                                    url: "Home.aspx/getExcelFile",
+                                    type: "POST",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    processData: false,
+                                    data: JSON.stringify(obj),
+
+                                    success: function (result) {
+                                        gResult = result.d;
+                                         eval(result.d);
+                                        map.removeLayer(map.getLayer("completed"));
+                                        map.removeLayer(map.getLayer("planned"));
+                                        map.removeLayer(map.getLayer("inprogress"));
+                                        catArray = [];
+                                        planned = [];
+                                        inprogress = [];
+                                        completed = [];
+                                        total = [];
+                                        expandcompletedArray();
+
+                                        gClusters(completedArray, 50);
+                                    }, error: function (err) {
+                                        alert(err.statusText);
+                                    }
+                                });
+                            },  
+                            error: function(err) {  
+                                alert(err.statusText);  
+                            }  
+                        });  
+                    })  
+                }  
+            </script>  
     <style>
        
 
@@ -1273,8 +1334,8 @@
                                     <tr class="d"><td><b>Data Source: </b></td><td><span id="spanforf"></span></td></tr>
                                     <tr class="d"><td><b>Notes: </b></td><td><span id="spanfork"></span></td></tr>
                                     <tr class="d"><td><b>Point of Contact: </b></td><td><span id="spanforl"></span></td></tr>
-                                    <tr class="d"><td><b>Email: </b></td><td><span id="spanform"></span></td></tr>
-                                    <tr class="d"><td><b>Phone Number: </b></td><td><span id="spanforn"></span></td></tr>
+                                    <tr class="d"><td><b>POC Email: </b></td><td><span id="spanform"></span></td></tr>
+                                    <tr class="d"><td><b>POC Phone Number: </b></td><td><span id="spanforn"></span></td></tr>
                                     <tr class="d"><td><b>How to cite: </b></td><td><span id="spanforo"></span></td></tr>
                                      </table>
                                    <table id="etable" hidden>
@@ -1301,8 +1362,8 @@
                                    
                                 <tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" class="textboxcite" cols="23" rows="4"></textarea></td></tr>
                                 <tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" class="textbox" type="text" /></td></tr>
-                                <tr class="d"><td><b>Email: </b></td></tr><tr><td><input id="em" class="textbox" type="email" /></td></tr>
-                                <tr class="d"><td><b>Phone Number: </b></td></tr><tr><td><input id="en" class="textbox" type="text"/></td></tr>
+                                <tr class="d"><td><b>POC Email: </b></td></tr><tr><td><input id="em" class="textbox" type="email" /></td></tr>
+                                <tr class="d"><td><b>POC Phone Number: </b></td></tr><tr><td><input id="en" class="textbox" type="text"/></td></tr>
                                 <tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" class="textboxcite"></textarea></td></tr>
                                 <tr class="d"><td colspan="2" align="center"><button id="updatePanelButton">Update</button><button id="updateCancelButton">Cancel</button></td></tr>
                                  </table>
@@ -1340,8 +1401,8 @@
                                  <tr><td>Data Source:</td></tr><tr><td><textarea placeholder="Original dataset on which the map is based (i.e. Landsat satellite images)" id="ds" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
                                  <tr><td>Notes:</td></tr><tr><td><textarea placeholder="Any additional information of relevance about the land cover map. If dataset available online please provide link here" id="notes" cols="20" rows="4" class="textboxcite" type="text"></textarea></td></tr>
                                  <tr><td>Point of contact:</td></tr><tr><td><input placeholder="Point of contact name" id="poc" class="textbox" type="email"/></td></tr>
-                                 <tr><td>Email:</td></tr><tr><td><textarea placeholder="email of the person that can provide further information about this land cover map" id="email" cols="20" rows="1" class="textboxcite" type="text"></textarea></td><td id="Row2" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPoc" ></span></td></tr>
-                                <tr><td>Phone Number:</td></tr><tr><td><input placeholder="Point of contact phone number" id="ph_num" class="textbox" type="text"/></td><td id="Row3" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPhn" ></span></td></tr>
+                                 <tr><td>POC Email:</td></tr><tr><td><textarea placeholder="email of the person that can provide further information about this land cover map" id="email" cols="20" rows="1" class="textboxcite" type="text"></textarea></td><td id="Row2" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPoc" ></span></td></tr>
+                                <tr><td>POC Phone Number:</td></tr><tr><td><input placeholder="Point of contact phone number" id="ph_num" class="textbox" type="text"/></td><td id="Row3" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPhn" ></span></td></tr>
                                 <tr><td>How to cite:</td></tr><tr><td><textarea placeholder="Enter how users should reference this map" id="cite" cols="20" rows="4" class="textboxcite" type="text"></textarea></td></tr>
                                  <tr><td></td></tr><tr><td><button type="button" class="btn" onclick="AddJsonData()">Submit data!</button></tr>
 
@@ -1490,8 +1551,17 @@
                    </ul>
                            <asp:ScriptManager ID="ScriptManager2" runat="server" EnablePageMethods="true" />
 
-           <ajaxToolkit:AjaxFileUpload ID="AjaxFileUpload1" OnUploadComplete="AjaxFileUpload1_UploadComplete" Mode="Auto" runat="server" OnClientUploadComplete="testfun"  />  
-
+   <asp:UpdatePanel ID="upmain" runat="server">  
+                <ContentTemplate>  
+                    <fieldset>  
+                        <legend>Upload File WithOut PostBack inside Update Panel</legend>  
+                        <asp:FileUpload ID="FileUpload" runat="server" />  
+                        <input type="button" id="btnUpload" value="Upload Files" onclick="onupload();" />  
+                        <asp:Label ID="lbl_emsg" runat="server" ForeColor="Red"></asp:Label>  
+                        <asp:Label ID="lbl_smsg" runat="server" ForeColor="Green"></asp:Label>  
+                    </fieldset>  
+                </ContentTemplate>  
+            </asp:UpdatePanel>  
             <br />
             <br />
             <%--<input style="background-image: none;

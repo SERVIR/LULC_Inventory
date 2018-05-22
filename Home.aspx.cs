@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AjaxControlToolkit;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
@@ -17,7 +18,8 @@ public partial class Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        myl.InnerHtml = "";
+        // myl.InnerHtml = "";
+       
         List<ListItem> list = new List<ListItem>();
 
         foreach (ListItem li in selectCtry.Items)
@@ -398,34 +400,16 @@ public partial class Home : System.Web.UI.Page
         file.Close();
 
     }
-    public void ImportData_Click(object sender, System.EventArgs e)
+    protected void AjaxFileUpload1_UploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
     {
-      
-        string path = ""; 
-        if (FileImportData.PostedFile != null && FileImportData.PostedFile.ContentLength > 0)
-        {
-
-            string fileName = Path.GetFileName(FileImportData.PostedFile.FileName);
-            string folder = Server.MapPath("~/files/");
-            Directory.CreateDirectory(folder);
-            FileImportData.PostedFile.SaveAs(Path.Combine(folder, fileName));
-            path = Path.Combine(folder, fileName);
-            try
-            {
-               // myl.InnerHtml = "Success,Data added";
-                Response.Write("Uploaded: " + fileName);
-
-            }
-            catch
-            {
-                Response.Write("Could not upload!");
-                // myl.InnerHtml = "Operation Failed!!!";
-            }
-        }
-        getExcelFile(path);
-
-
+        //myl.Text = "started Imported Data!";
+        string fileNametoupload = Server.MapPath("~/files/") + e.FileName.ToString();
+ //       AjaxFileUpload afu=(AjaxFileUpload)(importDataForm.FindControl("AjaxFileUpload1"));
+        //afu.SaveAs(fileNametoupload);
+       getExcelFile(fileNametoupload, foruseremail.Value, forusertime.Value);
+       
     }
+   
     public void ExportData_Click(object sender, System.EventArgs e)
     {
         List<string> list = new List<string>();
@@ -440,7 +424,7 @@ public partial class Home : System.Web.UI.Page
     {
 
        
-
+    //  FileUpload fupload=(FileUpload)  Page.FindControl("FileUpdateData")
         dynamic ndata = new JArray();
         StreamReader myFile = new System.IO.StreamReader(HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
         string myString = myFile.ReadToEnd();
@@ -552,8 +536,9 @@ public partial class Home : System.Web.UI.Page
         file.Close();
     }
     //gets excel from user and populates panels
-    public void getExcelFile(string path)
+    public void getExcelFile(string path,string email,string time)
     {
+
         dynamic ndata = new JArray();
         System.IO.StreamReader myFile = new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
         string myString = myFile.ReadToEnd();
@@ -575,7 +560,7 @@ public partial class Home : System.Web.UI.Page
             //   string[] rowlist;
           //  string[] rowlist;
           
-            var contents = File.ReadAllText("D://template.csv").Split('\n');
+            var contents = File.ReadAllText(path).Split('\n');
             var rowlistb4 = from line in contents select line.Split(',').ToArray();
             foreach (var rowlist in rowlistb4.Skip(1).TakeWhile(r => r.Length > 1 && r.Last().Trim().Length > 0))
             {
@@ -601,8 +586,8 @@ public partial class Home : System.Web.UI.Page
                 d.Email = rowlist[11];
                 d.PhoneNumber = rowlist[12];
                 d.HowToCite = rowlist[13].Trim().Replace("\r", string.Empty); ;
-                d.LastUpdatedBy = foruseremail.Value;
-                d.LastUpdatedTime = forusertime.Value;
+                d.LastUpdatedBy = email;
+                d.LastUpdatedTime = time;
 
 
                 foreach (var nd in ndata)
@@ -618,9 +603,11 @@ public partial class Home : System.Web.UI.Page
         string formatted = jt.ToString(Formatting.Indented);
         string formattednew = jt.ToString(Formatting.Indented).Remove(0, 1);
         string existing = "";
+        string script = "";
         if (STR.Length < 26)
         {
             existing = "var completedArray = [" + formattednew + ";";
+            script =  "completedArray=[" + formattednew + ";";
         }
         else
         {
@@ -629,14 +616,23 @@ public partial class Home : System.Web.UI.Page
             STR = STR.Remove(STR.Length - 1);
             STR = STR.Remove(STR.Length - 1);
             existing = "var completedArray = " + STR + ", " + formattednew + ";";
+            script = "completedArray=" + STR + ", " + formattednew + "; ";
         }
         file.WriteLine(existing);
+
+        
+            //this.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", script, true /* addScriptTags */);
+            ScriptManager.RegisterStartupScript(Page,this.GetType(), "anything", "alert(0)", true);
+
+        
         file.Close();
         efile.Close();
 
-    }
 
-    public void generateExcelfromJSON(List<string> list)
+    }
+  
+
+public void generateExcelfromJSON(List<string> list)
     {
         System.IO.StreamReader myFile =
              new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
@@ -658,7 +654,8 @@ public partial class Home : System.Web.UI.Page
                 // if(o.CategoryName=="Libya")
                 sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}",(o.UID).ToString(),(o.Title).ToString(),(o.CategoryName).ToString(),(o.CategoryID[0]).ToString(),(o.MapYear).ToString(), (o.Organization).ToString(),(o.NumberOfClasses[0]).ToString(),(o.DataSource).ToString(),(o.Status).ToString(),(o.ReleasedYear).ToString(),(o.Notes).ToString(),(o.PointOfContactName).ToString(),(o.Email).ToString(),(o.PhoneNumber).ToString(),(o.HowToCite).ToString()));
         }
-        File.WriteAllText(@"D:\\test.csv", sb.ToString());
+       
+        File.WriteAllText(Server.MapPath("~/files/data.csv"), sb.ToString());
     }
 
 

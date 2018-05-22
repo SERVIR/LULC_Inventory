@@ -34,7 +34,7 @@
     padding: 30px;
     border: 1px solid #888;
     width:70vw;
-    height:40vw;
+    height:30vw;
     overflow:scroll;
 }
 .modal-content-addMoreData{
@@ -67,7 +67,7 @@
     padding: 20px;
     border: 1px solid #888;
     width:60vw;
-    height:39vw;
+    height:30vw;
     overflow:scroll;
 }
 .modal-content-reportproblems {
@@ -78,6 +78,7 @@
     padding: 20px;
     border: 1px solid #888;
     width:40vw;
+    height:35vw;
     overflow:scroll;
     padding-left:2vw;
     padding-right:2vw;
@@ -89,7 +90,7 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width:27vw;
+    width:30vw;
     overflow:scroll;
 }
 .modal-content-about{

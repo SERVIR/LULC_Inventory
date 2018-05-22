@@ -1,9 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit"%>  
 
 <html>
 <head runat="server">
     <title>Land Use/Land Cover Inventory for Africa</title>
-       
+       <link rel="icon" href="images/servir-globe.png">
 
 </head>
 <body>
@@ -39,6 +40,10 @@
     <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
     <script src="js/gLogin.js"></script>
     <script>
+     
+        //function ImportDataFromFile() {
+        //    PageMethods.ImportData(document.getElementById("foruseremail").value, document.getElementById("forusertime").value);
+        //}
         //Whenever a user logs in, this ,method adds user details to the json file
         function addUserEmail(role, em, nme) {
             if (em != null && em != undefined) {
@@ -94,6 +99,37 @@
         var sid;
     </script>
     <script>
+        function openTab(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        function testfun() {
+            map.removeLayer(map.getLayer("completed"));
+            map.removeLayer(map.getLayer("planned"));
+            map.removeLayer(map.getLayer("inprogress"));
+            catArray = [];
+            planned = [];
+            inprogress = [];
+            completed = [];
+            total = [];
+
+            expandcompletedArray();
+
+            gClusters(completedArray, 50);
+            populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
+            document.getElementById("myl").innerHTML = "Successfully Imported Data!";
+        }
 
         function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -415,7 +451,7 @@
                 gClusters(completedArray, 50);
                 populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
 
-                alert('Deleted successfully')
+                alert('Deleted successfully');
             }
         }   
         function reportProblemPopup() {
@@ -1012,6 +1048,48 @@
             top:10px;
         }
         }
+          
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    color:black;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    text-shadow:none;
+    border-radius:0;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    color:white;
+    background-color: black;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
     </style>
     <div style="width: 100%; height: 100%; margin: 0;">
         <!--has the header,links and logos-->
@@ -1169,9 +1247,10 @@
         <!-- Modal content -->
         <div class="modal-content-editUpdate">
             <span class="close" onclick="closeR()">&times;</span>
+            <h1 style="text-align:center;display:inline;margin-left:10vw;"><b><span id="spanfora0"></span></b></h1><br /><br /><hr /><br />
         <div CLASS="data_d"> 
-                                     <table id="dtable" style="margin:auto;">
-                                    <caption><h1 style="text-align:center;">View Data <%--for <span id="spanfora"></span>--%></h1><br /></caption>
+                                     <table id="dtable" style="width:25vw;">
+                              <%--      <caption></caption>--%>
                                     <tr><td colspan="2" style="position:relative;">
                                         
                                         <div id="links">
@@ -1199,7 +1278,7 @@
                                     <tr class="d"><td><b>How to cite: </b></td><td><span id="spanforo"></span></td></tr>
                                      </table>
                                    <table id="etable" hidden>
-                                   <caption><h1 style="text-align:center;">Edit Data</h1><br /></caption>
+                                   <%--<caption><h1 style="text-align:center;">Edit Data</h1><br /></caption>--%>
                                        <tr></tr>
                                  <tr class="d"><td colspan="2"><b>Last Updated By:</b><label id="spanforlub" ></label></td></tr>
                                  <tr class="d"><td colspan="2"><b>Last Updated Time:</b><label id="spanforlut" ></label></td></tr>
@@ -1280,7 +1359,7 @@
         <!-- Modal content -->
         <div class="modal-content-requests">
             <span class="close" onclick="closeR()">&times;</span>
-                                <h1 style="text-align:center;"><b>View requests from users</b></h1>
+                                <h1 style="text-align:center;display:inline;margin-left:25vw;""><b>View requests from users</b></h1><br /><br /><hr /><br />
 
             <p>Following are the requests.. click on a row to approve or discard!</p>
             <select id="selectCountry">
@@ -1305,7 +1384,7 @@
         <!-- Modal content -->
         <div class="modal-content-problems">
             <span class="close" onclick="closeR()">&times;</span>
-                                  <h1 style="text-align:center;"><b>View reported problems</b></h1>
+                                  <h1 style="text-align:center;display:inline;margin-left:20vw;""><b>View reported problems</b></h1><br /><br /><hr />
 
             <p>Following are the problems.. click on a row to open or close!</p>
             <select id="selectStatus">
@@ -1329,7 +1408,7 @@
         <!-- Modal content -->
         <div class="modal-content-about">
             <span class="close" onclick="closeR()">&times;</span>
-            <h1 style="color:black;text-align:center;"><b>About this website</b></h1><br />
+            <h1 style="color:black;text-align:center;display:inline;margin-left:18vw;"><b>About this website</b></h1><br /><br /><hr /><br />
            <div style="color:black;height:22vw;">In the context of the AfriGEOSS Working Group on Land Cover for Africa (WGLCA), the Ecological Monitoring Center (CSE) of Senegal,
                 SERVIR Science Coordination Office and SERVIR West Africa joined efforts to develop a dynamic Land Cover Inventory for Africa<br /><br />
                          This inventory is a collection of information regarding the multiple efforts on land cover and land use products for the continent of Africa.
@@ -1348,7 +1427,7 @@
         <!-- Modal content -->
         <div class="modal-content-first">
             <span class="close" onclick="closeR()">&times;</span>
-<%--            <h1 style="color:black;text-align:center;"><b>Add Administrators</b></h1>--%>
+         <h1 style="color:black;text-align:center;display:inline;margin-left:10vw;"><b>How to add data?</b></h1><br /><br /><hr /><br />
             <div style="color:black;font-size:20px">Click on a country and the <b>"+"</b> button on the right side will let you add more data!
                          </div>
                  </div>
@@ -1360,12 +1439,13 @@
         <!-- Modal content -->
         <div class="modal-content-addAdmins">
             <span class="close" onclick="closeR()">&times;</span>
-            <h1 style="color:black;text-align:center;"><b>Add Administrators</b></h1><div style="color:black;"> 
+            <h1 style="color:black;text-align:center;display:inline;margin-left:7vw;"><b>Add Administrators</b></h1><br /><br /><hr />
+            <div style="color:black;"> 
                           <p  style="margin-left: 0.7vw" >Current Admins are:</p>
 
              <p id="existingAdmins" style="margin-left: 0.7vw;margin-right: 0.7vw" > </p>
           <p style="margin-left: 0.7vw">Enter the email ids of admins (separate multiple entries by commas)</p>
-           <textarea style="margin-left: 0.7vw;border:3px groove;border-radius:10px;" id="entered_ids" rows="4" cols="50" placeholder="xyz@gmail.com,abc@gmail.com"></textarea>
+           <textarea style="margin-left: 0.7vw;border:3px groove;border-radius:10px;width:26vw;margin-right:0.7vw;" id="entered_ids" rows="4" cols="50" placeholder="xyz@gmail.com,abc@gmail.com"></textarea>
            <button style="margin-left: 0.7vw; margin-top: 0.5vw;padding:8px 16px 8px;float:right;" id="submit_ids" onclick="submitIds()">Add Admin(s)</button>
                  </div>
         </div>
@@ -1377,7 +1457,7 @@
         <!-- Modal content -->
         <div class="modal-content-reportproblems">
             <span class="close" onclick="closeR()">&times;</span>
-                               <h1 style="text-align:center;"><b>Report a problem</b></h1>
+                               <h1 style="text-align:center;display:inline;margin-left:10vw;"><b>Report a problem</b></h1><br /><br />
 
             <textarea class="textboxcite" style="width:35vw;height:25vw;" id="enter_problem" rows="7" cols="70" placeholder="Enter your problem here..."></textarea>
             <br />
@@ -1386,36 +1466,45 @@
         </div>
 
     </div>
-            <form id="importDataForm" runat="server">
+       
 
              <div id="myModal_importData"  class="modal_importData">
             <!-- Modal content -->
                 <div class="modal-content-importData">
                   <span class="close" onclick="closeR()">&times;</span>
-                    <h1 style="text-align:center;"><b>Bulk Data Operations</b></h1>
-                    <h2>Import Data</h2>
-               <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
+                    <h1 style="text-align:center;display:inline;margin-left:28vw;"><b>Bulk Data Operations</b></h1><br /><br />
+                    <div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'importTab')" id="defaultOpen">Import</button>
+  <button class="tablinks" onclick="openTab(event, 'downloadTab')">Download</button>
+  <button class="tablinks" onclick="openTab(event, 'updateTab')">Update/Delete</button>
+</div>
+                                       <form id="importDataForm" runat="server">
+                 <br />           
+                <br />
+               <div id="importTab" class="tabcontent" style="border: 2px solid black; border-radius: 25px; padding: 20px;">
               <h4>Instructions:</h4>
                    <ul>
                        <li>Download a template <a href="files/template.xlsx">here</a>.</li>
                        <li>Edit and save two copies of this excel file(.xlsx and .csv files).</li>
                        <li>Upload the .csv file and click on "Import" button to add data.</li>
                    </ul>
-            <asp:FileUpload ID="FileImportData" runat="server"/>
+                           <asp:ScriptManager ID="ScriptManager2" runat="server" EnablePageMethods="true" />
+
+           <ajaxToolkit:AjaxFileUpload ID="AjaxFileUpload1" OnUploadComplete="AjaxFileUpload1_UploadComplete" Mode="Auto" runat="server" OnClientUploadComplete="testfun"  />  
+
             <br />
             <br />
-            <input style="background-image: none;
+            <%--<input style="background-image: none;
             color: white;
             background-color: black;
             padding: 8px 16px 8px;border: 1px solid #fff;
-    border-radius: 10px;" type="button" id="SubmitImportData" value="Import" runat="server" onserverclick="ImportData_Click" />
+    border-radius: 10px;" type="button" id="SubmitImportData" value="Import" onclick="ImportDataFromFile()"/>--%>
 
-            <label id="myl" runat="server"></label>
+            <label id="myl">sample text of my label</label>
                 </div>
-                        <br />
-                                        <h2>Download Data</h2>
+                      
 
-          <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
+          <div  id="downloadTab"  class="tabcontent" style="border: 2px solid black; border-radius: 25px; padding: 20px;">
             <p>Please select a country/multiple countries so that you can download data. The downloaded file will be available in your "Downloads" folder.</p>
             <div>
                    <asp:ListBox runat="server" ID="selectCtry" SelectionMode="multiple">
@@ -1485,10 +1574,9 @@
     border-radius: 10px;" type="button" id="SubmitExportData" value="Download" runat="server" onserverclick="ExportData_Click" />
                 </div>
               </div>
-                        <br />
-                <h2>Update/Delete Data</h2>
+                      
 
-                <div style="border: 2px solid black; border-radius: 25px; padding: 20px;">
+                <div id="updateTab" class="tabcontent" style="border: 2px solid black; border-radius: 25px; padding: 20px;">
                <h4>To update data:</h4>
                      <p>Edit the downloaded excel document and upload the .csv copy of the same. Click on "Update data" button to update existing data.</p>
                <h4>To delete data:</h4>
@@ -1504,7 +1592,7 @@
             color: white;
             background-color: black;
             padding: 8px 16px 8px;    border: 1px solid #fff;
-    border-radius: 10px;" type="button" id="UpdateData" value="Update data" runat="server" onserverclick="UpdateData_Click" />
+    border-radius: 10px;" type="button" id="UpdateData" value="Update data" runat="server" onserverclick="UpdateData_Click"  />
 
                 <input style="background-image: none;
             color: white;
@@ -1513,15 +1601,17 @@
     border-radius: 10px;" type="button" id="DeleteData" value="Delete Data" runat="server" onserverclick="DeleteData_Click" />
 
 </div>
-            </div>
-</div>
-    <!-- Script Manager is necessary to call methods from .cs page-->
+                    <!-- Script Manager is necessary to call methods from .cs page-->
         
-        <asp:ScriptManager ID="ScriptManager2" runat="server" EnablePageMethods="true" />
         <asp:HiddenField ID="hdnUser" runat="server"></asp:HiddenField>
         <asp:HiddenField ID="hdnData" runat="server"></asp:HiddenField>
 
         <asp:HiddenField ID="hdn" runat="server"></asp:HiddenField>
-    </form>
+ 
+      </form>
+            </div>
+</div>
+    <script>        document.getElementById("defaultOpen").click();
+</script>
 </body>
 </html>

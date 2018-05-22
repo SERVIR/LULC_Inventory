@@ -44,4 +44,26 @@ var completedArrayTemp = [
   "Status": "Completed",
   "LastUpdatedBy": "githika.cs@gmail.com",
   "LastUpdatedTime": "2018-5-15 14:16:34"
+}, {
+  "UID": "557oojhdeijhgeuug2",
+  "Title": "testlib",
+  "CategoryName": "Libya",
+  "CategoryID": [
+    16
+  ],
+  "MapYear": "444",
+  "Organization": "gff",
+  "NumberOfClasses": [
+    4
+  ],
+  "DataSource": "gfg",
+  "Status": "Completed",
+  "ReleasedYear": 44,
+  "Notes": "",
+  "PointOfContactName": "hfhf",
+  "Email": "ygy@sd.com",
+  "PhoneNumber": "2121211111",
+  "HowToCite": "bvc",
+  "LastUpdatedBy": "gxt76550@ucmo.edu",
+  "LastUpdatedTime": "2018-5-21 10:33:50"
 }];

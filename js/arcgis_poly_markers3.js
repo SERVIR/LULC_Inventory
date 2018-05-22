@@ -596,6 +596,7 @@ function populatePanelByCountry(which) {
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
                             document.getElementById("spanfora").innerHTML = sortedcompleted[x].Title;
+                            document.getElementById("spanfora0").innerHTML = "View Data for "+sortedcompleted[x].Title;
                             document.getElementById("spanforb").innerHTML = sortedcompleted[x].CategoryName;
                             document.getElementById("spanforc").innerHTML = sortedcompleted[x].MapYear;
                             document.getElementById("spanford").innerHTML = sortedcompleted[x].Organization;
@@ -631,7 +632,7 @@ function populatePanelByCountry(which) {
                     var del = "";
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
-                        document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(-1) };
+                        document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(-1); document.getElementById("spanfora0").innerHTML = "Edit Data for " + sortedcompleted[x].Title; };
                         document.getElementById("editlink").style.display = "inline";
 
                         document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
@@ -683,6 +684,7 @@ function populatePanelByCountry(which) {
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
                             document.getElementById("spanfora").innerHTML = sortedcompleted[x].Title;
+                            document.getElementById("spanfora0").innerHTML = "View Data for " + sortedcompleted[x].Title;
                             document.getElementById("ea").value = sortedcompleted[x].Title;
                             document.getElementById("spanforb").innerHTML = sortedcompleted[x].CategoryName;
                             document.getElementById("eb").value = sortedcompleted[x].CategoryName;
@@ -735,7 +737,7 @@ function populatePanelByCountry(which) {
                     var del = "";
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
-                        document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(0) } ;
+                        document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(0); document.getElementById("spanfora0").innerHTML = "Edit Data for " + sortedcompleted[x].Title; };
                         document.getElementById("editlink").style.display = "inline";
 
                         document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
@@ -783,6 +785,7 @@ function populatePanelByCountry(which) {
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
                             document.getElementById("spanfora").innerHTML = sortedcompleted[x].Title;
+                            document.getElementById("spanfora0").innerHTML = "View Data for " + sortedcompleted[x].Title;
                             document.getElementById("ea").value = sortedcompleted[x].Title;
                             document.getElementById("spanforb").innerHTML = sortedcompleted[x].CategoryName;
                             document.getElementById("eb").value = sortedcompleted[x].CategoryName;
@@ -835,7 +838,7 @@ function populatePanelByCountry(which) {
                     var del = "";
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
-                        document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(1) };
+                        document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(1); document.getElementById("spanfora0").innerHTML = "Edit Data for " + sortedcompleted[x].Title; };
                         document.getElementById("editlink").style.display = "inline";
 
                         document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;

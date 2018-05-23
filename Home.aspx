@@ -630,7 +630,7 @@
                                     document.getElementById("<%=lbl_emsg.ClientID%>").innerText = result;  
                                 }
                                 var obj = {};
-                                obj.path = 'files/' + fileUpload.files[0].name;
+                                obj.path = fileUpload.files[0].name;
                                 obj.email = document.getElementById("foruseremail").value;
                                 obj.time = document.getElementById("forusertime").value;
                                 $.ajax({

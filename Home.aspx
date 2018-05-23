@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit"%>  
 
 <html>
 <head runat="server">
@@ -453,6 +452,7 @@
                 populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
 
                 alert('Deleted successfully');
+                $(".modal-content-editUpdate").hide();
             }
         }   
         function reportProblemPopup() {
@@ -630,6 +630,7 @@
                                     document.getElementById("<%=lbl_emsg.ClientID%>").innerText = result;  
                                 }
                                 var obj = {};
+                                obj.path = 'files/' + fileUpload.files[0].name;
                                 obj.email = document.getElementById("foruseremail").value;
                                 obj.time = document.getElementById("forusertime").value;
                                 $.ajax({
@@ -686,9 +687,13 @@
                                     processData: false,
                                     data: JSON.stringify(obj),
                                     success: function (result) {
-                                       // alert("in sucess");
+                                        document.getElementById("LinktoDownloadCSV").style.display = "block";
+                                    document.getElementById("<%=PositiveStatus.ClientID%>").innerText = "Generated the document. Please click on the link below to download the document.";  
+                                
                                     }, error: function (err) {
-                                        alert(err.statusText);
+                                        document.getElementById("<%=NegativeStatus.ClientID%>").innerText = "Could not generate the document";  
+                                        document.getElementById("LinktoDownloadCSV").style.display = "none";
+
                                     }
                                 });
                     })  
@@ -709,9 +714,9 @@
                             data: test,  
                             success: function(result) {  
                                 if (result.split(':')[0] = "File Uploaded Successfully") {  
-                                    document.getElementById("<%=successStatus.ClientID%>").innerText = result.split(':')[0];  
+                                    document.getElementById("<%=successStatus.ClientID%>").innerText = "Data updated successfully.";  
                                 } else {  
-                                    document.getElementById("<%=failStatus.ClientID%>").innerText = result;  
+                                    document.getElementById("<%=failStatus.ClientID%>").innerText = "Sorry, could not update data.";  
                                 }
                                 var obj = {};
                                 obj.path = 'files/' + fileUpload.files[0].name;
@@ -766,9 +771,9 @@
                             data: test,  
                             success: function(result) {  
                                 if (result.split(':')[0] = "File Uploaded Successfully") {  
-                                    document.getElementById("<%=successStatus.ClientID%>").innerText = result.split(':')[0];  
+                                    document.getElementById("<%=successStatus.ClientID%>").innerText = "Data deleted successfully.";  
                                 } else {  
-                                    document.getElementById("<%=failStatus.ClientID%>").innerText = result;  
+                                    document.getElementById("<%=failStatus.ClientID%>").innerText = "Sorry, could not delete data.";  
                                 }
                                 var obj = {};
                                 obj.path = 'files/' + fileUpload.files[0].name;
@@ -1572,7 +1577,7 @@
                 <option>Choose a User</option>
 
             </select>
-                <span id="statusMsg" style="margin-right: 30%; margin-left: 30%"></span>
+                <span id="statusMsg" style=" margin-left: 10%"></span>
             <p></p>
             <div id="reqs">
             </div>
@@ -1674,7 +1679,7 @@
             <!-- Modal content -->
                 <div class="modal-content-importData">
                   <span class="close" onclick="closeR()">&times;</span>
-                    <h1 style="text-align:center;display:inline;margin-left:28vw;"><b>Bulk Data Operations</b></h1><br /><br />
+                    <h1 style="text-align:center;display:inline;margin-left:24vw;"><b>Bulk Data Operations</b></h1><br /><br />
                     <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'importTab')" id="defaultOpen">Import</button>
   <button class="tablinks" onclick="openTab(event, 'downloadTab')">Download</button>
@@ -1696,8 +1701,13 @@
                 <ContentTemplate>  
                     <fieldset style="padding:1vw;">  
                         <legend>Upload File</legend>  
-                        <asp:FileUpload ID="FileUpload" runat="server" />  
-                        <input type="button" id="btnUpload" value="Upload Files" onclick="onupload();" />  
+                        <asp:FileUpload ID="FileUpload" runat="server" />  <br /><br />
+                        <input style="    color: white;
+    background-color: black;
+    height: 2vw;
+    width: 7vw;
+    border-radius: 1vw;
+    border: 0px;" type="button" id="btnUpload" value="Upload Files" onclick="onupload();" />  
                         <asp:Label ID="lbl_emsg" runat="server" ForeColor="Red"></asp:Label>  
                         <asp:Label ID="lbl_smsg" runat="server" ForeColor="Green"></asp:Label>  
                     </fieldset>  
@@ -1776,13 +1786,18 @@
                 <asp:UpdatePanel ID="updownload" runat="server">  
                 <ContentTemplate>  
                     
-                        <input type="button" id="generatecsvBtn" value="Generate CSV File" onclick="generatecsv();" />  
-                        <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label>  
-                        <asp:Label ID="Label2" runat="server" ForeColor="Green"></asp:Label>  
+                        <input style="    color: white;
+    background-color: black;
+    height: 2vw;
+    width: 7vw;
+    border-radius: 1vw;
+    border: 0px;" type="button" id="generatecsvBtn" value="Generate CSV" onclick="generatecsv();" />  
+                        <asp:Label ID="PositiveStatus" runat="server" ForeColor="Green"></asp:Label>  
+                        <asp:Label ID="NegativeStatus" runat="server" ForeColor="Red"></asp:Label>  
                   
                 </ContentTemplate>  
             </asp:UpdatePanel>  
-              <br />  <a href="files/testing.csv">Download generated .csv here!!</a>
+              <br />  <a style="display:none;" id="LinktoDownloadCSV" href="files/GeneratedLULCData.csv">Download generated .csv here!!</a>
              <%--  <input style="background-image: none;
             color: white;
             background-color: black;
@@ -1803,11 +1818,21 @@
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">  
                 <ContentTemplate>  
                     <fieldset style="padding:1vw;">  
-                        <legend>Update/Delete File </legend>  
+                        <legend>Update/Delete Data </legend>  
                        <asp:FileUpload ID="FileUploadUD" runat="server" />  
-
-                        <input type="button" id="updateBtn" value="Update" onclick="updatefromcsv();" />  
-                          <input type="button" id="deleteBtn" value="Delete" onclick="deletefromcsv();" />  
+                        <br /><br />
+                        <input style="    color: white;
+    background-color: black;
+    height: 2vw;
+    width: 6vw;
+    border-radius: 1vw;
+    border: 0px;" type="button" id="updateBtn" value="Update" onclick="updatefromcsv();" />  
+                          <input style="    color: white;
+    background-color: black;
+    height: 2vw;
+    width: 6vw;
+    border-radius: 1vw;
+    border: 0px;" type="button" id="deleteBtn" value="Delete" onclick="deletefromcsv();" />  
 
                         <asp:Label ID="failStatus" runat="server" ForeColor="Red"></asp:Label>  
                         <asp:Label ID="successStatus" runat="server" ForeColor="Green"></asp:Label>  

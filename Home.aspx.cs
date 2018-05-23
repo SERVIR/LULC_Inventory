@@ -13,7 +13,6 @@ using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using Excel = Microsoft.Office.Interop.Excel;
 public partial class Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -87,14 +86,21 @@ public partial class Home : System.Web.UI.Page
 
         //COMPLETED ARRAY JSON STRING
         string STR = myString;
-        STR = STR.Substring(21);
-        STR = STR.TrimEnd('\r', '\n');
-        STR = STR.Remove(STR.Length - 1);
-        STR = STR.Remove(STR.Length - 1);
-
-
+        string existing = "";
+        if (STR.Length < 26)
+        {
+            existing = "var completedArray = [" + formatted + "];";
+        }
+        else
+        {
+            STR = STR.Substring(21);
+            STR = STR.TrimEnd('\r', '\n');
+            STR = STR.Remove(STR.Length - 1);
+            STR = STR.Remove(STR.Length - 1);
+            existing = "var completedArray = " + STR + ", " + formatted + "];";
+        }
         StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
-        file.WriteLine("var completedArray = " + STR + ", " + formatted + "];");
+        file.WriteLine(existing);
 
         file.Close();
 
@@ -543,12 +549,12 @@ public partial class Home : System.Web.UI.Page
     }
     //gets excel from user and populates panels
     [System.Web.Services.WebMethod]
-    public static object getExcelFile(string email, string time)
+    public static object getExcelFile(string path,string email, string time)
     {
 
         Page page = (Page)HttpContext.Current.Handler;
-
-        string path = page.Server.MapPath("~/files/template.csv");
+        string folder = page.Server.MapPath("~/");
+         
         dynamic ndata = new JArray();
         System.IO.StreamReader myFile = new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
         string myString = myFile.ReadToEnd();
@@ -564,7 +570,7 @@ public partial class Home : System.Web.UI.Page
         // List<string> rowlist = null;
         dynamic d = null;
         List<string> uidList = new List<string>();
-        using (StreamReader readFile = new StreamReader(path))
+        using (StreamReader readFile = new StreamReader(Path.Combine(folder,path)))
         {
             // string line;
             //   string[] rowlist;
@@ -663,7 +669,7 @@ public partial class Home : System.Web.UI.Page
                 sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}",(o.UID).ToString(),(o.Title).ToString(),(o.CategoryName).ToString(),(o.CategoryID[0]).ToString(),(o.MapYear).ToString(), (o.Organization).ToString(),(o.NumberOfClasses[0]).ToString(),(o.DataSource).ToString(),(o.Status).ToString(),(o.ReleasedYear).ToString(),(o.Notes).ToString(),(o.PointOfContactName).ToString(),(o.Email).ToString(),(o.PhoneNumber).ToString(),(o.HowToCite).ToString()));
         }
        
-        File.WriteAllText(page.Server.MapPath("~/files/testing.csv"), sb.ToString());
+        File.WriteAllText(page.Server.MapPath("~/files/GeneratedLULCData.csv"), sb.ToString());
     }
 
 

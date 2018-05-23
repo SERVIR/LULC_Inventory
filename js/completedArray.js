@@ -1,25 +1,25 @@
 var completedArray = [
   {
-    "UID": "dff6d5576e47424796e",
-    "Title": "testing",
+    "UID": "999",
+    "Title": "Land cover / vegetation Map of Libya",
     "CategoryName": "Libya",
     "CategoryID": [
       16
     ],
-    "MapYear": "121",
-    "Organization": "131",
+    "MapYear": "2003",
+    "Organization": "University of Tripoli",
     "NumberOfClasses": [
-      31
+      10
     ],
-    "DataSource": "3dsxd",
-    "Status": "In progress",
-    "ReleasedYear": 344,
-    "Notes": "fdf",
-    "PointOfContactName": "vc",
-    "Email": "vcv@dfd.co",
-    "PhoneNumber": "1123343444",
-    "HowToCite": "dfgsg",
+    "DataSource": "Landsat TM",
+    "Status": "",
+    "ReleasedYear": 0,
+    "Notes": "10 or 11 classs land cover / land use dataset of Libya ",
+    "PointOfContactName": "Dr Azzeddin Rahoma Elhawej",
+    "Email": "Azzeddin47@gmail.com",
+    "PhoneNumber": "",
+    "HowToCite": "",
     "LastUpdatedBy": "githika.cs@gmail.com",
-    "LastUpdatedTime": "2018-5-23 0:14:56"
+    "LastUpdatedTime": "2018-5-23 11:59:50"
   }
 ];

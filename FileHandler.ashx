@@ -36,7 +36,7 @@ public class FileHandler : IHttpHandler,IRequiresSessionState {
                 }  
                 //here UploadFile is define my folder name , where files will be store.  
                 string uploaddir = System.Configuration.ConfigurationManager.AppSettings["UploadFile"];  
-            //    filedata = Guid.NewGuid() + fname;  
+                filedata = Guid.NewGuid() + fname;  
              filedata = fname;
                 fname = Path.Combine(context.Server.MapPath("~/files/"), filedata);  
                 file.SaveAs(fname);  

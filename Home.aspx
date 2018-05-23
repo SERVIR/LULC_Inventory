@@ -665,6 +665,147 @@
                         });  
                     })  
                 }  
+                function generatecsv() {  
+                    $(function () {
+                        var sel = document.getElementById('<%=selectCtry.ClientID%>');
+                        var selectedOptions=[];
+                        var listLength = sel.options.length;
+
+                        for (var i = 0; i < listLength; i++) {
+                            if (sel.options[i].selected) {
+                                selectedOptions.push(sel.options[i].text);
+                            }
+                        }
+                        var obj = {};
+                        obj.listp = selectedOptions;
+                        $.ajax({
+                                    url: "Home.aspx/generateExcelfromJSON",
+                                    type: "POST",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    processData: false,
+                                    data: JSON.stringify(obj),
+                                    success: function (result) {
+                                       // alert("in sucess");
+                                    }, error: function (err) {
+                                        alert(err.statusText);
+                                    }
+                                });
+                    })  
+                }  
+        function updatefromcsv() {  
+                    $(function() {  
+                        var fileUpload = $('#<%=FileUploadUD.ClientID%>').get(0);  
+                        var files = fileUpload.files;  
+                        var test = new FormData();  
+                        for (var i = 0; i < files.length; i++) {  
+                            test.append(files[i].name, files[i]);  
+                        }  
+                        $.ajax({  
+                            url: "FileHandler.ashx",  
+                            type: "POST",  
+                            contentType: false,  
+                            processData: false,  
+                            data: test,  
+                            success: function(result) {  
+                                if (result.split(':')[0] = "File Uploaded Successfully") {  
+                                    document.getElementById("<%=successStatus.ClientID%>").innerText = result.split(':')[0];  
+                                } else {  
+                                    document.getElementById("<%=failStatus.ClientID%>").innerText = result;  
+                                }
+                                var obj = {};
+                                obj.path = 'files/' + fileUpload.files[0].name;
+                                obj.email = document.getElementById("foruseremail").value;
+                                obj.time = document.getElementById("forusertime").value;
+                                $.ajax({
+                                    url: "Home.aspx/UpdateData",
+                                    type: "POST",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    processData: false,
+                                    data: JSON.stringify(obj),
+
+                                    success: function (result) {
+                                        gResult = result.d;
+                                         eval(result.d);
+                                        map.removeLayer(map.getLayer("completed"));
+                                        map.removeLayer(map.getLayer("planned"));
+                                        map.removeLayer(map.getLayer("inprogress"));
+                                        catArray = [];
+                                        planned = [];
+                                        inprogress = [];
+                                        completed = [];
+                                        total = [];
+                                        expandcompletedArray();
+
+                                        gClusters(completedArray, 50);
+                                    }, error: function (err) {
+                                        alert(err.statusText);
+                                    }
+                                });
+                            },  
+                            error: function(err) {  
+                                alert(err.statusText);  
+                            }  
+                        });  
+                    })  
+        }
+        function deletefromcsv() {  
+                    $(function() {  
+                        var fileUpload = $('#<%=FileUploadUD.ClientID%>').get(0);  
+                        var files = fileUpload.files;  
+                        var test = new FormData();  
+                        for (var i = 0; i < files.length; i++) {  
+                            test.append(files[i].name, files[i]);  
+                        }  
+                        $.ajax({  
+                            url: "FileHandler.ashx",  
+                            type: "POST",  
+                            contentType: false,  
+                            processData: false,  
+                            data: test,  
+                            success: function(result) {  
+                                if (result.split(':')[0] = "File Uploaded Successfully") {  
+                                    document.getElementById("<%=successStatus.ClientID%>").innerText = result.split(':')[0];  
+                                } else {  
+                                    document.getElementById("<%=failStatus.ClientID%>").innerText = result;  
+                                }
+                                var obj = {};
+                                obj.path = 'files/' + fileUpload.files[0].name;
+                              
+                                $.ajax({
+                                    url: "Home.aspx/DeleteData",
+                                    type: "POST",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    processData: false,
+                                    data: JSON.stringify(obj),
+
+                                    success: function (result) {
+                                        gResult = result.d;
+                                         eval(result.d);
+                                        map.removeLayer(map.getLayer("completed"));
+                                        map.removeLayer(map.getLayer("planned"));
+                                        map.removeLayer(map.getLayer("inprogress"));
+                                        catArray = [];
+                                        planned = [];
+                                        inprogress = [];
+                                        completed = [];
+                                        total = [];
+                                        expandcompletedArray();
+
+                                        gClusters(completedArray, 50);
+                                    }, error: function (err) {
+                                        alert(err.statusText);
+                                    }
+                                });
+                            },  
+                            error: function(err) {  
+                                alert(err.statusText);  
+                            }  
+                        });  
+                    })  
+                }
             </script>  
     <style>
        
@@ -1551,10 +1692,10 @@
                    </ul>
                            <asp:ScriptManager ID="ScriptManager2" runat="server" EnablePageMethods="true" />
 
-   <asp:UpdatePanel ID="upmain" runat="server">  
+             <asp:UpdatePanel ID="upmain" runat="server">  
                 <ContentTemplate>  
-                    <fieldset>  
-                        <legend>Upload File WithOut PostBack inside Update Panel</legend>  
+                    <fieldset style="padding:1vw;">  
+                        <legend>Upload File</legend>  
                         <asp:FileUpload ID="FileUpload" runat="server" />  
                         <input type="button" id="btnUpload" value="Upload Files" onclick="onupload();" />  
                         <asp:Label ID="lbl_emsg" runat="server" ForeColor="Red"></asp:Label>  
@@ -1564,13 +1705,9 @@
             </asp:UpdatePanel>  
             <br />
             <br />
-            <%--<input style="background-image: none;
-            color: white;
-            background-color: black;
-            padding: 8px 16px 8px;border: 1px solid #fff;
-    border-radius: 10px;" type="button" id="SubmitImportData" value="Import" onclick="ImportDataFromFile()"/>--%>
+            
 
-            <label id="myl">sample text of my label</label>
+            <label id="myl"></label>
                 </div>
                       
 
@@ -1636,40 +1773,47 @@
                 </asp:ListBox> 
                 <br />
                 <br />
-
-               <input style="background-image: none;
+                <asp:UpdatePanel ID="updownload" runat="server">  
+                <ContentTemplate>  
+                    
+                        <input type="button" id="generatecsvBtn" value="Generate CSV File" onclick="generatecsv();" />  
+                        <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label>  
+                        <asp:Label ID="Label2" runat="server" ForeColor="Green"></asp:Label>  
+                  
+                </ContentTemplate>  
+            </asp:UpdatePanel>  
+              <br />  <a href="files/testing.csv">Download generated .csv here!!</a>
+             <%--  <input style="background-image: none;
             color: white;
             background-color: black;
             padding: 8px 16px 8px;    border: 1px solid #fff;
-    border-radius: 10px;" type="button" id="SubmitExportData" value="Download" runat="server" onserverclick="ExportData_Click" />
+    border-radius: 10px;" type="button" id="SubmitExportData" value="Download" runat="server" onserverclick="ExportData_Click" />--%>
                 </div>
               </div>
                       
 
                 <div id="updateTab" class="tabcontent" style="border: 2px solid black; border-radius: 25px; padding: 20px;">
                <h4>To update data:</h4>
-                     <p>Edit the downloaded excel document and upload the .csv copy of the same. Click on "Update data" button to update existing data.</p>
+                <p>Edit the downloaded excel document and upload the .csv copy of the same. Click on "Update data" button to update existing data.</p>
                <h4>To delete data:</h4>
-                                         <p>Leave the entries that you want to delete in the downloaded excel document and upload the .csv copy of the same. Click on "Delete data" button to delete existing data.</p>
+               <p>Leave the entries that you want to delete in the downloaded excel document and upload the .csv copy of the same. Click on "Delete data" button to delete existing data.</p>
 
-               <asp:FileUpload ID="FileUpdateData" runat="server"/>
-                <br />           
-                <br />
                     <input type="hidden" runat="server" id="foruseremail" />
                                         <input type="hidden" runat="server" id="forusertime" />
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">  
+                <ContentTemplate>  
+                    <fieldset style="padding:1vw;">  
+                        <legend>Update/Delete File </legend>  
+                       <asp:FileUpload ID="FileUploadUD" runat="server" />  
 
-                <input style="background-image: none;
-            color: white;
-            background-color: black;
-            padding: 8px 16px 8px;    border: 1px solid #fff;
-    border-radius: 10px;" type="button" id="UpdateData" value="Update data" runat="server" onserverclick="UpdateData_Click"  />
+                        <input type="button" id="updateBtn" value="Update" onclick="updatefromcsv();" />  
+                          <input type="button" id="deleteBtn" value="Delete" onclick="deletefromcsv();" />  
 
-                <input style="background-image: none;
-            color: white;
-            background-color: black;
-            padding: 8px 16px 8px;    border: 1px solid #fff;
-    border-radius: 10px;" type="button" id="DeleteData" value="Delete Data" runat="server" onserverclick="DeleteData_Click" />
-
+                        <asp:Label ID="failStatus" runat="server" ForeColor="Red"></asp:Label>  
+                        <asp:Label ID="successStatus" runat="server" ForeColor="Green"></asp:Label>  
+                    </fieldset>  
+                </ContentTemplate>  
+            </asp:UpdatePanel> 
 </div>
                     <!-- Script Manager is necessary to call methods from .cs page-->
         
@@ -1681,7 +1825,8 @@
       </form>
             </div>
 </div>
-    <script>        document.getElementById("defaultOpen").click();
+<script>
+        document.getElementById("defaultOpen").click();
 </script>
 </body>
 </html>

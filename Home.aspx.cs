@@ -418,13 +418,15 @@ public partial class Home : System.Web.UI.Page
             if (listItem.Selected)
                 list.Add(listItem.Value);
         }
-        generateExcelfromJSON(list);
+       // generateExcelfromJSON(list);
     }
-    public void UpdateData_Click(object sender, System.EventArgs e)
+    [System.Web.Services.WebMethod]
+    public static string UpdateData(string path,string email,string time)
     {
+        Page page = (Page)HttpContext.Current.Handler;
 
-       
-    //  FileUpload fupload=(FileUpload)  Page.FindControl("FileUpdateData")
+
+        //  FileUpload fupload=(FileUpload)  Page.FindControl("FileUpdateData")
         dynamic ndata = new JArray();
         StreamReader myFile = new System.IO.StreamReader(HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
         string myString = myFile.ReadToEnd();
@@ -434,12 +436,12 @@ public partial class Home : System.Web.UI.Page
         STR = STR.TrimEnd('\r', '\n');
         STR = STR.Remove(STR.Length - 1);
         dynamic data = JArray.Parse(STR) as JArray;
-        string fileName = Path.GetFileName(FileUpdateData.PostedFile.FileName);
-        string folder = Server.MapPath("~/files/");
+      //  string fileName = Path.GetFileName(FileUpdateData.PostedFile.FileName);
+        string folder = page.Server.MapPath("~/");
         Directory.CreateDirectory(folder);
-        FileUpdateData.PostedFile.SaveAs(Path.Combine(folder, fileName));
-        string path = Path.Combine(folder, fileName);
-        using (StreamReader readFile = new StreamReader(path))
+      //  FileUpdateData.PostedFile.SaveAs(Path.Combine(folder, fileName));
+      //  string path = Path.Combine(folder, fileName);
+        using (StreamReader readFile = new StreamReader(Path.Combine(folder, path)))
         {
             string line;
             string[] rowlist;
@@ -470,8 +472,8 @@ public partial class Home : System.Web.UI.Page
                         d.Email = rowlist[12];
                         d.PhoneNumber = rowlist[13];
                         d.HowToCite = rowlist[14];
-                        d.LastUpdatedBy = foruseremail.Value;
-                        d.LastUpdatedTime = forusertime.Value;
+                        d.LastUpdatedBy = email;
+                        d.LastUpdatedTime = time;
                     }
                 }
             }
@@ -483,12 +485,15 @@ public partial class Home : System.Web.UI.Page
         StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
 
         file.WriteLine("var completedArray = " + formatted + ";");
-
+        string script = "completedArray = " + formatted + ";";
         file.Close();
-
+        return script;
     }
-    public void DeleteData_Click(object sender, System.EventArgs e)
+    [System.Web.Services.WebMethod]
+    public static string DeleteData(string path)
     {
+        Page page = (Page)HttpContext.Current.Handler;
+
         dynamic ndata = new JArray();
         StreamReader myFile = new System.IO.StreamReader(HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
         string myString = myFile.ReadToEnd();
@@ -499,8 +504,8 @@ public partial class Home : System.Web.UI.Page
         STR = STR.Remove(STR.Length - 1);
         dynamic data = JArray.Parse(STR) as JArray;
         List<string> uidList = new List<string>();
-
-        using (StreamReader readFile = new StreamReader(@"D:\test.csv"))
+        string folder = page.Server.MapPath("~/");
+        using (StreamReader readFile = new StreamReader(Path.Combine(folder, path)))
         {
             string line;
             string[] rowlist;
@@ -532,8 +537,9 @@ public partial class Home : System.Web.UI.Page
         StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
 
         file.WriteLine("var completedArray = " + formatted + ";");
-
+        string script = "completedArray = " + formatted + ";";
         file.Close();
+        return script;
     }
     //gets excel from user and populates panels
     [System.Web.Services.WebMethod]
@@ -631,10 +637,11 @@ public partial class Home : System.Web.UI.Page
 
         return script;
     }
-  
 
-public void generateExcelfromJSON(List<string> list)
+    [System.Web.Services.WebMethod]
+    public static void generateExcelfromJSON(string[] listp)
     {
+        List<string> list = listp.ToList();
         System.IO.StreamReader myFile =
              new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
         string myString = myFile.ReadToEnd();
@@ -656,7 +663,7 @@ public void generateExcelfromJSON(List<string> list)
                 sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}",(o.UID).ToString(),(o.Title).ToString(),(o.CategoryName).ToString(),(o.CategoryID[0]).ToString(),(o.MapYear).ToString(), (o.Organization).ToString(),(o.NumberOfClasses[0]).ToString(),(o.DataSource).ToString(),(o.Status).ToString(),(o.ReleasedYear).ToString(),(o.Notes).ToString(),(o.PointOfContactName).ToString(),(o.Email).ToString(),(o.PhoneNumber).ToString(),(o.HowToCite).ToString()));
         }
        
-        File.WriteAllText(Server.MapPath("~/files/data.csv"), sb.ToString());
+        File.WriteAllText(page.Server.MapPath("~/files/testing.csv"), sb.ToString());
     }
 
 

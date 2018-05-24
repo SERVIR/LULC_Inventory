@@ -665,29 +665,30 @@ public partial class Home : System.Web.UI.Page
         foreach (var o in data)
         {
             if (list.Contains((o.CategoryName).ToString()))
+            {
                 // if(o.CategoryName=="Libya")
                 if ((o.MapYear).ToString() == "")
                     o.MapYear = "0000";
-                 if (o.Organization.ToString() == "")
+                if (o.Organization.ToString() == "")
                     o.Organization = "Not specified";
-                 if (o.NumberOfClasses.ToString() == "")
+                if (o.NumberOfClasses.ToString() == "")
                     o.NumberOfClasses = "0";
-                 if (o.DataSource.ToString() == "")
+                if (o.DataSource.ToString() == "")
                     o.DataSource = "Not specified";
-                 if (o.Notes.ToString() == "")
+                if (o.Notes.ToString() == "")
                     o.Notes = "Not specified";
-                 if (o.PhoneNumber.ToString() == "")
+                if (o.PhoneNumber.ToString() == "")
                     o.PhoneNumber = "000-000-0000";
-                 if (o.HowToCite.ToString() == "")
+                if (o.HowToCite.ToString() == "")
                     o.HowToCite = "Not specified";
-            if ((o.Email).ToString() == "")
-                o.Email = "test@test.com";
-            if ((o.Status).ToString() == "")
-                o.Status = "Completed";
-            if ((o.PointOfContactName).ToString() == "")
-                o.PointOfContactName = "Not specified";
-            sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", (o.UID).ToString(), (o.Title).ToString(), (o.CategoryName).ToString(), (o.CategoryID[0]).ToString(), (o.MapYear).ToString(), (o.Organization).ToString(), (o.NumberOfClasses[0]).ToString(), (o.DataSource).ToString(), (o.Status).ToString(), (o.ReleasedYear).ToString(), (o.Notes).ToString(), (o.PointOfContactName).ToString(), (o.Email).ToString(), (o.PhoneNumber).ToString(), (o.HowToCite).ToString()));
-        }
+                if ((o.Email).ToString() == "")
+                    o.Email = "test@test.com";
+                if ((o.Status).ToString() == "")
+                    o.Status = "Completed";
+                if ((o.PointOfContactName).ToString() == "")
+                    o.PointOfContactName = "Not specified";
+                sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", (o.UID).ToString(), (o.Title).ToString(), (o.CategoryName).ToString(), (o.CategoryID[0]).ToString(), (o.MapYear).ToString(), (o.Organization).ToString(), (o.NumberOfClasses[0]).ToString(), (o.DataSource).ToString(), (o.Status).ToString(), (o.ReleasedYear).ToString(), (o.Notes).ToString(), (o.PointOfContactName).ToString(), (o.Email).ToString(), (o.PhoneNumber).ToString(), (o.HowToCite).ToString()));
+            } }
        
         File.WriteAllText(page.Server.MapPath("~/files/GeneratedLULCData.csv"), sb.ToString());
     }

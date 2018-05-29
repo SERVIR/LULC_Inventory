@@ -1015,7 +1015,7 @@
             -webkit-border-radius: 5px;
             border-radius: 5px;
             border: 1px solid #848484;
-            background-image: url("../images/vClose1.png");
+            background-image: url("../LULC_Map/images/vClose1.png");
             background-repeat: no-repeat;
             background-position: center center;
             border-color: transparent;

@@ -1035,7 +1035,7 @@ function toggleAccordion() {
             right: "-=310"
         }, 700, function () {
             // Animation complete.
-            $("#handle").css({ 'background-image': 'url("../images/vOpen1.png")' });
+            $("#handle").css({ 'background-image': 'url("../LULC_Map/images/vOpen1.png")' });
         });
     }
     else {
@@ -1045,7 +1045,7 @@ function toggleAccordion() {
             right: "+=310"
         }, 700, function () {
             // Animation complete.
-            $("#handle").css({ 'background-image': 'url("../images/vClose1.png")' });
+            $("#handle").css({ 'background-image': 'url("../LULC_Map/images/vClose1.png")' });
         });
         $("#handle").animate({
             // marginLeft: "+=10"

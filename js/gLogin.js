@@ -222,6 +222,7 @@ function submitIds() {
                     else {
                         addUserEmail(role, mArr_dis[i],"");
                         $('.modal').hide();
+                        $('.modal_addAdmins').hide();
                         document.getElementById("entered_ids").value = "";
                     }
 
@@ -230,6 +231,7 @@ function submitIds() {
                     addUserEmail(role, mArr_dis[i],"");
                     document.getElementById("entered_ids").value = "";
                     $('.modal').hide();
+                    $('.modal_addAdmins').hide();
                 }
             }
             else {

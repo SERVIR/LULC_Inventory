@@ -16,8 +16,8 @@ var completedArrayTemp = [
     "ReleasedYear": 0,
     "Notes": "10 or 11 classs land cover / land use dataset of Libya ",
     "PointOfContactName": "Dr Azzeddin Rahoma Elhawej",
-    "Email": "Azzeddin47@gmail.com",
-    "PhoneNumber": "",
+    "POCEmail": "Azzeddin47@gmail.com",
+    "POCPhoneNumber": "",
     "HowToCite": "",
     "LastUpdatedBy": "",
     "LastUpdatedTime": "2018-5-15 14:16:34"

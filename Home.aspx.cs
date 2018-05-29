@@ -250,8 +250,8 @@ public partial class Home : System.Web.UI.Page
                 d.ReleasedYear = release;
                 d.Notes = notes;
                 d.PointOfContactName = poc;
-                d.Email = email;
-                d.PhoneNumber = phnum;
+                d.POCEmail = email;
+                d.POCPhoneNumber = phnum;
                 d.HowToCite = cite;
                 d.LastUpdatedBy = lub;
                 d.LastUpdatedTime = lut;
@@ -475,8 +475,8 @@ public partial class Home : System.Web.UI.Page
                         d.ReleasedYear = Convert.ToInt32(rowlist[9]);
                         d.Notes = rowlist[10];
                         d.PointOfContactName = rowlist[11];
-                        d.Email = rowlist[12];
-                        d.PhoneNumber = rowlist[13];
+                        d.POCEmail = rowlist[12];
+                        d.POCPhoneNumber = rowlist[13];
                         d.HowToCite = rowlist[14];
                         d.LastUpdatedBy = email;
                         d.LastUpdatedTime = time;
@@ -582,7 +582,7 @@ public partial class Home : System.Web.UI.Page
             {
 
 
-                d = JsonConvert.DeserializeObject("{  'UID':0,'Title':'','CategoryName':'','CategoryID':[],'MapYear':'','Organization':'','NumberOfClasses':[],'DataSource':'','Status':'','ReleasedYear':0,'Notes':'','PointOfContactName':'','Email':'','PhoneNumber':'','HowToCite':'' }");
+                d = JsonConvert.DeserializeObject("{  'UID':0,'Title':'','CategoryName':'','CategoryID':[],'MapYear':'','Organization':'','NumberOfClasses':[],'DataSource':'','Status':'','ReleasedYear':0,'Notes':'','PointOfContactName':'','POCEmail':'','POCPhoneNumber':'','HowToCite':'' }");
                 var now = DateTime.Now;
                 var zeroDate = DateTime.MinValue.AddHours(now.Hour).AddMinutes(now.Minute).AddSeconds(now.Second).AddMilliseconds(now.Millisecond);
                 int uniqueId = (int)(zeroDate.Ticks / 10000);
@@ -599,8 +599,8 @@ public partial class Home : System.Web.UI.Page
                 d.ReleasedYear = Convert.ToInt32(rowlist[8]);
                 d.Notes = rowlist[9];
                 d.PointOfContactName = rowlist[10];
-                d.Email = rowlist[11];
-                d.PhoneNumber = rowlist[12];
+                d.POCEmail = rowlist[11];
+                d.POCPhoneNumber = rowlist[12];
                 d.HowToCite = rowlist[13].Trim().Replace("\r", string.Empty); ;
                 d.LastUpdatedBy = email;
                 d.LastUpdatedTime = time;
@@ -660,7 +660,7 @@ public partial class Home : System.Web.UI.Page
         dynamic data = JArray.Parse(STR) as JArray;
 
         var sb = new StringBuilder();
-        sb.AppendLine("UID,Title,CountryName,CountryID,MapYear,Organization,NumberOfClasses,DataSource,Status,ReleasedYear,Notes,PointOfContactName,Email,PhoneNumber,HowTocite");
+        sb.AppendLine("UID,Title,CountryName,CountryID,MapYear,Organization,NumberOfClasses,DataSource,Status,ReleasedYear,Notes,PointOfContactName,POCEmail,POCPhoneNumber,HowTocite");
      
         foreach (var o in data)
         {
@@ -677,17 +677,17 @@ public partial class Home : System.Web.UI.Page
                     o.DataSource = "Not specified";
                 if (o.Notes.ToString() == "")
                     o.Notes = "Not specified";
-                if (o.PhoneNumber.ToString() == "")
-                    o.PhoneNumber = "000-000-0000";
+                if (o.POCPhoneNumber.ToString() == "")
+                    o.POCPhoneNumber = "000-000-0000";
                 if (o.HowToCite.ToString() == "")
                     o.HowToCite = "Not specified";
-                if ((o.Email).ToString() == "")
-                    o.Email = "test@test.com";
+                if ((o.POCEmail).ToString() == "")
+                    o.POCEmail = "test@test.com";
                 if ((o.Status).ToString() == "")
                     o.Status = "Completed";
                 if ((o.PointOfContactName).ToString() == "")
                     o.PointOfContactName = "Not specified";
-                sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", (o.UID).ToString(), (o.Title).ToString(), (o.CategoryName).ToString(), (o.CategoryID[0]).ToString(), (o.MapYear).ToString(), (o.Organization).ToString(), (o.NumberOfClasses[0]).ToString(), (o.DataSource).ToString(), (o.Status).ToString(), (o.ReleasedYear).ToString(), (o.Notes).ToString(), (o.PointOfContactName).ToString(), (o.Email).ToString(), (o.PhoneNumber).ToString(), (o.HowToCite).ToString()));
+                sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", (o.UID).ToString(), (o.Title).ToString(), (o.CategoryName).ToString(), (o.CategoryID[0]).ToString(), (o.MapYear).ToString(), (o.Organization).ToString(), (o.NumberOfClasses[0]).ToString(), (o.DataSource).ToString(), (o.Status).ToString(), (o.ReleasedYear).ToString(), (o.Notes).ToString(), (o.PointOfContactName).ToString(), (o.POCEmail).ToString(), (o.POCPhoneNumber).ToString(), (o.HowToCite).ToString()));
             } }
        
         File.WriteAllText(page.Server.MapPath("~/files/GeneratedLULCData.csv"), sb.ToString());

@@ -396,8 +396,8 @@ function expandcompletedArray() {
                         ReleasedYear: completedArray[c].ReleasedYear,
                         Notes: completedArray[c].Notes,
                         PointOfContactName: completedArray[c].PointOfContactName,
-                        Email: completedArray[c].Email,
-                        PhoneNumber: completedArray[c].PhoneNumber,
+                        POCEmail: completedArray[c].Email,
+                        POCPhoneNumber: completedArray[c].POCPhoneNumber,
                         HowToCite: completedArray[c].HowToCite,
 
                         Status: completedArray[c].Status,
@@ -616,8 +616,8 @@ function populatePanelByCountry(which) {
 
                             document.getElementById("spanfork").innerHTML = sortedcompleted[x].Notes;
                             document.getElementById("spanforl").innerHTML = sortedcompleted[x].PointOfContactName;
-                            document.getElementById("spanform").innerHTML = sortedcompleted[x].Email;
-                            document.getElementById("spanforn").innerHTML = sortedcompleted[x].PhoneNumber;
+                            document.getElementById("spanform").innerHTML = sortedcompleted[x].POCEmail;
+                            document.getElementById("spanforn").innerHTML = sortedcompleted[x].POCPhoneNumber;
                             document.getElementById("spanforo").innerHTML = sortedcompleted[x].HowToCite;
                             document.getElementById("spanforlub").innerHTML = sortedcompleted[x].LastUpdatedBy;
                             document.getElementById("spanforlut").innerHTML = sortedcompleted[x].LastUpdatedTime;
@@ -718,10 +718,10 @@ function populatePanelByCountry(which) {
                             document.getElementById("ek").value = sortedcompleted[x].Notes;
                             document.getElementById("spanforl").innerHTML = sortedcompleted[x].PointOfContactName;
                             document.getElementById("el").value = sortedcompleted[x].PointOfContactName;
-                            document.getElementById("spanform").innerHTML = sortedcompleted[x].Email;
-                            document.getElementById("em").value = sortedcompleted[x].Email;
-                            document.getElementById("spanforn").innerHTML = sortedcompleted[x].PhoneNumber;
-                            document.getElementById("en").value = sortedcompleted[x].PhoneNumber;
+                            document.getElementById("spanform").innerHTML = sortedcompleted[x].POCEmail;
+                            document.getElementById("em").value = sortedcompleted[x].POCEmail;
+                            document.getElementById("spanforn").innerHTML = sortedcompleted[x].POCPhoneNumber;
+                            document.getElementById("en").value = sortedcompleted[x].POCPhoneNumber;
                             document.getElementById("spanforo").innerHTML = sortedcompleted[x].HowToCite;
                             document.getElementById("eo").value = sortedcompleted[x].HowToCite;
                             document.getElementById("spanforlub").innerHTML = sortedcompleted[x].LastUpdatedBy;
@@ -819,10 +819,10 @@ function populatePanelByCountry(which) {
                             document.getElementById("ek").value = sortedcompleted[x].Notes;
                             document.getElementById("spanforl").innerHTML = sortedcompleted[x].PointOfContactName;
                             document.getElementById("el").value = sortedcompleted[x].PointOfContactName;
-                            document.getElementById("spanform").innerHTML = sortedcompleted[x].Email;
-                            document.getElementById("em").value = sortedcompleted[x].Email;
-                            document.getElementById("spanforn").innerHTML = sortedcompleted[x].PhoneNumber;
-                            document.getElementById("en").value = sortedcompleted[x].PhoneNumber;
+                            document.getElementById("spanform").innerHTML = sortedcompleted[x].POCEmail;
+                            document.getElementById("em").value = sortedcompleted[x].POCEmail;
+                            document.getElementById("spanforn").innerHTML = sortedcompleted[x].POCPhoneNumber;
+                            document.getElementById("en").value = sortedcompleted[x].POCPhoneNumber;
                             document.getElementById("spanforo").innerHTML = sortedcompleted[x].HowToCite;
                             document.getElementById("eo").value = sortedcompleted[x].HowToCite;
                             document.getElementById("spanforlub").innerHTML = sortedcompleted[x].LastUpdatedBy;

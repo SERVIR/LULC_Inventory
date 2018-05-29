@@ -202,8 +202,8 @@
                             "ReleasedYear": parseInt(document.getElementById("release").value),
                             "Notes": document.getElementById("notes").innerHTML,
                             "PointOfContactName": document.getElementById("poc").value,
-                            "Email": document.getElementById("email").value,
-                            "PhoneNumber": document.getElementById("ph_num").value,
+                            "POCEmail": document.getElementById("email").value,
+                            "POCPhoneNumber": document.getElementById("ph_num").value,
                             "HowToCite": document.getElementById("cite").value,
                             "LastUpdatedBy": document.getElementById('uemail').innerHTML.split(':')[1].trim(),
                             "LastUpdatedTime":dateTime
@@ -222,7 +222,7 @@
                         var toAdd = {
 
                             "UID": newUID,
-                            "Email": recent[1],
+                            "POCEmail": recent[1],
                             "FullName": document.getElementById('ufullname').innerHTML
                         }
                         var str = JSON.stringify(newData);
@@ -325,8 +325,8 @@
                 "ReleasedYear": parseInt(release),
                 "Notes": notes,
                 "PointOfContactName": poc,
-                "Email": email,
-                "PhoneNumber": phnum,
+                "POCEmail": email,
+                "POCPhoneNumber": phnum,
                 "HowToCite": cite,
                 "LastUpdatedBy": lub,
                 "LastUpdatedTime": decodeURIComponent(lut)
@@ -388,7 +388,7 @@
             var toAdd = {
 
                 "UID": uid,
-                "Email": recent[1],
+                "POCEmail": recent[1],
                 "FullName": "admin unapproved"
             }
            
@@ -580,8 +580,8 @@
                         completedArray[i].ReleasedYear = 0;
                     completedArray[i].Notes = notes;
                     completedArray[i].PointOfContactName = poc;
-                    completedArray[i].Email = email;
-                    completedArray[i].PhoneNumber = phnum;
+                    completedArray[i].POCEmail = email;
+                    completedArray[i].POCPhoneNumber = phnum;
                     completedArray[i].HowToCite = cite;
                     completedArray[i].LastUpdatedBy = lub;
                     completedArray[i].LastUpdatedTime = dateTime;

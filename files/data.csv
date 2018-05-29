@@ -1,4 +1,4 @@
-UID,Title,CountryName,CountryID,MapYear,Organization,NumberOfClasses,DataSource,Status,ReleasedYear,Notes,PointOfContactName,Email,PhoneNumber,HowTocite
+UID,Title,CountryName,CountryID,MapYear,Organization,NumberOfClasses,DataSource,Status,ReleasedYear,Notes,PointOfContactName,POCEmail,POCPhoneNumber,HowTocite
 79baef23af674c729e2,testing,Libya,16,121,131,31,3dsxd,In progress,344,fdf,vc,vcv@dfd.co,1123343444,dfgsg
 518c76ed504140d0926,testing,Libya,16,121,131,31,3dsxd,In progress,344,fdf,vc,vcv@dfd.co,1123343444,dfgsg
 3144986a9b7e4c1bbc7,testing,Libya,16,121,131,31,3dsxd,In progress,344,fdf,vc,vcv@dfd.co,1123343444,dfgsg

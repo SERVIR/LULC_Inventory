@@ -1,11 +1,15 @@
-﻿.modal,.modal_requests,.modal_problems,.modal_reportproblems,.modal_importData,.modal_addAdmins,.modal_about,.modal_first,.modal_addMoreData,.modal_editUpdate {
+﻿.divheading{
+    color:black;text-align:center;display:inline;margin-left:30%;
+}
+
+.modal,.modal_requests,.modal_problems,.modal_reportproblems,.modal_importData,.modal_addAdmins,.modal_about,.modal_first,.modal_addMoreData,.modal_editUpdate {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 80px; /* Location of the box */
     left: 0;
     top: 146px;
-    width: 100%; /* Full width */
+    width: 120%; /* Full width */
 
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
@@ -23,7 +27,8 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width:70vw;
+    width:40vw;
+    height:40vw;
     overflow:scroll;
 }
 .modal-content-importData{
@@ -34,7 +39,7 @@
     padding: 30px;
     border: 1px solid #888;
     width:70vw;
-    height:30vw;
+ 
     overflow:scroll;
 }
 .modal-content-addMoreData{
@@ -59,6 +64,9 @@
     height:34vw;
     overflow:scroll;
 }
+.modal_editUpdate{
+    z-index:2;
+}
 .modal-content-problems {
          border-radius:8px;
 
@@ -67,7 +75,7 @@
     padding: 20px;
     border: 1px solid #888;
     width:60vw;
-    height:30vw;
+    height:40vw;
     overflow:scroll;
 }
 .modal-content-reportproblems {
@@ -77,8 +85,8 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width:40vw;
-    height:35vw;
+    width:41vw;
+    height:38vw;
     overflow:scroll;
     padding-left:2vw;
     padding-right:2vw;
@@ -90,7 +98,7 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width:30vw;
+    width:35vw;
     overflow:scroll;
 }
 .modal-content-about{

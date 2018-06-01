@@ -430,9 +430,6 @@ public partial class Home : System.Web.UI.Page
     public static string UpdateData(string path,string email,string time)
     {
         Page page = (Page)HttpContext.Current.Handler;
-
-
-        //  FileUpload fupload=(FileUpload)  Page.FindControl("FileUpdateData")
         dynamic ndata = new JArray();
         StreamReader myFile = new System.IO.StreamReader(HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
         string myString = myFile.ReadToEnd();
@@ -442,11 +439,8 @@ public partial class Home : System.Web.UI.Page
         STR = STR.TrimEnd('\r', '\n');
         STR = STR.Remove(STR.Length - 1);
         dynamic data = JArray.Parse(STR) as JArray;
-      //  string fileName = Path.GetFileName(FileUpdateData.PostedFile.FileName);
         string folder = page.Server.MapPath("~/");
         Directory.CreateDirectory(folder);
-      //  FileUpdateData.PostedFile.SaveAs(Path.Combine(folder, fileName));
-      //  string path = Path.Combine(folder, fileName);
         using (StreamReader readFile = new StreamReader(Path.Combine(folder, path)))
         {
             string line;
@@ -490,8 +484,26 @@ public partial class Home : System.Web.UI.Page
         string formatted = jt.ToString(Formatting.Indented);
         StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
 
-        file.WriteLine("var completedArray = " + formatted + ";");
-        string script = "completedArray = " + formatted + ";";
+        string script = "";
+
+        string existing = "";
+
+
+        if (STR.Length < 26)
+        {
+            existing = "var completedArray = [" + formatted + "];";
+            script= "completedArray = " + formatted + ";";
+        }
+        else
+        {
+            STR = STR.Substring(23);
+            STR = STR.TrimEnd('\r', '\n');
+            STR = STR.Remove(STR.Length - 1);
+            STR = STR.Remove(STR.Length - 1);
+            existing = "var completedArray = " + STR + ", " + formatted + "];";
+            script= "completedArray = " + STR + ", " + formatted + "];";
+        }
+        file.WriteLine(existing);
         file.Close();
         return script;
     }
@@ -570,50 +582,84 @@ public partial class Home : System.Web.UI.Page
         // List<string> rowlist = null;
         dynamic d = null;
         List<string> uidList = new List<string>();
-        using (StreamReader readFile = new StreamReader(Path.Combine(folder,path)))
-        {
-            // string line;
-            //   string[] rowlist;
-            //  string[] rowlist;
-
-            var contents = File.ReadAllText(Path.Combine(folder, path)).Split('\n');
-            var rowlistb4 = from line in contents select line.Split(',').ToArray();
-            foreach (var rowlist in rowlistb4.Skip(1).TakeWhile(r => r.Length > 1 && r.Last().Trim().Length > 0))
+       
+            using (StreamReader readFile = new StreamReader(Path.Combine(folder, path)))
             {
+                // string line;
+                //   string[] rowlist;
+                //  string[] rowlist;
+
+                var contents = File.ReadAllText(Path.Combine(folder, path)).Split('\n');
+                var rowlistb4 = from line in contents select line.Split(',').ToArray();
+                foreach (var rowlist in rowlistb4.Skip(1).TakeWhile(r => r.Length > 1 && r.Last().Trim().Length > 0))
+                {
 
 
-                d = JsonConvert.DeserializeObject("{  'UID':0,'Title':'','CategoryName':'','CategoryID':[],'MapYear':'','Organization':'','NumberOfClasses':[],'DataSource':'','Status':'','ReleasedYear':0,'Notes':'','PointOfContactName':'','POCEmail':'','POCPhoneNumber':'','HowToCite':'' }");
-                var now = DateTime.Now;
-                var zeroDate = DateTime.MinValue.AddHours(now.Hour).AddMinutes(now.Minute).AddSeconds(now.Second).AddMilliseconds(now.Millisecond);
-                int uniqueId = (int)(zeroDate.Ticks / 10000);
-                d.UID = Guid.NewGuid().ToString("N").Substring(0, 19);
-                d.Title = rowlist[0];
-                d.CategoryName = rowlist[1];
-                d.CategoryID.Add(Convert.ToInt32(rowlist[2]));
-                d.MapYear = rowlist[3];
-                d.Organization = rowlist[4];
+                    d = JsonConvert.DeserializeObject("{  'UID':0,'Title':'','CategoryName':'','CategoryID':[],'MapYear':'','Organization':'','NumberOfClasses':[],'DataSource':'','Status':'','ReleasedYear':0,'Notes':'','PointOfContactName':'','POCEmail':'','POCPhoneNumber':'','HowToCite':'' }");
+                    var now = DateTime.Now;
+                    var zeroDate = DateTime.MinValue.AddHours(now.Hour).AddMinutes(now.Minute).AddSeconds(now.Second).AddMilliseconds(now.Millisecond);
+                    int uniqueId = (int)(zeroDate.Ticks / 10000);
+                    d.UID = Guid.NewGuid().ToString("N").Substring(0, 19);
+                try
+                {
+                    d.Title = rowlist[0];
+                    d.CategoryName = rowlist[1];
+                    d.CategoryID.Add(Convert.ToInt32(rowlist[2]));
+                    d.MapYear = rowlist[3];
+                    d.Organization = rowlist[4];
 
-                d.NumberOfClasses.Add(Convert.ToInt32(rowlist[5]));
-                d.DataSource = rowlist[6];
-                d.Status = rowlist[7];
-                d.ReleasedYear = Convert.ToInt32(rowlist[8]);
-                d.Notes = rowlist[9];
-                d.PointOfContactName = rowlist[10];
-                d.POCEmail = rowlist[11];
-                d.POCPhoneNumber = rowlist[12];
-                d.HowToCite = rowlist[13].Trim().Replace("\r", string.Empty); ;
+                    d.NumberOfClasses.Add(Convert.ToInt32(rowlist[5]));
+                    d.DataSource = rowlist[6];
+                    d.Status = rowlist[7];
+                    d.ReleasedYear = Convert.ToInt32(rowlist[8]);
+                    d.Notes = rowlist[9];
+                    d.PointOfContactName = rowlist[10];
+                    d.POCEmail = rowlist[11];
+                    d.POCPhoneNumber = rowlist[12];
+                    d.HowToCite = rowlist[13].Trim().Replace("\r", string.Empty);
+                  
+                    // if(o.CategoryName=="Libya")
+               
+
+                }
+        catch (Exception)
+        {
+            if (rowlist[3] == "")
+                d.MapYear = "0000";
+            if (rowlist[4] == "")
+                d.Organization = "Not specified";
+            if (rowlist[5] == "")
+                d.NumberOfClasses = "0";
+            if (rowlist[6] == "")
+                d.DataSource = "Not specified";
+            if (rowlist[8] == "")
+                d.ReleasedYear = 0;
+            if (rowlist[9] == "" || rowlist[9] == null)
+                d.Notes = "Not specified";
+            if (rowlist[12] == "")
+                d.POCPhoneNumber = "000-000-0000";
+            if (rowlist[13].Trim().Replace("\r", string.Empty) == "")
+                d.HowToCite = "Not specified";
+            if (rowlist[11] == "" || rowlist[11]=="undefined")
+                d.POCEmail = "test@test.com";
+            if (rowlist[7] == "")
+                d.Status = "Completed";
+            if (rowlist[10] == "")
+                d.PointOfContactName = "Not specified";
+        }
                 d.LastUpdatedBy = email;
                 d.LastUpdatedTime = time;
 
-
                 foreach (var nd in ndata)
-                {
-                    uidList.Add((nd.UID).ToString());
+                    {
+                        uidList.Add((nd.UID).ToString());
+                    }
+                    if (!uidList.Contains((d.UID).ToString()))
+                        ndata.Add(d);
                 }
-                if (!uidList.Contains((d.UID).ToString()))
-                    ndata.Add(d);
             }
-        }
+        
+        
 
         JToken jt = JToken.Parse(ndata.ToString());
         string formatted = jt.ToString(Formatting.Indented);

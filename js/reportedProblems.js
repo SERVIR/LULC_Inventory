@@ -28,10 +28,17 @@ var reportedProblems = [
     "Problem": "hfjhhhhhhhhhhhhhhhh",
     "Status": "Open",
     "reportedBy": "githika.cs@gmail.com"
+  },
+  {
+    "PID": "qjus76gxe5jhasv82k",
+    "Problem": "hey there new problem",
+    "Status": "Closed",
+    "reportedBy": "githika.cs@gmail.com"
+  },
+  {
+    "PID": "fqwmif9yul6jhwaqpzc",
+    "Problem": "hey new problem!",
+    "Status": "Closed",
+    "reportedBy": "githika.cs@gmail.com"
   }
-, {
-  "PID": "qjus76gxe5jhasv82k",
-  "Problem": "hey there new problem",
-  "Status": "Open",
-  "reportedBy": "githika.cs@gmail.com"
-}];
+];

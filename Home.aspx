@@ -602,7 +602,7 @@
             populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
 
             alert("Data is updated successfully");
-           
+            $(".modal_editUpdate").hide();
         }
 
     </script>
@@ -1091,6 +1091,7 @@
             float:right;
             border:3px;
             border-radius:10px;
+            margin: 0.2vw;
         }
 
         #horiz_menu {
@@ -1121,7 +1122,7 @@
                 }
 
         #links {
-            right: 20px;
+            padding-left:22vw;
             position: absolute;
         }
 
@@ -1453,19 +1454,20 @@
 
         <!-- Modal content -->
         <div class="modal-content-editUpdate">
-            <span class="close" onclick="closeR()">&times;</span>
+            <span class="close" onclick="closeVR()">&times;</span>
             <h1 style="text-align:center;display:inline;margin-left:10vw;"><b><span id="spanfora0"></span></b></h1><br /><br /><hr /><br />
         <div CLASS="data_d"> 
-                                     <table id="dtable" style="width:25vw;">
-                              <%--      <caption></caption>--%>
-                                    <tr><td colspan="2" style="position:relative;">
-                                        
-                                        <div id="links">
+            <div id="links">
                                         <a id="editlink" href="#" title="Edit"><img src="images/pencilfont.png" width="30" height="30"/></a>
                                             <a id="deletelink" href="#"  title="Delete"><img src="images/trashfont.png" width="30" height="30"/></a>
                                             <a id="unapprovelink" href="#" title="Unapprove"><img src="images/unapprovefont.png" width="30" height="30"/></a>
 
                                                         </div>
+                                     <table id="dtable">
+                              <%--      <caption></caption>--%>
+                                    <tr><td colspan="2" style="position:relative;">
+                                        
+                                        
                                         <br/><br/></td></tr>
                                     <tr class="d"><td><b>Country Name:</b></td><td><span id="spanforb"></span></td></tr>
                                     <tr class="d"><td><b>Status: </b></td><td><span id="spanforg"></span></td></tr>
@@ -1566,7 +1568,7 @@
         <!-- Modal content -->
         <div class="modal-content-requests">
             <span class="close" onclick="closeR()">&times;</span>
-                                <h1 style="text-align:center;display:inline;margin-left:25vw;""><b>View requests from users</b></h1><br /><br /><hr /><br />
+                                <h1 class="divheading"><b>View requests from users</b></h1><br /><br /><hr /><br />
 
             <p>Following are the requests.. click on a row to approve or discard!</p>
             <select id="selectCountry">
@@ -1591,7 +1593,7 @@
         <!-- Modal content -->
         <div class="modal-content-problems">
             <span class="close" onclick="closeR()">&times;</span>
-                                  <h1 style="text-align:center;display:inline;margin-left:20vw;""><b>View reported problems</b></h1><br /><br /><hr />
+                                  <h1 class="divheading"><b>View reported problems</b></h1><br /><br /><hr />
 
             <p>Following are the problems.. click on a row to open or close!</p>
             <select id="selectStatus">
@@ -1615,7 +1617,7 @@
         <!-- Modal content -->
         <div class="modal-content-about">
             <span class="close" onclick="closeR()">&times;</span>
-            <h1 style="color:black;text-align:center;display:inline;margin-left:18vw;"><b>About this website</b></h1><br /><br /><hr /><br />
+            <h1 class="divheading"><b>About this website</b></h1><br /><br /><hr /><br />
            <div style="color:black;height:22vw;">In the context of the AfriGEOSS Working Group on Land Cover for Africa (WGLCA), the Ecological Monitoring Center (CSE) of Senegal,
                 SERVIR Science Coordination Office and SERVIR West Africa joined efforts to develop a dynamic Land Cover Inventory for Africa<br /><br />
                          This inventory is a collection of information regarding the multiple efforts on land cover and land use products for the continent of Africa.
@@ -1634,8 +1636,8 @@
         <!-- Modal content -->
         <div class="modal-content-first">
             <span class="close" onclick="closeR()">&times;</span>
-         <h1 style="color:black;text-align:center;display:inline;margin-left:10vw;"><b>How to add data?</b></h1><br /><br /><hr /><br />
-            <div style="color:black;font-size:20px">Click on a country and the <b>"+"</b> button on the right side will let you add more data!
+         <h1 class="divheading"><b>How to add data?</b></h1><br /><br /><hr /><br />
+            <div style="color:black;font-size:20px">Click on a country on the map. Clicking the <b>"+"</b> button on the top-right of the panel will open a popup window with several fields to let you add new data!
                          </div>
                  </div>
 
@@ -1646,13 +1648,13 @@
         <!-- Modal content -->
         <div class="modal-content-addAdmins">
             <span class="close" onclick="closeR()">&times;</span>
-            <h1 style="color:black;text-align:center;display:inline;margin-left:7vw;"><b>Add Administrators</b></h1><br /><br /><hr />
+            <h1 class="divheading"><b>Add Administrators</b></h1><br /><br /><hr />
             <div style="color:black;"> 
                           <p  style="margin-left: 0.7vw" >Current Admins are:</p>
 
              <p id="existingAdmins" style="margin-left: 0.7vw;margin-right: 0.7vw" > </p>
           <p style="margin-left: 0.7vw">Enter the email ids of admins (separate multiple entries by commas)</p>
-           <textarea style="margin-left: 0.7vw;border:3px groove;border-radius:10px;width:26vw;margin-right:0.7vw;" id="entered_ids" rows="4" cols="50" placeholder="xyz@gmail.com,abc@gmail.com"></textarea>
+           <textarea style="margin-left: 0.7vw;border:3px groove;border-radius:10px;width:95%;margin-right:0.7vw;" id="entered_ids" rows="4" cols="50" placeholder="xyz@gmail.com,abc@gmail.com"></textarea>
            <button style="margin-left: 0.7vw; margin-top: 0.5vw;padding:8px 16px 8px;float:right;" id="submit_ids" onclick="submitIds()">Add Admin(s)</button>
                  </div>
         </div>
@@ -1664,7 +1666,7 @@
         <!-- Modal content -->
         <div class="modal-content-reportproblems">
             <span class="close" onclick="closeR()">&times;</span>
-                               <h1 style="text-align:center;display:inline;margin-left:10vw;"><b>Report a problem</b></h1><br /><br />
+                               <h1 class="divheading"><b>Report a problem</b></h1><br /><br />
 
             <textarea class="textboxcite" style="width:35vw;height:25vw;" id="enter_problem" rows="7" cols="70" placeholder="Enter your problem here..."></textarea>
             <br />
@@ -1679,7 +1681,7 @@
             <!-- Modal content -->
                 <div class="modal-content-importData">
                   <span class="close" onclick="closeR()">&times;</span>
-                    <h1 style="text-align:center;display:inline;margin-left:24vw;"><b>Bulk Data Operations</b></h1><br /><br />
+                    <h1 class="divheading"><b>Bulk Data Operations</b></h1><br /><br />
                     <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'importTab')" id="defaultOpen">Import</button>
   <button class="tablinks" onclick="openTab(event, 'downloadTab')">Download</button>

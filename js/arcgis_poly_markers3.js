@@ -578,9 +578,9 @@ function populatePanelByCountry(which) {
             if (sortedcompleted[i].MapYear == "") sortedcompleted[i].MapYear = "Not specified";
             if (sortedcompleted[i].HowToCite == "") sortedcompleted[i].HowToCite = "Not specified";
             if (sortedcompleted[i].Notes == "") sortedcompleted[i].Notes = "Not specified";
-
-
-
+            if (sortedcompleted[i].POCEmail == undefined) sortedcompleted[i].POCEmail = "Not specified";
+            if (sortedcompleted[i].POCPhoneNumber == "") sortedcompleted[i].POCPhoneNumber = "Not specified";
+            if (sortedcompleted[i].PointOfContactName == "") sortedcompleted[i].PointOfContactName = "Not specified";
             if(sortedcompleted[i].Status.indexOf("Planned") > -1)   
             {
                 var clone = document.getElementById('templateholder').childNodes[1].cloneNode(true);
@@ -592,6 +592,7 @@ function populatePanelByCountry(which) {
 
                 clone.getElementsByClassName('articlelink')[0].id = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].onclick = function () {
+                  
                     var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
@@ -632,6 +633,7 @@ function populatePanelByCountry(which) {
                     var del = "";
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
+                        $("#links").show();
                         document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(-1); document.getElementById("spanfora0").innerHTML = "Edit Data for " + sortedcompleted[x].Title; };
                         document.getElementById("editlink").style.display = "inline";
 
@@ -643,6 +645,7 @@ function populatePanelByCountry(which) {
 
                  }
                     else {
+                        $("#links").hide();
                         document.getElementById("editlink").onclick = function () { editData(-1) } ;
                         document.getElementById("editlink").style.display = "none";
                         document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
@@ -680,6 +683,8 @@ function populatePanelByCountry(which) {
 
                 document.getElementById('uid_hidden').innerHTML = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].onclick = function () {
+                                      
+
                     var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
@@ -737,6 +742,7 @@ function populatePanelByCountry(which) {
                     var del = "";
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
+                        $("#links").show();
                         document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(0); document.getElementById("spanfora0").innerHTML = "Edit Data for " + sortedcompleted[x].Title; };
                         document.getElementById("editlink").style.display = "inline";
 
@@ -747,6 +753,7 @@ function populatePanelByCountry(which) {
                         document.getElementById("unapprovelink").style.display = "inline";
                     }
                     else {
+                        $("#links").hide();
                         document.getElementById("editlink").onclick = function () { editData(0) } ;
                         document.getElementById("editlink").style.display = "none";
                         document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
@@ -838,7 +845,8 @@ function populatePanelByCountry(which) {
                     var del = "";
                     var unapprove = "";
                     if (adminLoggedIn == 1) {
-                        document.getElementById("editlink").onclick = function () { $('#etable').show(); editData(1); document.getElementById("spanfora0").innerHTML = "Edit Data for " + sortedcompleted[x].Title; };
+                        $("#links").show();
+                        document.getElementById("editlink").onclick = function () { $("#links").show();$('#etable').show(); editData(1); document.getElementById("spanfora0").innerHTML = "Edit Data for " + sortedcompleted[x].Title; };
                         document.getElementById("editlink").style.display = "inline";
 
                         document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
@@ -848,6 +856,7 @@ function populatePanelByCountry(which) {
                         document.getElementById("unapprovelink").style.display = "inline";
                     }
                     else {
+                        $("#links").hide();
                         document.getElementById("editlink").onclick = function () { editData(1) } ;
                         document.getElementById("editlink").style.display = "none";
                         document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
@@ -896,6 +905,7 @@ function populatePanelByCountry(which) {
 
 
 }
+
 //to set the value of drop down list when the edit(pencil) button is clicked
 function setValue(obj, val) {
     if (parseInt(val) == 1) {

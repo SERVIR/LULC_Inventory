@@ -129,9 +129,51 @@ function signOut() {
         $('#ufullname').html("");
     });
    // window.location.href = "http://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://servirglobal.net/MapResources/LULC_Africa/Home.aspx";
-    window.location.href = "http://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue="+ window.location.protocol + "//" + window.location.host + "/Home.aspx";
+    window.location.href = "http://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue="+ window.location.protocol + "//" + window.location.host + "/LULC_Map/Home.aspx";
 }
 
+function ViewDataFromRequests(_uid) {
+    for (var x = 0; x < completedArrayTemp.length; x++) {
+        if (completedArrayTemp[x].UID == _uid) {
+            document.getElementById("spanfora").innerHTML = completedArrayTemp[x].Title;
+            document.getElementById("spanfora0").innerHTML = "View Data for " + completedArrayTemp[x].Title;
+            document.getElementById("spanforb").innerHTML = completedArrayTemp[x].CategoryName;
+            document.getElementById("spanforc").innerHTML = completedArrayTemp[x].MapYear;
+            document.getElementById("spanford").innerHTML = completedArrayTemp[x].Organization;
+            if (completedArrayTemp[x].NumberOfClasses == 0) {
+                document.getElementById("spanfore").innerHTML = "Not specified";
+            }
+            else {
+                document.getElementById("spanfore").innerHTML = completedArrayTemp[x].NumberOfClasses;
+            }
+            document.getElementById("spanforf").innerHTML = completedArrayTemp[x].DataSource;
+            document.getElementById("spanforg").innerHTML = completedArrayTemp[x].Status;
+            if (completedArrayTemp[x].ReleasedYear == 0) {
+                document.getElementById("spanforh").innerHTML = "Not specified";
+            }
+            else {
+                document.getElementById("spanforh").innerHTML = completedArrayTemp[x].ReleasedYear;
+
+            }
+
+            document.getElementById("spanfork").innerHTML = completedArrayTemp[x].Notes;
+            document.getElementById("spanforl").innerHTML = completedArrayTemp[x].PointOfContactName;
+            document.getElementById("spanform").innerHTML = completedArrayTemp[x].POCEmail;
+            document.getElementById("spanforn").innerHTML = completedArrayTemp[x].POCPhoneNumber;
+            document.getElementById("spanforo").innerHTML = completedArrayTemp[x].HowToCite;
+            document.getElementById("spanforlub").innerHTML = completedArrayTemp[x].LastUpdatedBy;
+
+            document.getElementById("spanforlut").innerHTML = completedArrayTemp[x].LastUpdatedTime;
+            document.getElementById("updateCancelButton").onclick = function () { $('.modal_editUpdate').hide(); };
+
+            break;
+        }
+    }
+    $('.modal_editUpdate').show();
+    $("#links").hide();
+    $('#dtable').show();
+    $('#etable').hide();
+}
 function AddAdmins()
 {
     var str = "";
@@ -159,6 +201,10 @@ function closeP() {
     }
     else
     $('.modal').hide();
+}
+function closeVR() {
+    $('.modal_editupdate').hide();
+
 }
 function closeR() {
 
@@ -371,6 +417,7 @@ function ViewProblems() {
     }
 
     $('#selectStatus').on('change', function () {
+        $("#statusMesg").html("");
         var uid_arr1 = [];
         if ($("select#selectStatus option").filter(":selected").text() == "Choose a status") {
             uid_arr1 = pids;

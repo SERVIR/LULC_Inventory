@@ -314,20 +314,20 @@
         function approveData(uid, title, catname, catid, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite, lub,lut) {
             var newData = {
                 "UID": uid,
-                "Title": title,
+                "Title": decodeURIComponent(title),
                 "CategoryName": catname,
                 "CategoryID": [],
-                "MapYear": mapyear,
-                "Organization": org,
+                "MapYear": decodeURIComponent(mapyear),
+                "Organization": decodeURIComponent(org),
                 "NumberOfClasses": [],
-                "DataSource": ds,
+                "DataSource": decodeURIComponent(ds),
                 "Status":  decodeURIComponent(status),
                 "ReleasedYear": parseInt(release),
-                "Notes": notes,
-                "PointOfContactName": poc,
-                "POCEmail": email,
-                "POCPhoneNumber": phnum,
-                "HowToCite": cite,
+                "Notes": decodeURIComponent(notes),
+                "PointOfContactName": decodeURIComponent(poc),
+                "POCEmail": decodeURIComponent(email),
+                "POCPhoneNumber": decodeURIComponent(phnum),
+                "HowToCite": decodeURIComponent(cite),
                 "LastUpdatedBy": lub,
                 "LastUpdatedTime": decodeURIComponent(lut)
 
@@ -358,12 +358,16 @@
             //gToggle.destroy();
             //initMap();
             PageMethods.DeleteFromTemp(uid);
+          
             removeFromObj(uid, completedArrayTemp);
-            var row = document.getElementById(uid);
+            
+
+            var row = document.getElementById(uid+"temp");
             row.parentNode.removeChild(row);
+
             $('#statusMsg').html("<b style='color:green'>Approved record with UID " + uid + "</b>");
 
-
+           
         }
         //Sends the data to Unapproved list( this data can be viewed in ViewRequests page)
         function unapproveData(uid) {
@@ -391,10 +395,10 @@
                 "POCEmail": recent[1],
                 "FullName": "admin unapproved"
             }
-           
             PageMethods.updateNewlyAddedData(fl, JSON.stringify(toAdd));
             newlyAdded.push(toAdd);
             PageMethods.DeleteFromOriginal(uid);
+        
             removeFromObj(uid, completedArray);
             map.removeLayer(map.getLayer("completed"));
             map.removeLayer(map.getLayer("planned"));
@@ -407,9 +411,13 @@
             expandcompletedArray();
 
             gClusters(completedArray, 50);
-            populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
+          
 
             alert("Unapproved this record.. View requests to approve it!");
+            $('.modal_editUpdate').hide();
+          //  document.getElementsByClassName("modal_editUpdate")[0].style.zIndex = "-1";
+            populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
+
         }
         //this method is called when admin clicks on "Discard" button in ViewRequests
         function discardData(uid) {
@@ -452,7 +460,9 @@
                 populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
 
                 alert('Deleted successfully');
-                $(".modal-content-editUpdate").hide();
+                $(".modal_editUpdate").hide();
+               // document.getElementsByClassName("modal_editUpdate")[0].style.zIndex = "-1";
+
             }
         }   
         function reportProblemPopup() {
@@ -507,7 +517,17 @@
             row.parentNode.removeChild(row);
 
             $('#statusMesg').html("<b style='color:green'>Closed record with PID " + pid + "</b>");
+            var usrs = reportedProblems;
+            var pids = [];
+            for (var i = 0; i < usrs.length; i++) {
+                pids.push(usrs[i].PID);
+            }
+            var uid_arr1 = [];
+            if ($("select#selectStatus option").filter(":selected").text() == "Choose a status") {
+                uid_arr1 = pids;
+                CreateTableFromJSON(uid_arr1);
 
+            }
 
         }
         function openStatus(pid, problem, reportedby) {
@@ -530,8 +550,18 @@
             PageMethods.updateProblemJson(pid, decodeURIComponent(problem), "Open", reportedby);
             var row = document.getElementById(pid);
             row.parentNode.removeChild(row);
-            $('#statusMesg').html("<b style='color:green'>Reopened record with PID " + pid + "</b>");
+            $('#statusMesg').html("<b style='color:green'>Opened record with PID " + pid + "</b>");
+            var usrs = reportedProblems;
+            var pids = [];
+            for (var i = 0; i < usrs.length; i++) {
+                pids.push(usrs[i].PID);
+            }
+            var uid_arr1 = [];
+            if ($("select#selectStatus option").filter(":selected").text() == "Choose a status") {
+                uid_arr1 = pids;
+                CreateTableFromJSON(uid_arr1);
 
+            }
 
         }
      
@@ -541,11 +571,15 @@
 
         //Updates existing records when the admin edits and submits the data
         function updateData(uid) {
+           
             var today = new Date();
             var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
             var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             var dateTime = date + ' ' + time;
             document.getElementById('<%=hdnData.ClientID%>').value = uid;
+            if (document.getElementById("ea").value != "") {
+                if (valid_Id(document.getElementById("em").value)) {
+                    if (validatePhone(document.getElementById("en")) || document.getElementById("en").value == "") {
             var title = document.getElementById("ea").value;
 
             var mapyear = document.getElementById("ec").value;
@@ -557,6 +591,7 @@
             var notes = document.getElementById("ek").value;
             var poc = document.getElementById("el").value;
             var email = document.getElementById("em").value;
+           
             var phnum = document.getElementById("en").value;
 
             var cite = document.getElementById("eo").value;
@@ -564,6 +599,7 @@
             var lut = dateTime;
             for (var i = 0; i < completedArray.length; i++) {
                 if (completedArray[i].UID == uid) {
+                  
                     completedArray[i].Title = title;
                     completedArray[i].MapYear = mapyear;
                     completedArray[i].Organization = org;
@@ -587,6 +623,8 @@
                     completedArray[i].LastUpdatedTime = dateTime;
                 }
             }
+            if (isNaN(cls)) cls = 0;
+            if (isNaN(release)) release = 0;
             PageMethods.updateExistingData(document.getElementById('<%=hdnData.ClientID%>').value, title, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite,lub,lut);
             map.removeLayer(map.getLayer("completed"));
             map.removeLayer(map.getLayer("planned"));
@@ -601,8 +639,44 @@
             gClusters(completedArray, 50);
             populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
 
-            alert("Data is updated successfully");
+        //    alert("Data is updated successfully");
             $(".modal_editUpdate").hide();
+
+                    }
+
+                    else {
+                        $(".Req").hide();
+                        $("#edit_errorMsgPhn").html("Please enter a valid phone number");
+                        $("#edit_Row3").show();
+                        $("#edit_Row2").hide();
+
+                        $("#edit_Row1").hide();
+                        $("#en").focus();
+                    }
+                }
+                else {
+                    $(".Req").hide();
+                    $("#edit_errorMsgPoc").html("Please enter a valid email address for point of contact");
+                    $("#edit_Row2").show();
+                    $("#edit_Row3").hide();
+
+                    $("#edit_Row1").hide();
+                    $("#em").focus();
+                }
+            } else {
+                $(".Req").show();
+                $("#edit_errorMsgTitle").html("Please enter a title");
+                $("#edit_Row1").show();
+                $("#edit_Row2").hide();
+                $("#edit_Row3").hide();
+
+                $("#ea").focus();
+
+            }
+
+
+
+
         }
 
     </script>
@@ -655,6 +729,8 @@
                                         expandcompletedArray();
 
                                         gClusters(completedArray, 50);
+                                        populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
+
                                     }, error: function (err) {
                                         alert(err.statusText);
                                     }
@@ -744,6 +820,8 @@
                                         expandcompletedArray();
 
                                         gClusters(completedArray, 50);
+                                        populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
+
                                     }, error: function (err) {
                                         alert(err.statusText);
                                     }
@@ -1465,7 +1543,7 @@
                                                         </div>
                                      <table id="dtable">
                               <%--      <caption></caption>--%>
-                                    <tr><td colspan="2" style="position:relative;">
+                                    <tr><td colspan="2">
                                         
                                         
                                         <br/><br/></td></tr>
@@ -1499,7 +1577,7 @@
                                   <option value="Planned">Planned</option> 
 
                                  </select></td></tr>
-                                <tr class="d"><td><b>Title: </b></td></tr><tr><td><input id="ea" class="textbox" type="text" /></td></tr>
+                                <tr class="d"><td><b>Title: </b></td></tr><tr><td><input id="ea" class="textbox" type="text" /></td><td class="Req" style="color:red;font-size:25px;" hidden>*</td><td id="edit_Row1" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgTitle" ></span></td></tr>
                                 
                                 <tr class="d"><td><b>Map Year:</b></td></tr><tr><td><input id="ec" class="textbox" type="text"  /></td></tr>
                                 <tr class="d"><td><b>Released Year: </b></td></tr><tr><td><input id="eh" class="textbox" type="text" /></td></tr>
@@ -1510,10 +1588,10 @@
                                    
                                 <tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" class="textboxcite" cols="23" rows="4"></textarea></td></tr>
                                 <tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" class="textbox" type="text" /></td></tr>
-                                <tr class="d"><td><b>POC Email: </b></td></tr><tr><td><input id="em" class="textbox" type="email" /></td></tr>
-                                <tr class="d"><td><b>POC Phone Number: </b></td></tr><tr><td><input id="en" class="textbox" type="text"/></td></tr>
+                                <tr class="d"><td><b>POC Email: </b></td></tr><tr><td><input id="em" class="textbox" type="email" /></td><td id="edit_Row2" style="padding:0;margin:0;color:red;" hidden><span id="edit_errorMsgPoc" ></span></td></tr>
+                                <tr class="d"><td><b>POC Phone Number: </b></td></tr><tr><td><input id="en" class="textbox" type="text"/></td><td id="edit_Row3" style="padding:0;margin:0;color:red;" hidden><span id="edit_errorMsgPhn" ></span></td></tr>
                                 <tr class="d"><td><b>How to cite: </b></td></tr><tr><td><textarea id="eo" cols="23" rows="4" class="textboxcite"></textarea></td></tr>
-                                <tr class="d"><td colspan="2" align="center"><button id="updatePanelButton">Update</button><button id="updateCancelButton">Cancel</button></td></tr>
+                                <tr class="d"><td colspan="2"><button id="updatePanelButton">Update</button><button id="updateCancelButton">Cancel</button></td></tr>
                                  </table>
                                 </div>
                 
@@ -1542,16 +1620,16 @@
 
                                  </select></td></tr>
                                  <tr><td>Title:</td></tr><tr><td><input placeholder="Name of the land cover dataset" id="title" class="textbox" type="text"/></td><td class="Req" style="color:red;font-size:25px;" hidden>*</td><td id="Row1" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgTitle" ></span></td></tr>
-                                 <tr><td>Map Year:</td></tr><tr><td><textarea placeholder="Year that the map represents on the ground " id="map_year" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
-                                 <tr><td>Released Year:</td></tr><tr><td><textarea placeholder="Year of publication. It may be different from Map year. " id="release" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
-                                 <tr><td>Organization:</td></tr><tr><td><textarea placeholder="Name of the institution and/or organization that generated the land cover map" id="org" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
-                                 <tr><td>Number of classes:</td></tr><tr><td><textarea placeholder="Number of land cover classes available in the map" id="cls" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
-                                 <tr><td>Data Source:</td></tr><tr><td><textarea placeholder="Original dataset on which the map is based (i.e. Landsat satellite images)" id="ds" cols="20" rows="1" class="textboxcite" type="text"></textarea></td></tr>
-                                 <tr><td>Notes:</td></tr><tr><td><textarea placeholder="Any additional information of relevance about the land cover map. If dataset available online please provide link here" id="notes" cols="20" rows="4" class="textboxcite" type="text"></textarea></td></tr>
+                                 <tr><td>Map Year:</td></tr><tr><td><textarea placeholder="Year that the map represents on the ground " id="map_year" cols="20" rows="1" class="textboxcite"></textarea></td></tr>
+                                 <tr><td>Released Year:</td></tr><tr><td><textarea placeholder="Year of publication. It may be different from Map year. " id="release" cols="20" rows="1" class="textboxcite"></textarea></td></tr>
+                                 <tr><td>Organization:</td></tr><tr><td><textarea placeholder="Name of the institution and/or organization that generated the land cover map" id="org" cols="20" rows="1" class="textboxcite"></textarea></td></tr>
+                                 <tr><td>Number of classes:</td></tr><tr><td><textarea placeholder="Number of land cover classes available in the map" id="cls" cols="20" rows="1" class="textboxcite"></textarea></td></tr>
+                                 <tr><td>Data Source:</td></tr><tr><td><textarea placeholder="Original dataset on which the map is based (i.e. Landsat satellite images)" id="ds" cols="20" rows="1" class="textboxcite"></textarea></td></tr>
+                                 <tr><td>Notes:</td></tr><tr><td><textarea placeholder="Any additional information of relevance about the land cover map. If dataset available online please provide link here" id="notes" cols="20" rows="4" class="textboxcite"></textarea></td></tr>
                                  <tr><td>Point of contact:</td></tr><tr><td><input placeholder="Point of contact name" id="poc" class="textbox" type="email"/></td></tr>
-                                 <tr><td>POC Email:</td></tr><tr><td><textarea placeholder="email of the person that can provide further information about this land cover map" id="email" cols="20" rows="1" class="textboxcite" type="text"></textarea></td><td id="Row2" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPoc" ></span></td></tr>
+                                 <tr><td>POC Email:</td></tr><tr><td><textarea placeholder="email of the person that can provide further information about this land cover map" id="email" cols="20" rows="1" class="textboxcite"></textarea></td><td id="Row2" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPoc" ></span></td></tr>
                                 <tr><td>POC Phone Number:</td></tr><tr><td><input placeholder="Point of contact phone number" id="ph_num" class="textbox" type="text"/></td><td id="Row3" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPhn" ></span></td></tr>
-                                <tr><td>How to cite:</td></tr><tr><td><textarea placeholder="Enter how users should reference this map" id="cite" cols="20" rows="4" class="textboxcite" type="text"></textarea></td></tr>
+                                <tr><td>How to cite:</td></tr><tr><td><textarea placeholder="Enter how users should reference this map" id="cite" cols="20" rows="4" class="textboxcite"></textarea></td></tr>
                                  <tr><td></td></tr><tr><td><button type="button" class="btn" onclick="AddJsonData()">Submit data!</button></tr>
 
                                 </table>
@@ -1573,6 +1651,60 @@
             <p>Following are the requests.. click on a row to approve or discard!</p>
             <select id="selectCountry">
                 <option>Choose a country</option>
+                <option>Algeria</option>
+                <option>Angola</option>
+                <option>Benin</option>
+                <option>Botswana</option>
+                <option>Burkina Faso</option>
+                <option>Burundi</option>
+                <option>Cameroon</option>
+                <option>Cape Verde</option>
+                <option>Central African republic</option>
+                <option>Chad</option>
+                <option>Comoros</option>
+                <option>Cote Divoire</option>
+                <option>Democratic Congo</option>
+                <option>Djibouti</option>
+                <option>Egypt</option>
+                <option>Equatorial Guinea</option>
+                <option>Eritrea</option>
+                <option>Ethiopia</option>
+                <option>Gabon</option>
+                <option>Ghana</option>
+                <option>Guinea</option>
+                <option>Guinea Bissau</option>
+                <option>Kenya</option>
+                <option>Lesotho</option>
+                <option>Liberia</option>
+                <option>Libya</option>
+                <option>Madagascar</option>
+                <option>Malawi</option>
+                <option>Mali</option>
+                <option>Mauritania</option>
+                <option>Mauritius</option>
+                <option>Morocco</option>
+                <option>Mozambique</option>
+                <option>Namibia</option>
+                <option>Niger</option>
+                <option>Nigeria</option>
+                <option>Republic Congo</option>
+                <option>Rwanda</option>
+                <option>Sao Tome and Principe</option>
+                <option>Seychelles</option>
+                <option>Sierra Leone</option>
+                <option>Somalia</option>
+                <option>South Africa</option>
+                <option>South Sudan</option>
+                <option>Sudan</option>
+                <option>Swaziland</option>
+                <option>Tanzania</option>
+                                <option>The Gambia</option>
+                <option>Togo</option>
+                <option>Tunisia</option>
+                <option>Uganda</option>
+                <option>Western Sahara</option>
+                <option>Zambia</option>
+<option>Zimbabwe</option>
 
             </select>
             <select id="selectUser">

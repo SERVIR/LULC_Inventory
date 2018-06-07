@@ -244,7 +244,7 @@ public partial class Home : System.Web.UI.Page
                 d.Title = title;
                 d.MapYear = mapyear;
                 d.Organization = org;
-                d.NumberOfClasses = cls;
+                d.NumberOfClasses[0] = cls;
                 d.DataSource = ds;
                 d.Status = status;
                 d.ReleasedYear = release;
@@ -436,7 +436,7 @@ public partial class Home : System.Web.UI.Page
         myFile.Close();
         string STR = myString;
         STR = STR.Substring(21);
-        STR = STR.TrimEnd('\r', '\n');
+       STR = STR.TrimEnd('\r', '\n');
         STR = STR.Remove(STR.Length - 1);
         dynamic data = JArray.Parse(STR) as JArray;
         string folder = page.Server.MapPath("~/");
@@ -459,11 +459,11 @@ public partial class Home : System.Web.UI.Page
                         d.UID = rowlist[0];
                         d.Title = rowlist[1];
                         d.CategoryName = rowlist[2];
-                        d.CategoryID[0]=(Convert.ToInt32(rowlist[3]));
+                        d.CategoryID[0]=Convert.ToInt32(rowlist[3]);
                         d.MapYear = rowlist[4];
                         d.Organization = rowlist[5];
 
-                        d.NumberOfClasses[0]=(Convert.ToInt32(rowlist[6]));
+                        d.NumberOfClasses[0]=Convert.ToInt32(rowlist[6]);
                         d.DataSource = rowlist[7];
                         d.Status = rowlist[8];
                         d.ReleasedYear = Convert.ToInt32(rowlist[9]);
@@ -496,12 +496,9 @@ public partial class Home : System.Web.UI.Page
         }
         else
         {
-            STR = STR.Substring(23);
-            STR = STR.TrimEnd('\r', '\n');
-            STR = STR.Remove(STR.Length - 1);
-            STR = STR.Remove(STR.Length - 1);
-            existing = "var completedArray = " + STR + ", " + formatted + "];";
-            script= "completedArray = " + STR + ", " + formatted + "];";
+            
+            existing = "var completedArray = "  + formatted + ";";
+            script= "completedArray = " + formatted + ";";
         }
         file.WriteLine(existing);
         file.Close();
@@ -717,8 +714,8 @@ public partial class Home : System.Web.UI.Page
                     o.MapYear = "0000";
                 if (o.Organization.ToString() == "")
                     o.Organization = "Not specified";
-                if (o.NumberOfClasses.ToString() == "")
-                    o.NumberOfClasses = "0";
+                if (o.NumberOfClasses[0].ToString() == "")
+                    o.NumberOfClasses[0]= "0";
                 if (o.DataSource.ToString() == "")
                     o.DataSource = "Not specified";
                 if (o.Notes.ToString() == "")

@@ -135,8 +135,8 @@ function signOut() {
 function ViewDataFromRequests(_uid) {
     for (var x = 0; x < completedArrayTemp.length; x++) {
         if (completedArrayTemp[x].UID == _uid) {
-            document.getElementById("spanfora").innerHTML = completedArrayTemp[x].Title;
-            document.getElementById("spanfora0").innerHTML = "View Data for " + completedArrayTemp[x].Title;
+            document.getElementById("spanfora").innerHTML = decodeURIComponent(completedArrayTemp[x].Title);
+            document.getElementById("spanfora0").innerHTML = "View Data for " + decodeURIComponent(completedArrayTemp[x].Title);
             document.getElementById("spanforb").innerHTML = completedArrayTemp[x].CategoryName;
             document.getElementById("spanforc").innerHTML = completedArrayTemp[x].MapYear;
             document.getElementById("spanford").innerHTML = completedArrayTemp[x].Organization;
@@ -318,7 +318,7 @@ function ImportData() {
 }
 function ViewRequests() {
   
-
+    $("#statusMsg").html("");
     $('#approve').hide();
     $('#discard').hide();
     $('.modal_requests').show();    
@@ -331,16 +331,18 @@ function ViewRequests() {
     var usrs = newlyAdded;
 
     var sel = document.getElementById('selectCountry');
-    for (var i = 0; i < countries.Locations.length; i++) {
-        var opt = document.createElement('option');
-        opt.innerHTML = countries.Locations[i].Location;
-        opt.value = countries.Locations[i].Location;
-        sel.appendChild(opt);
-    }
+    //for (var i = 0; i < countries.Locations.length; i++) {
+    //    var opt = document.createElement('option');
+    //    opt.innerHTML = countries.Locations[i].Location;
+    //    opt.value = countries.Locations[i].Location;
+    //    sel.appendChild(opt);
+    //}
      
     
     var eids = [];
-    for (var i = 0; i < usrs.length; i++) {
+    eids.push(usrs[0].FullName);
+    for (var i = 1; i < usrs.length; i++) {
+        if (usrs[i].FullName != eids[i-1])
             eids.push(usrs[i].FullName);
         
         }
@@ -364,6 +366,8 @@ function ViewRequests() {
     }
 
     $('#selectCountry').on('change', function () {
+
+        $("#statusMsg").html("");
         var uid_arr1 = [];
         if ($("select#selectUser option").filter(":selected").text() == "Choose a User") {
             uid_arr1 = uids;

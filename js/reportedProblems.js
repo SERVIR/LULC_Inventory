@@ -20,13 +20,13 @@ var reportedProblems = [
   {
     "PID": "snmknb9pdy9jh843qyi",
     "Problem": "hgfhf",
-    "Status": "Open",
+    "Status": "Closed",
     "reportedBy": "githika.cs@gmail.com"
   },
   {
     "PID": "1ysadsbgoy5jh843wqx",
     "Problem": "hfjhhhhhhhhhhhhhhhh",
-    "Status": "Open",
+    "Status": "Closed",
     "reportedBy": "githika.cs@gmail.com"
   },
   {

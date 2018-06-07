@@ -396,7 +396,7 @@ function expandcompletedArray() {
                         ReleasedYear: completedArray[c].ReleasedYear,
                         Notes: completedArray[c].Notes,
                         PointOfContactName: completedArray[c].PointOfContactName,
-                        POCEmail: completedArray[c].Email,
+                        POCEmail: completedArray[c].POCEmail,
                         POCPhoneNumber: completedArray[c].POCPhoneNumber,
                         HowToCite: completedArray[c].HowToCite,
 
@@ -548,6 +548,7 @@ function convertCategoryNameToID(which) {
 
 //function populate the data from the completedArray 
 function populatePanelByCountry(which) {
+    
     if (document.getElementById("accordionholder").style.display == "none") {
         toggleAccordion();
     }
@@ -572,13 +573,13 @@ function populatePanelByCountry(which) {
     sortedcompleted = completedArray;
     for (var i = 0; i < sortedcompleted.length; i++) {
         if (sortedcompleted[i].CategoryID.indexOf(catID) > -1) {//planned
-
+          
             if (sortedcompleted[i].DataSource == "") sortedcompleted[i].DataSource = "Not specified";
             if (sortedcompleted[i].Organization == "") sortedcompleted[i].Organization = "Not specified";
             if (sortedcompleted[i].MapYear == "") sortedcompleted[i].MapYear = "Not specified";
             if (sortedcompleted[i].HowToCite == "") sortedcompleted[i].HowToCite = "Not specified";
             if (sortedcompleted[i].Notes == "") sortedcompleted[i].Notes = "Not specified";
-            if (sortedcompleted[i].POCEmail == undefined) sortedcompleted[i].POCEmail = "Not specified";
+            if (sortedcompleted[i].POCEmail == "") sortedcompleted[i].POCEmail = "Not specified";
             if (sortedcompleted[i].POCPhoneNumber == "") sortedcompleted[i].POCPhoneNumber = "Not specified";
             if (sortedcompleted[i].PointOfContactName == "") sortedcompleted[i].PointOfContactName = "Not specified";
             if(sortedcompleted[i].Status.indexOf("Planned") > -1)   
@@ -596,36 +597,62 @@ function populatePanelByCountry(which) {
                     var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
-                            document.getElementById("spanfora").innerHTML = sortedcompleted[x].Title;
-                            document.getElementById("spanfora0").innerHTML = "View Data for "+sortedcompleted[x].Title;
+                            document.getElementById("spanfora").innerHTML = decodeURIComponent(sortedcompleted[x].Title);
+                            document.getElementById("spanfora0").innerHTML = "View Data for " + decodeURIComponent(sortedcompleted[x].Title);
+                            document.getElementById("ea").value = sortedcompleted[x].Title;
                             document.getElementById("spanforb").innerHTML = sortedcompleted[x].CategoryName;
+                            document.getElementById("eb").value = sortedcompleted[x].CategoryName;
                             document.getElementById("spanforc").innerHTML = sortedcompleted[x].MapYear;
+                            document.getElementById("ec").value = sortedcompleted[x].MapYear;
                             document.getElementById("spanford").innerHTML = sortedcompleted[x].Organization;
-
-                            if (sortedcompleted[x].NumberOfClasses == 0)
+                            document.getElementById("ed").value = sortedcompleted[x].Organization;
+                            if (sortedcompleted[x].NumberOfClasses == 0) {
                                 document.getElementById("spanfore").innerHTML = "Not specified";
-                            else
+                                document.getElementById("ee").value = "Not specified";
+                            }
+                            else {
+                                document.getElementById("ee").value = sortedcompleted[x].NumberOfClasses;
                                 document.getElementById("spanfore").innerHTML = sortedcompleted[x].NumberOfClasses;
-
+                            }
                             document.getElementById("spanforf").innerHTML = sortedcompleted[x].DataSource;
-
+                            document.getElementById("ef").value = sortedcompleted[x].DataSource;
                             document.getElementById("spanforg").innerHTML = "Planned";
-                            if (sortedcompleted[x].ReleasedYear==0)
+                            document.getElementById("eg").value = "Planned";
+                            if (sortedcompleted[x].ReleasedYear == 0) {
                                 document.getElementById("spanforh").innerHTML = "Not specified";
-                            else document.getElementById("spanforh").innerHTML = sortedcompleted[x].ReleasedYear;
+                                document.getElementById("eh").value = "Not specified";
+                            }
+                            else {
+                                document.getElementById("spanforh").innerHTML = sortedcompleted[x].ReleasedYear;
+                                document.getElementById("eh").value = sortedcompleted[x].ReleasedYear;
 
+                            }
 
                             document.getElementById("spanfork").innerHTML = sortedcompleted[x].Notes;
+                            document.getElementById("ek").value = sortedcompleted[x].Notes;
                             document.getElementById("spanforl").innerHTML = sortedcompleted[x].PointOfContactName;
+                            document.getElementById("el").value = sortedcompleted[x].PointOfContactName;
                             document.getElementById("spanform").innerHTML = sortedcompleted[x].POCEmail;
+                            if (sortedcompleted[x].POCEmail == "Not specified") {
+                                document.getElementById("em").value = "";
+                                document.getElementById("em").placeholder = "POC Email address";
+                            }
+                            else
+                                document.getElementById("em").value = sortedcompleted[x].POCEmail;
                             document.getElementById("spanforn").innerHTML = sortedcompleted[x].POCPhoneNumber;
+                            if (sortedcompleted[x].POCPhoneNumber == "Not specified") {
+                                document.getElementById("en").value = "";
+                                document.getElementById("en").placeholder = "POC Phone Number";
+                            }
+                            else
+                                document.getElementById("en").value = sortedcompleted[x].POCPhoneNumber;
                             document.getElementById("spanforo").innerHTML = sortedcompleted[x].HowToCite;
+                            document.getElementById("eo").value = sortedcompleted[x].HowToCite;
                             document.getElementById("spanforlub").innerHTML = sortedcompleted[x].LastUpdatedBy;
+
                             document.getElementById("spanforlut").innerHTML = sortedcompleted[x].LastUpdatedTime;
                             document.getElementById("updatePanelButton").onclick = function () { updateData(sortedcompleted[x].UID) };
                             document.getElementById("updateCancelButton").onclick = function () { $('.modal_editUpdate').hide(); };
-
-
                             break;
                         }
                     }
@@ -640,7 +667,7 @@ function populatePanelByCountry(which) {
                         document.getElementById("deletelink").onclick = function () { deleteData(sortedcompleted[x].UID) } ;
                         document.getElementById("deletelink").style.display = "inline";
 
-                        document.getElementById("unapprovelink").onclick = function () { unapproveData(sortedcompleted[x].UID) };
+                        document.getElementById("unapprovelink").onclick = function () { unapproveData(sortedcompleted[x].UID); };
                         document.getElementById("unapprovelink").style.display = "inline";
 
                  }
@@ -663,7 +690,7 @@ function populatePanelByCountry(which) {
 
                 }
 
-                clone.getElementsByClassName('articlelink')[0].innerHTML = sortedcompleted[i].Title;
+                clone.getElementsByClassName('articlelink')[0].innerHTML = decodeURIComponent(sortedcompleted[i].Title);
                 clone.getElementsByClassName('articlelink')[0].className = clone.getElementsByClassName('articlelink')[0].className + " planned";
                 clone.getElementsByClassName('inventoryDataSource')[0].innerHTML = "Data Source: " + sortedcompleted[i].DataSource;
                 clone.getElementsByClassName('inventoryMapYear')[0].innerHTML = "Year: " + sortedcompleted[i].MapYear;
@@ -683,13 +710,13 @@ function populatePanelByCountry(which) {
 
                 document.getElementById('uid_hidden').innerHTML = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].onclick = function () {
-                                      
+                    
 
                     var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
-                            document.getElementById("spanfora").innerHTML = sortedcompleted[x].Title;
-                            document.getElementById("spanfora0").innerHTML = "View Data for " + sortedcompleted[x].Title;
+                            document.getElementById("spanfora").innerHTML = decodeURIComponent(sortedcompleted[x].Title);
+                            document.getElementById("spanfora0").innerHTML = "View Data for " + decodeURIComponent(sortedcompleted[x].Title);
                             document.getElementById("ea").value = sortedcompleted[x].Title;
                             document.getElementById("spanforb").innerHTML = sortedcompleted[x].CategoryName;
                             document.getElementById("eb").value = sortedcompleted[x].CategoryName;
@@ -724,9 +751,19 @@ function populatePanelByCountry(which) {
                             document.getElementById("spanforl").innerHTML = sortedcompleted[x].PointOfContactName;
                             document.getElementById("el").value = sortedcompleted[x].PointOfContactName;
                             document.getElementById("spanform").innerHTML = sortedcompleted[x].POCEmail;
-                            document.getElementById("em").value = sortedcompleted[x].POCEmail;
+                            if (sortedcompleted[x].POCEmail == "Not specified") {
+                                document.getElementById("em").value = "";
+                                document.getElementById("em").placeholder = "POC Email address";
+                            }
+                            else
+                                document.getElementById("em").value = sortedcompleted[x].POCEmail;
                             document.getElementById("spanforn").innerHTML = sortedcompleted[x].POCPhoneNumber;
-                            document.getElementById("en").value = sortedcompleted[x].POCPhoneNumber;
+                            if (sortedcompleted[x].POCPhoneNumber == "Not specified") {
+                                document.getElementById("en").value = "";
+                                document.getElementById("en").placeholder = "POC Phone Number";
+                            }
+                            else
+                                document.getElementById("en").value = sortedcompleted[x].POCPhoneNumber;
                             document.getElementById("spanforo").innerHTML = sortedcompleted[x].HowToCite;
                             document.getElementById("eo").value = sortedcompleted[x].HowToCite;
                             document.getElementById("spanforlub").innerHTML = sortedcompleted[x].LastUpdatedBy;
@@ -768,7 +805,7 @@ function populatePanelByCountry(which) {
                     $('#etable').hide();
                 }
 
-                clone.getElementsByClassName('articlelink')[0].innerHTML = sortedcompleted[i].Title;
+                clone.getElementsByClassName('articlelink')[0].innerHTML = decodeURIComponent(sortedcompleted[i].Title);
                 clone.getElementsByClassName('articlelink')[0].className = clone.getElementsByClassName('articlelink')[0].className + " inprogress";
                 clone.getElementsByClassName('inventoryDataSource')[0].innerHTML = "Data Source: " + sortedcompleted[i].DataSource;
                 clone.getElementsByClassName('inventoryMapYear')[0].innerHTML = "Year: " + sortedcompleted[i].MapYear;
@@ -780,19 +817,23 @@ function populatePanelByCountry(which) {
                 clone = null;
             }
             else {//completed 
+             
                 var clone = document.getElementById('templateholder').childNodes[1].cloneNode(true);
+                gclone = clone;
                 if (!(completedCounter % 2 == 0)) {
                     clone.className = clone.className + " odd";
                 }
                 completedCounter++;
                 document.getElementById('uid_hidden').innerHTML = sortedcompleted[i].UID;
                 clone.getElementsByClassName('articlelink')[0].id = sortedcompleted[i].UID;
-                clone.getElementsByClassName('articlelink')[0].onclick = function () {                        
+               
+                clone.getElementsByClassName('articlelink')[0].onclick = function () {
+                  
                     var a = "", b = "", c = "", d = "", e = "", f = "", g = "", h = "", k = "", l = "", m = "", n = "", o = "",lub="",lut="";
                     for (var x = 0; x < sortedcompleted.length; x++) {
                         if (sortedcompleted[x].UID == this.id && sortedcompleted[x].CategoryName == document.getElementById("accordionTitle").innerHTML) {
-                            document.getElementById("spanfora").innerHTML = sortedcompleted[x].Title;
-                            document.getElementById("spanfora0").innerHTML = "View Data for " + sortedcompleted[x].Title;
+                            document.getElementById("spanfora").innerHTML = decodeURIComponent(sortedcompleted[x].Title);
+                            document.getElementById("spanfora0").innerHTML = "View Data for " + decodeURIComponent(sortedcompleted[x].Title);
                             document.getElementById("ea").value = sortedcompleted[x].Title;
                             document.getElementById("spanforb").innerHTML = sortedcompleted[x].CategoryName;
                             document.getElementById("eb").value = sortedcompleted[x].CategoryName;
@@ -827,9 +868,19 @@ function populatePanelByCountry(which) {
                             document.getElementById("spanforl").innerHTML = sortedcompleted[x].PointOfContactName;
                             document.getElementById("el").value = sortedcompleted[x].PointOfContactName;
                             document.getElementById("spanform").innerHTML = sortedcompleted[x].POCEmail;
+                            if (sortedcompleted[x].POCEmail == "Not specified"){
+                                document.getElementById("em").value = "";
+                            document.getElementById("em").placeholder = "POC Email address";
+                        }
+                        else
                             document.getElementById("em").value = sortedcompleted[x].POCEmail;
                             document.getElementById("spanforn").innerHTML = sortedcompleted[x].POCPhoneNumber;
-                            document.getElementById("en").value = sortedcompleted[x].POCPhoneNumber;
+                            if (sortedcompleted[x].POCPhoneNumber == "Not specified") {
+                                document.getElementById("en").value = "";
+                                document.getElementById("en").placeholder = "POC Phone Number";
+                            }
+                            else
+                                document.getElementById("en").value = sortedcompleted[x].POCPhoneNumber;
                             document.getElementById("spanforo").innerHTML = sortedcompleted[x].HowToCite;
                             document.getElementById("eo").value = sortedcompleted[x].HowToCite;
                             document.getElementById("spanforlub").innerHTML = sortedcompleted[x].LastUpdatedBy;
@@ -870,8 +921,9 @@ function populatePanelByCountry(which) {
                     $('#dtable').show();
                     $('#etable').hide();
                 }
-              
-                clone.getElementsByClassName('articlelink')[0].innerHTML = sortedcompleted[i].Title;
+          
+                
+                clone.getElementsByClassName('articlelink')[0].innerHTML = decodeURIComponent(sortedcompleted[i].Title);
                 clone.getElementsByClassName('articlelink')[0].className = clone.getElementsByClassName('articlelink')[0].className + " completed";
                 clone.getElementsByClassName('inventoryDataSource')[0].innerHTML = "Data Source: "+sortedcompleted[i].DataSource;
                 clone.getElementsByClassName('inventoryMapYear')[0].innerHTML = "Year: "+sortedcompleted[i].MapYear;
@@ -905,7 +957,7 @@ function populatePanelByCountry(which) {
 
 
 }
-
+var gclone;
 //to set the value of drop down list when the edit(pencil) button is clicked
 function setValue(obj, val) {
     if (parseInt(val) == 1) {
@@ -939,6 +991,8 @@ function setValue(obj, val) {
 function editData(n) {
     setValue(document.getElementById("eg"), n);
     $('#editlink').hide();
+    $('#deletelink').hide();
+    $('#unapprovelink').hide();
     $('#dtable').hide();
     $('#etable').show();
 }
@@ -1074,6 +1128,7 @@ function isHidden(el) {
     var style = window.getComputedStyle(el);
     return (style.display === 'none')
 }
+
 //validates the phone number field
 function validatePhone(fld) {
     var valid = true;

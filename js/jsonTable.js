@@ -35,7 +35,7 @@ function CreateTableFromJSONRequests(uid_arr, country) {
     for (var i = 0; i < data.length; i++) {
         if (country == "Choose a country" && contains(uid_arr, data[i].UID)) {
                 tr = table.insertRow(-1);
-                tr.id = data[i].UID.toString();
+                tr.id = data[i].UID.toString()+"temp";
                 for (var j = 0; j < 3; j++) {
                     var tabCell = tr.insertCell(-1);
                     tabCell.class = "xx";
@@ -43,18 +43,18 @@ function CreateTableFromJSONRequests(uid_arr, country) {
                     var coun = data[i].CategoryName.replace(' "', '');
                     var inp = data[i].Status.replace('" ', '');
                     var tim = data[i].LastUpdatedTime.replace('" ', '');
-
+                    var pocname = data[i].PointOfContactName.toString().replace(/['"]+/g, '');
                     if (j == 0) {
-                        tabCell.innerHTML = '<button  style="display:contents;background:transparent;background-color:none;" onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + data[i].MapYear + '","' + data[i].Organization + '","' + data[i].MapYear + '","' + data[i].NumberOfClasses + '","' + data[i].DataSource + '","' + escape(inp) + '","' + data[i].ReleasedYear + '","' + data[i].Notes + '","' + data[i].PointOfContactName + '","' + data[i].POCEmail + '","' + data[i].POCPhoneNumber + '","' + data[i].HowToCite + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")><img height="100%" src="approve.png"/></button><button style="display:contents;sbackground:transparent;background-color:none;" onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
+                        tabCell.innerHTML = '<button  style="display:contents;background:transparent;background-color:none;" onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + escape(data[i].MapYear) + '","' + escape(data[i].Organization) + '","' + data[i].NumberOfClasses + '","' + escape(data[i].DataSource) + '","' + escape(inp) + '","' + data[i].ReleasedYear + '","' + escape(data[i].Notes) + '","' + escape(pocname) + '","' +escape( data[i].POCEmail) + '","' + escape(data[i].POCPhoneNumber) + '","' + escape(data[i].HowToCite) + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")><img height="100%" src="approve.png"/></button><button style="display:contents;sbackground:transparent;background-color:none;" onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
                     }
-                    else if (j == 2) tabCell.innerHTML = '<a href="#" onclick=ViewDataFromRequests("' +data[i].UID+ '")>' + data[i][col[j]] + '</a>';
+                    else if (j == 2) tabCell.innerHTML = '<a href="#" onclick=ViewDataFromRequests("' + data[i].UID + '")>' + decodeURIComponent(data[i][col[j]]) + '</a>';
                     else tabCell.innerHTML = data[i][col[j]];
                 }
             
         }
         else if (data[i].CategoryName == country && contains(uid_arr,data[i].UID)) {
             tr = table.insertRow(-1);
-            tr.id = data[i].UID.toString();
+            tr.id = data[i].UID.toString()+"temp";
             for (var j = 0; j < 3; j++) {
                 var tabCell = tr.insertCell(-1);
                 tabCell.class = "xx";
@@ -62,8 +62,10 @@ function CreateTableFromJSONRequests(uid_arr, country) {
                 var coun = data[i].CategoryName.replace(' "', '');
                 var inp = data[i].Status.replace(' "', '');
                 var tim = data[i].LastUpdatedTime.replace('" ', '');
+                var pocname = data[i].PointOfContactName.toString().replace(/['"]+/g, '');
+
                 if (j == 0) {
-                    tabCell.innerHTML = '<button  style="display:contents;background:transparent;background-color:none;" onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + data[i].MapYear + '","' + data[i].Organization + '","' + data[i].MapYear + '","' + data[i].NumberOfClasses + '","' + data[i].DataSource + '","' + escape(inp) + '","' + data[i].ReleasedYear + '","' + data[i].Notes + '","' + data[i].PointOfContactName + '","' + data[i].POCEmail + '","' + data[i].POCPhoneNumber + '","' + data[i].HowToCite + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")><img height="100%" src="approve.png"/></button><button  style="display:contents;background:transparent;background-color:none;" onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
+                    tabCell.innerHTML = '<button  style="display:contents;background:transparent;background-color:none;" onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + escape(data[i].MapYear) + '","' + escape(data[i].Organization) + '","' + data[i].NumberOfClasses + '","' + escape(data[i].DataSource) + '","' + escape(inp) + '","' + data[i].ReleasedYear + '","' + escape(data[i].Notes) + '","' + escape(pocname)+ '","' + escape(data[i].POCEmail) + '","' + escape(data[i].POCPhoneNumber) + '","' + escape(data[i].HowToCite) + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")><img height="100%" src="approve.png"/></button><button  style="display:contents;background:transparent;background-color:none;" onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
                 }
                 else if (j == 2) tabCell.innerHTML = '<a href="#" onclick=ViewDataFromRequests("' +data[i].UID+ '")>' + data[i][col[j]] + '</a>';
                 else tabCell.innerHTML = data[i][col[j]];

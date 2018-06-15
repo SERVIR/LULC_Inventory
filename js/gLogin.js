@@ -129,7 +129,7 @@ function signOut() {
         $('#ufullname').html("");
     });
    // window.location.href = "http://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://servirglobal.net/MapResources/LULC_Africa/Home.aspx";
-    window.location.href = "http://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue="+ window.location.protocol + "//" + window.location.host + "/LULC_Map/Home.aspx";
+    window.location.href = "http://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue="+ window.location.protocol + "//" + window.location.host + "/Home.aspx";
 }
 
 function ViewDataFromRequests(_uid) {

@@ -23,7 +23,7 @@
         // http://www.sitepen.com/blog/2013/06/20/dojo-faq-what-is-the-difference-packages-vs-paths-vs-aliases/
         var dojoConfig = {
             paths: {
-                extras: location.pathname.replace(/\/[^/]+$/, "") + "/extras"
+                extras:"https://lulcafrica.servirglobal.net/extras"// location.pathname.replace(/\/[^/]+$/, "") + "/extras"
             }
         };
         var adminLoggedIn = 0;

@@ -1,4 +1,4 @@
-var completedArrayTemp = [
+var discardedArray = [
   {
     "UID": 999,
     "Title": "Land cover / vegetation Map of Libya",
@@ -22,5 +22,4 @@ var completedArrayTemp = [
     "LastUpdatedBy": "",
     "LastUpdatedTime": "2018-5-15 14:16:34",
     "Extent": "Full Country"
-  }
-];
+  }];

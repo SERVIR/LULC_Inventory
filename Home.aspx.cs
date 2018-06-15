@@ -106,6 +106,40 @@ public partial class Home : System.Web.UI.Page
 
     }
     [System.Web.Services.WebMethod]
+    public static void updateDiscards(string s)
+    {
+        System.IO.StreamReader myFile =
+        new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/discards.js"));
+        string myString = myFile.ReadToEnd();
+        myFile.Close();
+        Page page = (Page)HttpContext.Current.Handler;
+
+        JToken jt = JToken.Parse(s);
+        string formatted = jt.ToString(Formatting.Indented);
+
+
+        //COMPLETED ARRAY JSON STRING
+        string STR = myString;
+        string existing = "";
+        if (STR.Length < 26)
+        {
+            existing = "var discardedArray = [" + formatted + "];";
+        }
+        else
+        {
+            STR = STR.Substring(21);
+            STR = STR.TrimEnd('\r', '\n');
+            STR = STR.Remove(STR.Length - 1);
+            STR = STR.Remove(STR.Length - 1);
+            existing = "var discardedArray = " + STR + ", " + formatted + "];";
+        }
+        StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/discards.js"));
+        file.WriteLine(existing);
+
+        file.Close();
+
+    }
+    [System.Web.Services.WebMethod]
     public static void updateProblemJson(string pid,string problem,string status,string email)
     {
         System.IO.StreamReader myFile =
@@ -224,7 +258,7 @@ public partial class Home : System.Web.UI.Page
     }
 
     [System.Web.Services.WebMethod]
-    public static void updateExistingData(string uid, string title, string mapyear, string org, int cls, string ds, string status, int release, string notes, string poc, string email, string phnum, string cite,string lub,string lut)
+    public static void updateExistingData(string uid, string title, string mapyear, string org, int cls, string ds, string status,string extent, int release, string notes, string poc, string email, string phnum, string cite,string lub,string lut)
     {
         System.IO.StreamReader myFile =
              new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArray.js"));
@@ -297,6 +331,38 @@ public partial class Home : System.Web.UI.Page
 
         StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/completedArrayTemp.js"));
         file.WriteLine("var completedArrayTemp = " + formatted + ";");
+
+        file.Close();
+
+    }
+    [System.Web.Services.WebMethod]
+    public static void DeleteFromDiscards(string uid)
+    {
+        System.IO.StreamReader myFile =
+             new System.IO.StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/js/discards.js"));
+        string myString = myFile.ReadToEnd();
+        myFile.Close();
+        Page page = (Page)HttpContext.Current.Handler;
+        string STR = myString;
+        STR = STR.Substring(21);
+        STR = STR.TrimEnd('\r', '\n');
+        STR = STR.Remove(STR.Length - 1);
+        dynamic data = JArray.Parse(STR) as JArray;
+        dynamic ndata = new JArray();
+        foreach (var d in data)
+        {
+            if ((d.UID).ToString() == uid)
+            {
+            }
+            else
+                ndata.Add(d);
+
+        }
+        JToken jt = JToken.Parse(ndata.ToString());
+        string formatted = jt.ToString(Formatting.Indented);
+
+        StreamWriter file = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/js/discards.js"));
+        file.WriteLine("var discardedArray = " + formatted + ";");
 
         file.Close();
 
@@ -465,13 +531,15 @@ public partial class Home : System.Web.UI.Page
 
                         d.NumberOfClasses[0]=Convert.ToInt32(rowlist[6]);
                         d.DataSource = rowlist[7];
-                        d.Status = rowlist[8];
-                        d.ReleasedYear = Convert.ToInt32(rowlist[9]);
-                        d.Notes = rowlist[10];
-                        d.PointOfContactName = rowlist[11];
-                        d.POCEmail = rowlist[12];
-                        d.POCPhoneNumber = rowlist[13];
-                        d.HowToCite = rowlist[14];
+                        d.Extent = rowlist[8];
+                        d.Status = rowlist[9];
+                       
+                        d.ReleasedYear = Convert.ToInt32(rowlist[10]);
+                        d.Notes = rowlist[11];
+                        d.PointOfContactName = rowlist[12];
+                        d.POCEmail = rowlist[13];
+                        d.POCPhoneNumber = rowlist[14];
+                        d.HowToCite = rowlist[15];
                         d.LastUpdatedBy = email;
                         d.LastUpdatedTime = time;
                     }
@@ -592,7 +660,7 @@ public partial class Home : System.Web.UI.Page
                 {
 
 
-                    d = JsonConvert.DeserializeObject("{  'UID':0,'Title':'','CategoryName':'','CategoryID':[],'MapYear':'','Organization':'','NumberOfClasses':[],'DataSource':'','Status':'','ReleasedYear':0,'Notes':'','PointOfContactName':'','POCEmail':'','POCPhoneNumber':'','HowToCite':'' }");
+                    d = JsonConvert.DeserializeObject("{  'UID':0,'Title':'','CategoryName':'','CategoryID':[],'MapYear':'','Organization':'','NumberOfClasses':[],'DataSource':'','Extent':'','Status':'','ReleasedYear':0,'Notes':'','PointOfContactName':'','POCEmail':'','POCPhoneNumber':'','HowToCite':'' }");
                     var now = DateTime.Now;
                     var zeroDate = DateTime.MinValue.AddHours(now.Hour).AddMinutes(now.Minute).AddSeconds(now.Second).AddMilliseconds(now.Millisecond);
                     int uniqueId = (int)(zeroDate.Ticks / 10000);
@@ -607,13 +675,14 @@ public partial class Home : System.Web.UI.Page
 
                     d.NumberOfClasses.Add(Convert.ToInt32(rowlist[5]));
                     d.DataSource = rowlist[6];
-                    d.Status = rowlist[7];
-                    d.ReleasedYear = Convert.ToInt32(rowlist[8]);
-                    d.Notes = rowlist[9];
-                    d.PointOfContactName = rowlist[10];
-                    d.POCEmail = rowlist[11];
-                    d.POCPhoneNumber = rowlist[12];
-                    d.HowToCite = rowlist[13].Trim().Replace("\r", string.Empty);
+                    d.Extent = rowlist[7];
+                    d.Status = rowlist[8];
+                    d.ReleasedYear = Convert.ToInt32(rowlist[9]);
+                    d.Notes = rowlist[10];
+                    d.PointOfContactName = rowlist[11];
+                    d.POCEmail = rowlist[12];
+                    d.POCPhoneNumber = rowlist[13];
+                    d.HowToCite = rowlist[14].Trim().Replace("\r", string.Empty);
                   
                     // if(o.CategoryName=="Libya")
                
@@ -629,19 +698,21 @@ public partial class Home : System.Web.UI.Page
                 d.NumberOfClasses = "0";
             if (rowlist[6] == "")
                 d.DataSource = "Not specified";
-            if (rowlist[8] == "")
+            if (rowlist[9] == "")
                 d.ReleasedYear = 0;
-            if (rowlist[9] == "" || rowlist[9] == null)
+            if (rowlist[10] == "" || rowlist[10] == null)
                 d.Notes = "Not specified";
-            if (rowlist[12] == "")
+            if (rowlist[13] == "")
                 d.POCPhoneNumber = "000-000-0000";
-            if (rowlist[13].Trim().Replace("\r", string.Empty) == "")
+            if (rowlist[14].Trim().Replace("\r", string.Empty) == "")
                 d.HowToCite = "Not specified";
-            if (rowlist[11] == "" || rowlist[11]=="undefined")
+            if (rowlist[12] == "" || rowlist[12]=="undefined")
                 d.POCEmail = "test@test.com";
-            if (rowlist[7] == "")
+            if (rowlist[8] == "")
                 d.Status = "Completed";
-            if (rowlist[10] == "")
+             if (rowlist[7] == "")
+                d.Extent = "Full Country";
+            if (rowlist[11] == "")
                 d.PointOfContactName = "Not specified";
         }
                 d.LastUpdatedBy = email;
@@ -703,7 +774,7 @@ public partial class Home : System.Web.UI.Page
         dynamic data = JArray.Parse(STR) as JArray;
 
         var sb = new StringBuilder();
-        sb.AppendLine("UID,Title,CountryName,CountryID,MapYear,Organization,NumberOfClasses,DataSource,Status,ReleasedYear,Notes,PointOfContactName,POCEmail,POCPhoneNumber,HowTocite");
+        sb.AppendLine("UID,Title,CountryName,CountryID,MapYear,Organization,NumberOfClasses,DataSource,Extent,Status,ReleasedYear,Notes,PointOfContactName,POCEmail,POCPhoneNumber,HowTocite");
      
         foreach (var o in data)
         {
@@ -728,9 +799,11 @@ public partial class Home : System.Web.UI.Page
                     o.POCEmail = "test@test.com";
                 if ((o.Status).ToString() == "")
                     o.Status = "Completed";
+                if ((o.Extent).ToString() == "")
+                    o.Extent = "Full Country";
                 if ((o.PointOfContactName).ToString() == "")
                     o.PointOfContactName = "Not specified";
-                sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", (o.UID).ToString(), (o.Title).ToString(), (o.CategoryName).ToString(), (o.CategoryID[0]).ToString(), (o.MapYear).ToString(), (o.Organization).ToString(), (o.NumberOfClasses[0]).ToString(), (o.DataSource).ToString(), (o.Status).ToString(), (o.ReleasedYear).ToString(), (o.Notes).ToString(), (o.PointOfContactName).ToString(), (o.POCEmail).ToString(), (o.POCPhoneNumber).ToString(), (o.HowToCite).ToString()));
+                sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", (o.UID).ToString(), (o.Title).ToString(), (o.CategoryName).ToString(), (o.CategoryID[0]).ToString(), (o.MapYear).ToString(), (o.Organization).ToString(), (o.NumberOfClasses[0]).ToString(), (o.DataSource).ToString(), (o.Extent).ToString(), (o.Status).ToString(), (o.ReleasedYear).ToString(), (o.Notes).ToString(), (o.PointOfContactName).ToString(), (o.POCEmail).ToString(), (o.POCPhoneNumber).ToString(), (o.HowToCite).ToString()));
             } }
        
         File.WriteAllText(page.Server.MapPath("~/files/GeneratedLULCData.csv"), sb.ToString());

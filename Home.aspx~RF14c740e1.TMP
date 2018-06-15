@@ -37,8 +37,6 @@
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
-                <script src="js/discards.js"></script>
-
     <script src="js/gLogin.js"></script>
     <script>
      
@@ -75,7 +73,6 @@
         function hidePanel() {
             document.getElementById("accordionholder").style.display = "none";
         }
-      
     </script>
     <script src="js/FileSaver.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -90,9 +87,9 @@
     <link href="css/sliderstyle2.css" rel="stylesheet" type="text/css" />
     <script src="js/jsonTable.js" type="text/javascript"></script>
     <link href="css/addAdmin.css" rel="stylesheet" type="text/css" />
-
+    
     <script>
-      
+
         var testvar;
         var gClusters;
         var email_str;
@@ -202,7 +199,6 @@
                             "NumberOfClasses": [],
                             "DataSource": document.getElementById("ds").value,
                             "Status": document.getElementById("dd").options[document.getElementById("dd").selectedIndex].text,
-                            "Extent": document.getElementById("dext").options[document.getElementById("dext").selectedIndex].text,
                             "ReleasedYear": parseInt(document.getElementById("release").value),
                             "Notes": document.getElementById("notes").innerHTML,
                             "PointOfContactName": document.getElementById("poc").value,
@@ -315,7 +311,7 @@
             }
         }
         //this method is called when admin clicks on "Approve" button in ViewRequests
-        function approveData(uid, title, catname, catid, mapyear, org, cls, ds, status, extent,release, notes, poc, email, phnum, cite, lub,lut) {
+        function approveData(uid, title, catname, catid, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite, lub,lut) {
             var newData = {
                 "UID": uid,
                 "Title": decodeURIComponent(title),
@@ -325,8 +321,7 @@
                 "Organization": decodeURIComponent(org),
                 "NumberOfClasses": [],
                 "DataSource": decodeURIComponent(ds),
-                "Status": decodeURIComponent(status),
-                "Extent": decodeURIComponent(extent),
+                "Status":  decodeURIComponent(status),
                 "ReleasedYear": parseInt(release),
                 "Notes": decodeURIComponent(notes),
                 "PointOfContactName": decodeURIComponent(poc),
@@ -424,92 +419,11 @@
             populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
 
         }
-        function undoDiscard(uid, title, catname, catid, mapyear, org, cls, ds, status, extent, release, notes, poc, email, phnum, cite, lub, lut) {
-            var newData = {
-                "UID": uid,
-                "Title": decodeURIComponent(title),
-                "CategoryName": catname,
-                "CategoryID": [],
-                "MapYear": decodeURIComponent(mapyear),
-                "Organization": decodeURIComponent(org),
-                "NumberOfClasses": [],
-                "DataSource": decodeURIComponent(ds),
-                "Status": decodeURIComponent(status),
-                "Extent": decodeURIComponent(extent),
-                "ReleasedYear": parseInt(release),
-                "Notes": decodeURIComponent(notes),
-                "PointOfContactName": decodeURIComponent(poc),
-                "POCEmail": decodeURIComponent(email),
-                "POCPhoneNumber": decodeURIComponent(phnum),
-                "HowToCite": decodeURIComponent(cite),
-                "LastUpdatedBy": lub,
-                "LastUpdatedTime": decodeURIComponent(lut)
-
-            }
-                   newData["CategoryID"].push(parseInt(catid));
-            newData["NumberOfClasses"].push(parseInt(cls));
-
-
-            var str = JSON.stringify(newData);
-            document.getElementById('<%=hdn.ClientID%>').value = str;
-            removeFromObj(uid, discardedArray);
-
-            PageMethods.updateJsonTemp(document.getElementById('<%=hdn.ClientID%>').value);
-            PageMethods.DeleteFromDiscards(uid);
-            completedArrayTemp.push(newData);
-            var fl = 0;
-            if (newlyAdded.length == 0) fl = 1;
-            var recent = document.getElementById('uemail').innerHTML.split(':');
-            for (var i = 0; i < recent.length; i++) {
-                recent[i] = recent[i].trim();
-            }
-            var toAdd = {
-
-                "UID": uid,
-                "POCEmail": recent[1],
-                "FullName": document.getElementById('ufullname').innerHTML
-            }
-            PageMethods.updateNewlyAddedData(fl, JSON.stringify(toAdd));
-            newlyAdded.push(toAdd);
-            var row = document.getElementById(uid + "temp");
-            row.parentNode.removeChild(row);
-            alert("Record sent back to requests, go to View Requests tab to verify!");
-        }
-
         //this method is called when admin clicks on "Discard" button in ViewRequests
-        function discardData(uid, title, catname, catid, mapyear, org, cls, ds, status, extent,release, notes, poc, email, phnum, cite, lub,lut) {
-            var newData = {
-                "UID": uid,
-                "Title": decodeURIComponent(title),
-                "CategoryName": catname,
-                "CategoryID": [],
-                "MapYear": decodeURIComponent(mapyear),
-                "Organization": decodeURIComponent(org),
-                "NumberOfClasses": [],
-                "DataSource": decodeURIComponent(ds),
-                "Status": decodeURIComponent(status),
-                "Extent": decodeURIComponent(extent),
-                "ReleasedYear": parseInt(release),
-                "Notes": decodeURIComponent(notes),
-                "PointOfContactName": decodeURIComponent(poc),
-                "POCEmail": decodeURIComponent(email),
-                "POCPhoneNumber": decodeURIComponent(phnum),
-                "HowToCite": decodeURIComponent(cite),
-                "LastUpdatedBy": lub,
-                "LastUpdatedTime": decodeURIComponent(lut)
-
-            }
-
-            newData["CategoryID"].push(parseInt(catid));
-            newData["NumberOfClasses"].push(parseInt(cls));
-            discardedArray.push(newData);
-
-            var str = JSON.stringify(newData);
-            document.getElementById('<%=hdn.ClientID%>').value = str;
-            PageMethods.updateDiscards(document.getElementById('<%=hdn.ClientID%>').value);
+        function discardData(uid) {
             PageMethods.DeleteFromnewlyAddedData(uid);
             PageMethods.DeleteFromTemp(uid);
-            $('#statusMsgDiscard').html("<b style='color:red'>Discarded record with UID " + uid + "</b>");
+            $('#statusMsg').html("<b style='color:red'>Discarded record with UID " + uid + "</b>");
             removeFromObj(uid, newlyAdded);
             removeFromObj(uid, completedArrayTemp);
             map.removeLayer(map.getLayer("completed"));
@@ -521,7 +435,7 @@
             completed = [];
             total = [];
             expandcompletedArray();
-            var row = document.getElementById(uid+"temp");
+            var row = document.getElementById(uid);
             row.parentNode.removeChild(row);
             gClusters(completedArray, 50);
             populatePanelByCountry(document.getElementById("ctry_hidden").innerHTML);
@@ -673,8 +587,6 @@
             var cls = document.getElementById("ee").value;
             var ds = document.getElementById("ef").value;
             var status = document.getElementById("eg").options[document.getElementById("eg").selectedIndex].text;
-            var extent = document.getElementById("eext").options[document.getElementById("eext").selectedIndex].text;
-
             var release = document.getElementById("eh").value;
             var notes = document.getElementById("ek").value;
             var poc = document.getElementById("el").value;
@@ -697,7 +609,6 @@
                         completedArray[i].NumberOfClasses = 0;
                     completedArray[i].DataSource = ds;
                     completedArray[i].Status = status;
-                    completedArray[i].Extent = extent;
                     if (!isNaN(release))
                         completedArray[i].ReleasedYear = parseInt(release);
                     else
@@ -714,7 +625,7 @@
             }
             if (isNaN(cls)) cls = 0;
             if (isNaN(release)) release = 0;
-            PageMethods.updateExistingData(document.getElementById('<%=hdnData.ClientID%>').value, title, mapyear, org, cls, ds, status,extent, release, notes, poc, email, phnum, cite,lub,lut);
+            PageMethods.updateExistingData(document.getElementById('<%=hdnData.ClientID%>').value, title, mapyear, org, cls, ds, status, release, notes, poc, email, phnum, cite,lub,lut);
             map.removeLayer(map.getLayer("completed"));
             map.removeLayer(map.getLayer("planned"));
             map.removeLayer(map.getLayer("inprogress"));
@@ -767,7 +678,7 @@
 
 
         }
-  
+
     </script>
    
     <script type="text/javascript">  
@@ -1543,7 +1454,7 @@
                     <div id="addmore">
                         <span id="accordionTitle" class="accordionTitle">My title</span>
                         <span id="addmorebutton" style="float: right">
-                            <button id="addmorebutton_link" title="Suggest Data" style="border:1px solid white;padding:7px;" onclick="addMoreData();" hidden>Suggest Data</button>
+                            <a href="#" id="addmorebutton_link" title="Add More" style="color: azure; font-size: 32px; padding-right: 10px; text-decoration: none" onclick="addMoreData();" hidden>+</a>
                         </span>
                     </div>
                     <div id="accordion" class="accordion">
@@ -1636,7 +1547,7 @@
                                         
                                         
                                         <br/><br/></td></tr>
-                                    <tr class="d"><td><b>Country: </b></td><td><span id="spanforb"></span></td></tr>
+                                    <tr class="d"><td><b>Country Name:</b></td><td><b><span id="spanforb"></span></b></td></tr>
                                     <tr class="d"><td><b>Status: </b></td><td><span id="spanforg"></span></td></tr>
                                     <tr class="d"><td><b>Title: </b></td><td> <span id="spanfora"></span></td></tr>
                           
@@ -1647,7 +1558,6 @@
                                     <tr class="d"><td><b>Organization: </b></td><td><span id="spanford"></span></td></tr>
                                     <tr class="d"><td><b>Number of Classes: </b></td><td><span id="spanfore"></span></td></tr>
                                     <tr class="d"><td><b>Data Source: </b></td><td><span id="spanforf"></span></td></tr>
-                                          <tr class="d"><td><b>Extent: </b></td><td><span id="spanforext"></span></td></tr>
                                     <tr class="d"><td><b>Notes: </b></td><td><span id="spanfork"></span></td></tr>
                                     <tr class="d"><td><b>Point of Contact: </b></td><td><span id="spanforl"></span></td></tr>
                                     <tr class="d"><td><b>POC Email: </b></td><td><span id="spanform"></span></td></tr>
@@ -1661,7 +1571,7 @@
                                  <tr class="d"><td colspan="2"><b>Last Updated Time:</b><label id="spanforlut" ></label></td></tr>
 
                                  <tr class="d"><td><b>Country Name:</b></td></tr><tr><td><input id="eb" class="textbox" type="text" /></td></tr>
-                                 <tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg" class="status"> 
+                                 <tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eg"> 
                                   <option value="Completed">Completed</option> 
                                   <option value="In progress">In progress</option>
                                   <option value="Planned">Planned</option> 
@@ -1675,13 +1585,7 @@
                                 <tr class="d"><td><b>Organization: </b></td></tr><tr><td><textarea id="ed" cols="23" rows="4" class="textboxcite"></textarea></td></tr>
                                 <tr class="d"><td><b>Number of Classes: </b></td></tr><tr><td><input id="ee" class="textbox" type="text" /></td></tr>
                                 <tr class="d"><td><b>Data Source: </b></td></tr><tr><td><input id="ef" class="textbox" type="text"/></td></tr>
-                                 <tr class="d"><td><b>Status: </b></td></tr><tr><td> <select id="eext" class="status"> 
-                                  <option value="fullcountry">Full Country</option> 
-                                  <option value="countrysubset">Country Subset</option>
-                            
-
-                                 </select></td></tr>
-
+                                   
                                 <tr class="d"><td><b>Notes: </b></td></tr><tr><td><textarea id="ek" class="textboxcite" cols="23" rows="4"></textarea></td></tr>
                                 <tr class="d"><td><b>Point of Contact: </b></td></tr><tr><td><input id="el" class="textbox" type="text" /></td></tr>
                                 <tr class="d"><td><b>POC Email: </b></td></tr><tr><td><input id="em" class="textbox" type="email" /></td><td id="edit_Row2" style="padding:0;margin:0;color:red;" hidden><span id="edit_errorMsgPoc" ></span></td></tr>
@@ -1701,13 +1605,13 @@
         <!-- Modal content -->
         <div class="modal-content-addMoreData">
             <span class="close" onclick="closeR()">&times;</span>
-                                <h1 style="text-align:center;"><b>Suggest data</b></h1>
-            <p style="text-align:center;"><i>(An admin will approve this data set before it gets added)</i></p>
+                                <h1 style="text-align:center;"><b>Add data</b></h1>
 
            <div id="welcome-msg"> 
                                  <table class="addmore_table">
-<tr><td><b><span  id="ctry" class="ctry"></span></b></tr>
-           
+
+                                  <tr><td>Country:</td></tr><tr><td><span  id="ctry" class="ctry"></span></tr>
+
                                 <tr><td>Status:<br><span style="font-size:12px;">(Condition of development for the map)</span></td></tr><tr><td>
                                  <select id="dd" class="status"> 
                                  <option value="completed">Completed</option> 
@@ -1721,13 +1625,6 @@
                                  <tr><td>Organization:</td></tr><tr><td><textarea placeholder="Name of the institution and/or organization that generated the land cover map" id="org" cols="20" rows="1" class="textboxcite"></textarea></td></tr>
                                  <tr><td>Number of classes:</td></tr><tr><td><textarea placeholder="Number of land cover classes available in the map" id="cls" cols="20" rows="1" class="textboxcite"></textarea></td></tr>
                                  <tr><td>Data Source:</td></tr><tr><td><textarea placeholder="Original dataset on which the map is based (i.e. Landsat satellite images)" id="ds" cols="20" rows="1" class="textboxcite"></textarea></td></tr>
-                                 <tr><td>Extent:<br><span style="font-size:12px;">(Add additional details into the Notes section)</span></td></tr><tr><td>
-                                 <select id="dext" class="status"> 
-                                 <option value="fullcountry">Full Country</option> 
-                                 <option value="countrysubset">Country Subset</option> 
-
-                                 </select></td></tr>
-
                                  <tr><td>Notes:</td></tr><tr><td><textarea placeholder="Any additional information of relevance about the land cover map. If dataset available online please provide link here" id="notes" cols="20" rows="4" class="textboxcite"></textarea></td></tr>
                                  <tr><td>Point of contact:</td></tr><tr><td><input placeholder="Point of contact name" id="poc" class="textbox" type="email"/></td></tr>
                                  <tr><td>POC Email:</td></tr><tr><td><textarea placeholder="email of the person that can provide further information about this land cover map" id="email" cols="20" rows="1" class="textboxcite"></textarea></td><td id="Row2" style="padding:0;margin:0;color:red;" hidden><span id="errorMsgPoc" ></span></td></tr>
@@ -1749,10 +1646,9 @@
         <!-- Modal content -->
         <div class="modal-content-requests">
             <span class="close" onclick="closeR()">&times;</span>
-                                <h1 class="divheading"><b>View requests</b></h1><br /><br /><hr /><br />
+                                <h1 class="divheading"><b>View requests from users</b></h1><br /><br /><hr /><br />
 
-            <p>Click <a href="#" onclick="ViewDiscardedRequests()">here</a> to view discarded requests</p>
-              <p>View requests by country:
+            <p>Following are the requests.. click on a row to approve or discard!</p>
             <select id="selectCountry">
                 <option>Choose a country</option>
                 <option>Algeria</option>
@@ -1811,90 +1707,13 @@
 <option>Zimbabwe</option>
 
             </select>
-           </p><p>View requests by selecting an administrator:
-             <select id="selectUser">
+            <select id="selectUser">
                 <option>Choose a User</option>
 
-            </select></p>
+            </select>
                 <span id="statusMsg" style=" margin-left: 10%"></span>
             <p></p>
             <div id="reqs">
-            </div>
-
-        </div>
-
-    </div>
-        <!-- The Modal for requests -->
-    <div id="myModal_Discardedrequests" class="modal_discardedrequests" >
-
-        <!-- Modal content -->
-        <div class="modal-content-discardedrequests">
-            <span class="close" onclick="closeDR()">&times;</span>
-                                <h1 class="divheading"><b>View discarded requests</b></h1><br /><br /><hr /><br />
-
-              <p>View discarded requests by country:
-            <select id="selectCountryDiscard">
-                <option>Choose a country</option>
-                <option>Algeria</option>
-                <option>Angola</option>
-                <option>Benin</option>
-                <option>Botswana</option>
-                <option>Burkina Faso</option>
-                <option>Burundi</option>
-                <option>Cameroon</option>
-                <option>Cape Verde</option>
-                <option>Central African republic</option>
-                <option>Chad</option>
-                <option>Comoros</option>
-                <option>Cote Divoire</option>
-                <option>Democratic Congo</option>
-                <option>Djibouti</option>
-                <option>Egypt</option>
-                <option>Equatorial Guinea</option>
-                <option>Eritrea</option>
-                <option>Ethiopia</option>
-                <option>Gabon</option>
-                <option>Ghana</option>
-                <option>Guinea</option>
-                <option>Guinea Bissau</option>
-                <option>Kenya</option>
-                <option>Lesotho</option>
-                <option>Liberia</option>
-                <option>Libya</option>
-                <option>Madagascar</option>
-                <option>Malawi</option>
-                <option>Mali</option>
-                <option>Mauritania</option>
-                <option>Mauritius</option>
-                <option>Morocco</option>
-                <option>Mozambique</option>
-                <option>Namibia</option>
-                <option>Niger</option>
-                <option>Nigeria</option>
-                <option>Republic Congo</option>
-                <option>Rwanda</option>
-                <option>Sao Tome and Principe</option>
-                <option>Seychelles</option>
-                <option>Sierra Leone</option>
-                <option>Somalia</option>
-                <option>South Africa</option>
-                <option>South Sudan</option>
-                <option>Sudan</option>
-                <option>Swaziland</option>
-                <option>Tanzania</option>
-                                <option>The Gambia</option>
-                <option>Togo</option>
-                <option>Tunisia</option>
-                <option>Uganda</option>
-                <option>Western Sahara</option>
-                <option>Zambia</option>
-<option>Zimbabwe</option>
-
-            </select>
-           </p>
-                <span id="statusMsgDiscard" style=" margin-left: 10%"></span>
-            <p></p>
-            <div id="discards">
             </div>
 
         </div>
@@ -2166,8 +1985,7 @@
             </div>
 </div>
 <script>
-    document.getElementById("defaultOpen").click();
-    
+        document.getElementById("defaultOpen").click();
 </script>
 </body>
 </html>

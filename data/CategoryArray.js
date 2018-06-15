@@ -162,7 +162,7 @@
       ,
       {
           "CategoryID": "36",
-          "CategoryName": "Guinea-Bissau"
+          "CategoryName": "Guinea Bissau"
       },
       {
           "CategoryID": "37",

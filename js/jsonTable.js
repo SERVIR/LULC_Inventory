@@ -4,17 +4,7 @@ function CreateTableFromJSONRequests(uid_arr, country) {
 
     var col = [];
     col.push("Action");
-
-    for (var i = 0; i < data.length; i++) {
-        for (var key in data[i]) {
-           
-               
-                if (col.indexOf(key) === -1) {
-                    col.push(key);
-                }
-            
-        }
-    }
+    col.push("Title");
 
     // CREATE DYNAMIC TABLE.
     var table = document.createElement("table");
@@ -23,7 +13,7 @@ function CreateTableFromJSONRequests(uid_arr, country) {
 
     var tr = table.insertRow(-1);                   // TABLE ROW.
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 2; i++) {
         var th = document.createElement("th");      // TABLE HEADER.
         th.innerHTML = col[i];
         tr.appendChild(th);
@@ -36,39 +26,40 @@ function CreateTableFromJSONRequests(uid_arr, country) {
         if (country == "Choose a country" && contains(uid_arr, data[i].UID)) {
                 tr = table.insertRow(-1);
                 tr.id = data[i].UID.toString()+"temp";
-                for (var j = 0; j < 3; j++) {
+                for (var j = 0; j < 2; j++) {
                     var tabCell = tr.insertCell(-1);
                     tabCell.class = "xx";
                     var rep = data[i].Title.replace(' "', '');
+                    var extnt = data[i].Extent.replace(/['"]+/g, '');
+
                     var coun = data[i].CategoryName.replace(' "', '');
                     var inp = data[i].Status.replace('" ', '');
                     var tim = data[i].LastUpdatedTime.replace('" ', '');
                     var pocname = data[i].PointOfContactName.toString().replace(/['"]+/g, '');
                     if (j == 0) {
-                        tabCell.innerHTML = '<button  style="display:contents;background:transparent;background-color:none;" onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + escape(data[i].MapYear) + '","' + escape(data[i].Organization) + '","' + data[i].NumberOfClasses + '","' + escape(data[i].DataSource) + '","' + escape(inp) + '","' + data[i].ReleasedYear + '","' + escape(data[i].Notes) + '","' + escape(pocname) + '","' +escape( data[i].POCEmail) + '","' + escape(data[i].POCPhoneNumber) + '","' + escape(data[i].HowToCite) + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")><img height="100%" src="approve.png"/></button><button style="display:contents;sbackground:transparent;background-color:none;" onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
+                        tabCell.innerHTML = '<button onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + escape(data[i].MapYear) + '","' + escape(data[i].Organization) + '","' + data[i].NumberOfClasses + '","' + escape(data[i].DataSource) + '","' + escape(inp) + '","' + encodeURIComponent(extnt) + '","' + data[i].ReleasedYear + '","' + escape(data[i].Notes) + '","' + escape(pocname) + '","' + escape(data[i].POCEmail) + '","' + escape(data[i].POCPhoneNumber) + '","' + escape(data[i].HowToCite) + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")>Approve</button><button onclick=discardData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + escape(data[i].MapYear) + '","' + escape(data[i].Organization) + '","' + data[i].NumberOfClasses + '","' + escape(data[i].DataSource) + '","' + escape(inp) + '","' + encodeURIComponent(data[i].Extent) + '","' + data[i].ReleasedYear + '","' + escape(data[i].Notes) + '","' + escape(pocname) + '","' + escape(data[i].POCEmail) + '","' + escape(data[i].POCPhoneNumber) + '","' + escape(data[i].HowToCite) + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")>Discard</button>';
                     }
-                    else if (j == 2) tabCell.innerHTML = '<a href="#" onclick=ViewDataFromRequests("' + data[i].UID + '")>' + decodeURIComponent(data[i][col[j]]) + '</a>';
-                    else tabCell.innerHTML = data[i][col[j]];
+                    else if (j == 1) tabCell.innerHTML = '<a href="#" onclick=ViewDataFromRequests("' + data[i].UID + '")>' + decodeURIComponent(data[i][col[j]]) + '</a>';
                 }
             
         }
         else if (data[i].CategoryName == country && contains(uid_arr,data[i].UID)) {
             tr = table.insertRow(-1);
             tr.id = data[i].UID.toString()+"temp";
-            for (var j = 0; j < 3; j++) {
+            for (var j = 0; j < 2; j++) {
                 var tabCell = tr.insertCell(-1);
                 tabCell.class = "xx";
                 var rep = data[i].Title.replace(/['"]+/g, '');
+                var extnt = data[i].Extent.replace(/['"]+/g, '');
                 var coun = data[i].CategoryName.replace(' "', '');
                 var inp = data[i].Status.replace(' "', '');
                 var tim = data[i].LastUpdatedTime.replace('" ', '');
                 var pocname = data[i].PointOfContactName.toString().replace(/['"]+/g, '');
 
                 if (j == 0) {
-                    tabCell.innerHTML = '<button  style="display:contents;background:transparent;background-color:none;" onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + escape(data[i].MapYear) + '","' + escape(data[i].Organization) + '","' + data[i].NumberOfClasses + '","' + escape(data[i].DataSource) + '","' + escape(inp) + '","' + data[i].ReleasedYear + '","' + escape(data[i].Notes) + '","' + escape(pocname)+ '","' + escape(data[i].POCEmail) + '","' + escape(data[i].POCPhoneNumber) + '","' + escape(data[i].HowToCite) + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")><img height="100%" src="approve.png"/></button><button  style="display:contents;background:transparent;background-color:none;" onclick=discardData("' + data[i].UID + '")><img height="100%" src="discard.png"/></button>';
+                    tabCell.innerHTML = '<button onclick=approveData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + escape(data[i].MapYear) + '","' + escape(data[i].Organization) + '","' + data[i].NumberOfClasses + '","' + escape(data[i].DataSource) + '","' + escape(inp) + '","' + encodeURIComponent(extnt) + '","' + data[i].ReleasedYear + '","' + escape(data[i].Notes) + '","' + escape(pocname) + '","' + escape(data[i].POCEmail) + '","' + escape(data[i].POCPhoneNumber) + '","' + escape(data[i].HowToCite) + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")>Approve</button><button onclick=discardData("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + escape(data[i].MapYear) + '","' + escape(data[i].Organization) + '","' + data[i].NumberOfClasses + '","' + escape(data[i].DataSource) + '","' + escape(inp) + '","' + encodeURIComponent(data[i].Extent) + '","' + data[i].ReleasedYear + '","' + escape(data[i].Notes) + '","' + escape(pocname) + '","' + escape(data[i].POCEmail) + '","' + escape(data[i].POCPhoneNumber) + '","' + escape(data[i].HowToCite) + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")>Discard</button>';
                 }
-                else if (j == 2) tabCell.innerHTML = '<a href="#" onclick=ViewDataFromRequests("' +data[i].UID+ '")>' + data[i][col[j]] + '</a>';
-                else tabCell.innerHTML = data[i][col[j]];
+                else if (j == 1) tabCell.innerHTML = '<a href="#" onclick=ViewDataFromRequests("' +data[i].UID+ '")>' + data[i][col[j]] + '</a>';
             }
         }
   
@@ -79,6 +70,80 @@ function CreateTableFromJSONRequests(uid_arr, country) {
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
 }
+
+function CreateTableFromJSONDiscards(uid_arr, country) {
+    var data = discardedArray;
+
+    var col = [];
+    col.push("Action");
+    col.push("Title");
+
+    // CREATE DYNAMIC TABLE.
+    var table = document.createElement("table");
+    table.id = "jsonTabDiscard";
+    // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+    var tr = table.insertRow(-1);                   // TABLE ROW.
+
+    for (var i = 0; i < 2; i++) {
+        var th = document.createElement("th");      // TABLE HEADER.
+        th.innerHTML = col[i];
+        tr.appendChild(th);
+    }
+
+
+
+    // ADD JSON DATA TO THE TABLE AS ROWS.
+    for (var i = 0; i < data.length; i++) {
+        if (country == "Choose a country" && data[i].UID!=999) {
+            tr = table.insertRow(-1);
+            tr.id = data[i].UID.toString() + "temp";
+            for (var j = 0; j < 2; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.class = "xx";
+                var rep = data[i].Title.replace(' "', '');
+                var extnt = data[i].Extent.replace(/['"]+/g, '');
+
+                var coun = data[i].CategoryName.replace(' "', '');
+                var inp = data[i].Status.replace('" ', '');
+                var tim = data[i].LastUpdatedTime.replace('" ', '');
+                var pocname = data[i].PointOfContactName.toString().replace(/['"]+/g, '');
+                if (j == 0) {
+                    tabCell.innerHTML = '<button onclick=undoDiscard("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + escape(data[i].MapYear) + '","' + escape(data[i].Organization) + '","' + data[i].NumberOfClasses + '","' + escape(data[i].DataSource) + '","' + escape(inp) + '","' + data[i].ReleasedYear + '","' + escape(data[i].Notes) + '","' + escape(pocname) + '","' + escape(data[i].POCEmail) + '","' + escape(data[i].POCPhoneNumber) + '","' + escape(data[i].HowToCite) + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")>Resubmit</button>';
+                }
+                else if (j == 1) tabCell.innerHTML = '<a href="#" onclick=ViewDataFromDiscards("' + data[i].UID + '")>' + decodeURIComponent(data[i][col[j]]) + '</a>';
+            }
+
+        }
+        else if (data[i].CategoryName == country && data[i].UID!=999) {
+            tr = table.insertRow(-1);
+            tr.id = data[i].UID.toString() + "temp";
+            for (var j = 0; j < 2; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.class = "xx";
+                var rep = data[i].Title.replace(/['"]+/g, '');
+                var extnt = data[i].Extent.replace(/['"]+/g, '');
+
+                var coun = data[i].CategoryName.replace(' "', '');
+                var inp = data[i].Status.replace(' "', '');
+                var tim = data[i].LastUpdatedTime.replace('" ', '');
+                var pocname = data[i].PointOfContactName.toString().replace(/['"]+/g, '');
+
+                if (j == 0) {
+                    tabCell.innerHTML = '<button onclick=undoDiscard("' + data[i].UID + '","' + escape(rep) + '","' + escape(coun) + '","' + data[i].CategoryID + '","' + escape(data[i].MapYear) + '","' + escape(data[i].Organization) + '","' + data[i].NumberOfClasses + '","' + escape(data[i].DataSource) + '","' + escape(inp) + '","' + data[i].ReleasedYear + '","' + escape(data[i].Notes) + '","' + escape(pocname) + '","' + escape(data[i].POCEmail) + '","' + escape(data[i].POCPhoneNumber) + '","' + escape(data[i].HowToCite) + '","' + data[i].LastUpdatedBy + '","' + escape(tim) + '")>Resubmit</button>';
+                }
+                else if (j == 1) tabCell.innerHTML = '<a href="#" onclick=ViewDataFromDiscards("' + data[i].UID + '")>' + data[i][col[j]] + '</a>';
+            }
+        }
+
+    }
+
+    // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+    var divContainer = document.getElementById("discards");
+    divContainer.innerHTML = "";
+    divContainer.appendChild(table);
+}
+
 
 function CreateTableFromJSON(pid_arr) {
     var data = [];

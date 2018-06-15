@@ -21,6 +21,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "8bmcg420j9eji0smi6o",
@@ -44,6 +45,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "f7f2et51svsji0smnaj",
@@ -67,6 +69,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "aki9sl7l4f9ji0snidp",
@@ -90,6 +93,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "cs1t0ppsat7ji0snnq1",
@@ -113,6 +117,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "0wfacwyv6luji0snrqo",
@@ -136,6 +141,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "h2dzif9nuv8ji0so18b",
@@ -159,6 +165,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "3nbhtlnnon6ji0sodvi",
@@ -182,6 +189,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "u1qlbn5tugrji0sojzd",
@@ -205,6 +213,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "di1k1d2txgji0soo81",
@@ -228,6 +237,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "sv1vd01marji0sorsi",
@@ -251,6 +261,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "wupcw1ewvheji0sow0q",
@@ -274,6 +285,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "e3muq6npxmkji0soz7u",
@@ -297,6 +309,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "09uk94zvekbji0sp38y",
@@ -320,6 +333,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "y9wqpnsz4xji0sp6re",
@@ -343,6 +357,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "7jcgyul3e4lji0spb5l",
@@ -366,6 +381,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "jgdz3y93jrmji0spe8y",
@@ -389,6 +405,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "jx7o7qkhv2lji0spk4p",
@@ -412,6 +429,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "aseo77rscwsji0spn0a",
@@ -435,6 +453,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "nfz51l91f3ji0spqe9",
@@ -458,6 +477,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "t2mw6n58n5ji0spuiq",
@@ -484,6 +504,7 @@ var completedArray = [
       "HowTocite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "wl0ye6cljbbji0spxc2",
@@ -507,6 +528,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "zw09yz0h76nji0sq2bm",
@@ -530,6 +552,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "nxfivb67f9hji0sq5h5",
@@ -553,6 +576,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "79mfj5ghh8vji0sq8sa",
@@ -576,6 +600,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "9c12y13s0nvji0sqdzm",
@@ -599,6 +624,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "fh2n4956fkdji0sqhax",
@@ -622,6 +648,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "k6nhuebprgfji0sqnbl",
@@ -645,6 +672,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "j9hc0z3ekmfji0sqpwi",
@@ -668,6 +696,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "25137tajqvqiji0sqtwb",
@@ -691,6 +720,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "5x9z0z5mvpnji0sqymi",
@@ -714,6 +744,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "lfw36x4k3sdji0sr2d6",
@@ -737,6 +768,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "pbyypfjp27nji0sr6be",
@@ -760,6 +792,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "d7w29tqcpheji0srbfe",
@@ -783,6 +816,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "2iumvaemaeuji0srfhu",
@@ -806,6 +840,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "5jxmqbs55eqji0srjju",
@@ -829,6 +864,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "bqzbjatm6zeji0srmpf",
@@ -852,6 +888,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "3lpb6cbd8lyji0srrf6",
@@ -875,6 +912,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "9zedun44rcji0sruea",
@@ -898,6 +936,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "aubbeiyh6oji0sryfe",
@@ -921,6 +960,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "6evfcbsng4gji0ss2gr",
@@ -944,6 +984,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "ctyqywobasuji0ss6xm",
@@ -967,6 +1008,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "c3xoc2gre5ji0ssbro",
@@ -990,6 +1032,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "m2cyrm88tweji0sseiz",
@@ -1013,6 +1056,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "igp825ksuuji0ssh4j",
@@ -1036,6 +1080,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "cvlmcmqz6qfji0ssliz",
@@ -1059,6 +1104,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "1f0pfk7mfgiji0ssplu",
@@ -1082,6 +1128,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "55g392l5m9jji0sst65",
@@ -1103,6 +1150,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "x19j2bt2hhiji0sszpn",
@@ -1126,6 +1174,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "t9axobsn43mji0st79m",
@@ -1149,6 +1198,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "4anphujc71bji0stbwj",
@@ -1172,6 +1222,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "hfytj6rfbwaji0stevm",
@@ -1195,6 +1246,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "20q018ba0nkji0sti1v",
@@ -1218,6 +1270,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "za5dcbogmrji0stlx7",
@@ -1241,6 +1294,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "3j95e7udcoji0stpwj",
@@ -1264,6 +1318,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "1cwz346ehroji0sttrm",
@@ -1287,6 +1342,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "hhtoitt1kiji0stws3",
@@ -1310,6 +1366,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "jcplzkzyimkji0stzub",
@@ -1333,6 +1390,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "hvjlz8va82tji0su2i2",
@@ -1356,6 +1414,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "u237qxamlfji0su5h6",
@@ -1379,6 +1438,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "4lc3znvvs6wji0su9yb",
@@ -1402,6 +1462,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "9oauxh3u90lji0sucmq",
@@ -1425,6 +1486,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "khzo859ur9ji0suh3n",
@@ -1448,6 +1510,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "ni2pb2m2yygji0sulnn",
@@ -1471,6 +1534,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "gwkp53s1jq9ji0suo7v",
@@ -1494,6 +1558,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "xdare3lk4pji0suqus",
@@ -1517,6 +1582,7 @@ var completedArray = [
       "HowToCite": "Not specified",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-4 17:32:54"
+  , "Extent": "Full Country"
   },
   {
       "UID": "85sk05wus3dji0suuo3",
@@ -1540,6 +1606,7 @@ var completedArray = [
       "HowToCite": "Not specified",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-4 17:37:19"
+  , "Extent": "Full Country"
   },
   {
       "UID": "1vorjqu6dfjjji0suz0s",
@@ -1563,11 +1630,12 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "7297mpe6yiuji0sv283",
       "Title": "Afri2LC",
-      "CategoryName": "Gambia",
+      "CategoryName": "The Gambia",
       "CategoryID": [
         48
       ],
@@ -1586,6 +1654,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "axomi6442nji0sv617",
@@ -1609,6 +1678,7 @@ var completedArray = [
       "HowToCite": "Not specified",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-4 17:37:19"
+  , "Extent": "Full Country"
   },
   {
       "UID": "tpkdgis6k2ji0sv9a4",
@@ -1632,11 +1702,12 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "utkpyqc8qqcji0svdyk",
       "Title": "Afri2LC",
-      "CategoryName": "Guinea-Bissau",
+      "CategoryName": "Guinea Bissau",
       "CategoryID": [
         36
       ],
@@ -1655,6 +1726,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "d6pccttukdvji0svgi4",
@@ -1678,6 +1750,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "s5qorvmv99ji0svjtn",
@@ -1701,6 +1774,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "xxzo4l6dj49ji0svndo",
@@ -1724,6 +1798,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "psdujuu6s1lji0svqaj",
@@ -1747,6 +1822,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "zivs0t96swnji0svulw",
@@ -1770,6 +1846,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "ngj2rca7uji0svz3f",
@@ -1793,6 +1870,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "y28t73aoslsji0sw2ez",
@@ -1816,6 +1894,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "8t1ra2afkpiji0sw5ar",
@@ -1839,6 +1918,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "wl6ncpbdthaji0sw8aj",
@@ -1862,6 +1942,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "mi5dtagy35sji0swf43",
@@ -1885,6 +1966,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "0kh7vojg66pji0swie4",
@@ -1908,6 +1990,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "j24mi0bagfji0swmd7",
@@ -1931,6 +2014,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "076wt2p0v2w5ji0swpuz",
@@ -1954,6 +2038,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "36shnp5a9a3ji0swsz7",
@@ -1977,6 +2062,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "tasyse1klfji0swwpg",
@@ -2000,6 +2086,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "il9wkdvw2fji0swzb2",
@@ -2023,6 +2110,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "zexdxglg6qji0sx350",
@@ -2046,6 +2134,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "ohkydzixr7gji0sx72b",
@@ -2069,6 +2158,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "0bau6loj3rasji0sx9zf",
@@ -2092,6 +2182,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "vrlc418ztcdji0sxej7",
@@ -2115,6 +2206,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "trh4f6bs7wiji0sxj1n",
@@ -2138,6 +2230,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "o7z9g9d5jxji0sxlv0",
@@ -2161,6 +2254,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "smnzjgv3dyfji0sxqez",
@@ -2184,6 +2278,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "3stfdrm603bji0sxuiz",
@@ -2207,6 +2302,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "yc2tv0j6o3ji0sxxx8",
@@ -2230,6 +2326,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "bazglb7o0k6ji0sy0x7",
@@ -2253,11 +2350,12 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "82paehfz1yqji0sy4zw",
       "Title": "Afri2LC",
-      "CategoryName": "United Republic of Tanzania",
+      "CategoryName": "Tanzania",
       "CategoryID": [
         11
       ],
@@ -2276,6 +2374,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "so3d98omw0oji0sy7jn",
@@ -2299,6 +2398,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "m8nnk0njxwcji0syab7",
@@ -2322,6 +2422,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "pehjlm0g7mji0syg8z",
@@ -2345,6 +2446,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "sy7d9i7ndkfji0syjez",
@@ -2368,6 +2470,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "9dxvjudzhalji0syp8r",
@@ -2391,6 +2494,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "a992vl3n2wnji0syrvf",
@@ -2414,6 +2518,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "3a4j988ksytji0syv7n",
@@ -2437,6 +2542,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "h79kvtboc2iji0syzno",
@@ -2460,6 +2566,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "b1ayqk8sxpaji0sz2v7",
@@ -2483,111 +2590,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
-  },
-  {
-      "UID": "vbpde0qaqkji0sz5nn",
-      "Title": "LC4climate",
-      "CategoryName": "",
-      "CategoryID": "",
-      "MapYear": "2014",
-      "Organization": "US Department of Interior",
-      "NumberOfClasses": [
-        10
-      ],
-      "DataSource": "",
-      "Status": "In progress",
-      "ReleasedYear": 0,
-      "Notes": "",
-      "PointOfContactName": "Dr. Chandra Giri",
-      "POCEmail": "cgiri@usgs.gov",
-      "POCPhoneNumber": "",
-      "HowToCite": "",
-      "LastUpdatedBy": "githika.cs@gmail.com",
-      "LastUpdatedTime": "2018-6-1 14:19:0"
-  },
-  {
-      "UID": "03j7q6r3bcnxji0sz9q3",
-      "Title": "GlobeLand30",
-      "CategoryName": "",
-      "CategoryID": "",
-      "MapYear": "2010",
-      "Organization": "National Administration of Surveying, Mapping and Geoinformation (NASG)",
-      "NumberOfClasses": [
-        10
-      ],
-      "DataSource": "",
-      "Status": "In progress",
-      "ReleasedYear": 0,
-      "Notes": "",
-      "PointOfContactName": "",
-      "POCEmail": "",
-      "POCPhoneNumber": "",
-      "HowToCite": "",
-      "LastUpdatedBy": "githika.cs@gmail.com",
-      "LastUpdatedTime": "2018-6-1 14:19:0"
-  },
-  {
-      "UID": "vz3983d7meiji0szcp0",
-      "Title": "Africover",
-      "CategoryName": "",
-      "CategoryID": "",
-      "MapYear": "2000",
-      "Organization": "RCMRD",
-      "NumberOfClasses": [
-        32
-      ],
-      "DataSource": "",
-      "Status": "In progress",
-      "ReleasedYear": 0,
-      "Notes": "",
-      "PointOfContactName": "James Mumina",
-      "POCEmail": "mumina@rcmrd.org",
-      "POCPhoneNumber": "",
-      "HowToCite": "",
-      "LastUpdatedBy": "githika.cs@gmail.com",
-      "LastUpdatedTime": "2018-6-1 14:19:0"
-  },
-  {
-      "UID": "9fbm2pazaenji0szg4b",
-      "Title": "GlobCover",
-      "CategoryName": "",
-      "CategoryID": "",
-      "MapYear": "2005, 2009",
-      "Organization": "ESA",
-      "NumberOfClasses": [
-        22
-      ],
-      "DataSource": "",
-      "Status": "In progress",
-      "ReleasedYear": 0,
-      "Notes": "",
-      "PointOfContactName": "",
-      "POCEmail": "",
-      "POCPhoneNumber": "",
-      "HowToCite": "",
-      "LastUpdatedBy": "githika.cs@gmail.com",
-      "LastUpdatedTime": "2018-6-1 14:19:0"
-  },
-  {
-      "UID": "78ndit1vpbtji0szn6k",
-      "Title": "CM LC",
-      "CategoryName": "",
-      "CategoryID": "",
-      "MapYear": "2015",
-      "Organization": "AfriGEOSS",
-      "NumberOfClasses": [
-        30
-      ],
-      "DataSource": "Landsat TM, ETM & OLI",
-      "Status": "In progress",
-      "ReleasedYear": 0,
-      "Notes": "",
-      "PointOfContactName": "Fatima-Ezzahra El Ghandour",
-      "POCEmail": "f.ezzahra.elghandour@gmail.com",
-      "POCPhoneNumber": "",
-      "HowToCite": "",
-      "LastUpdatedBy": "githika.cs@gmail.com",
-      "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "5af3dzw6rxaji0szq5n",
@@ -2611,104 +2614,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
-  },
-  {
-      "UID": "j9a8d5iq6jji0szvc3",
-      "Title": "Occupation du sol ",
-      "CategoryName": "",
-      "CategoryID": "",
-      "MapYear": "2015",
-      "Organization": "Office National pour l'Environnement",
-      "NumberOfClasses": [],
-      "DataSource": "Landsat ",
-      "Status": "In progress",
-      "ReleasedYear": 0,
-      "Notes": "",
-      "PointOfContactName": "Mr Jean Roger Rakotoarijaona",
-      "POCEmail": "die.one@pnae.mg ",
-      "POCPhoneNumber": "",
-      "HowToCite": "",
-      "LastUpdatedBy": "githika.cs@gmail.com",
-      "LastUpdatedTime": "2018-6-1 14:19:0"
-  },
-  {
-      "UID": "8uyc78x4tfji0szy6j",
-      "Title": "Evolution de la couverture foresti�re ",
-      "CategoryName": "",
-      "CategoryID": "",
-      "MapYear": "2014",
-      "Organization": "Office National pour l'Environnement",
-      "NumberOfClasses": [],
-      "DataSource": "Landsat ",
-      "Status": "In progress",
-      "ReleasedYear": 0,
-      "Notes": "",
-      "PointOfContactName": "Mr Jean Roger Rakotoarijaona",
-      "POCEmail": "die.one@pnae.mg ",
-      "POCPhoneNumber": "",
-      "HowToCite": "",
-      "LastUpdatedBy": "githika.cs@gmail.com",
-      "LastUpdatedTime": "2018-6-1 14:19:0"
-  },
-  {
-      "UID": "frdkibfm57ji0t01or",
-      "Title": "Suivi de la d�forestation",
-      "CategoryName": "",
-      "CategoryID": "",
-      "MapYear": "2014",
-      "Organization": "Office National pour l'Environnement",
-      "NumberOfClasses": [],
-      "DataSource": "Landsat ",
-      "Status": "In progress",
-      "ReleasedYear": 0,
-      "Notes": "",
-      "PointOfContactName": "Mr Jean Roger Rakotoarijaona",
-      "POCEmail": "die.one@pnae.mg ",
-      "POCPhoneNumber": "",
-      "HowToCite": "",
-      "LastUpdatedBy": "githika.cs@gmail.com",
-      "LastUpdatedTime": "2018-6-1 14:19:0"
-  },
-  {
-      "UID": "ps09m5ap8mji0t0563",
-      "Title": "West Africa Land Use Land Cover 1975",
-      "CategoryName": "",
-      "CategoryID": "",
-      "MapYear": "1975",
-      "Organization": "United States Geological Survey (USGS)",
-      "NumberOfClasses": [
-        25
-      ],
-      "DataSource": "Landsat",
-      "Status": "Completed",
-      "ReleasedYear": 2016,
-      "Notes": "The project was carried out through the AGRHYMET Regional Center in Niamey, Niger, with partners from 17 participating countries, the Sahel Institute, and the U.S. Geological Survey (USGS), with major support from the U.S. Agency for International Development/West Africa (USAID/West Africa). ",
-      "PointOfContactName": "Not specified",
-      "POCEmail": "Not specified",
-      "POCPhoneNumber": "000-000-0000",
-      "HowToCite": "",
-      "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
-      "LastUpdatedBy": "githika.cs@gmail.com",
-      "LastUpdatedTime": "2018-6-1 14:19:0"
-  },
-  {
-      "UID": "nf0wvxr7wujidag7lq",
-      "Title": "Suivi et mod�lisation d'�mission de GES (activit�s REDD+)",
-      "CategoryName": "",
-      "CategoryID": "",
-      "MapYear": "2014",
-      "Organization": "Office National pour l'Environnement",
-      "NumberOfClasses": [],
-      "DataSource": "MODIS",
-      "Status": "In progress",
-      "ReleasedYear": 0,
-      "Notes": "Extraction des indices de v�g�tation (NDVI et EVI) et VCF",
-      "PointOfContactName": "Mr Jean Roger Rakotoarijaona",
-      "POCEmail": "die.one@pnae.mg ",
-      "POCPhoneNumber": "",
-      "HowToCite": "",
-      "LastUpdatedBy": "githika.cs@gmail.com",
-      "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "2r2t5t7x0qoji0t0ayu",
@@ -2732,6 +2638,7 @@ var completedArray = [
       "HowToCite": "",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "3chwh4ybjkhji0t0dn7",
@@ -2756,6 +2663,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-4 17:37:19"
+  , "Extent": "Full Country"
   },
   {
       "UID": "8scpvh8hv8ji0t0gtn",
@@ -2780,6 +2688,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-4 17:37:19"
+  , "Extent": "Full Country"
   },
   {
       "UID": "phvkrx2dcbhji0t0kir",
@@ -2803,6 +2712,7 @@ var completedArray = [
       "HowToCite": "Tappan",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-4 17:37:19"
+  , "Extent": "Full Country"
   },
   {
       "UID": "nrmfmfz2lrfji0t0p1v",
@@ -2827,6 +2737,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "abeatjrtuk6ji0t0t97",
@@ -2851,6 +2762,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "tjqx2lgp2yji0t0xkk",
@@ -2875,6 +2787,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "xvl24ejsfkji0t10mr",
@@ -2899,6 +2812,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "djd4n6sz8h4ji0t150c",
@@ -2923,6 +2837,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "a3ta3kzhr37ji0t1a1l",
@@ -2947,6 +2862,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "9cg362uzm4qji0t1nt7",
@@ -2971,6 +2887,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF\n",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "g61kpefhatji0t1r23",
@@ -2995,6 +2912,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "60221p7hzk3ji0t1uj0",
@@ -3019,6 +2937,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "6j8uyisciaaji0t1y9f",
@@ -3043,6 +2962,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF\n",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "gkox3bfga78ji0t270k",
@@ -3067,6 +2987,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "qsmd4tj4dqmji0t2isz",
@@ -3091,6 +3012,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "hb3dgar08asji0t2zm3",
@@ -3114,6 +3036,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "u041hjvromji0t33qc",
@@ -3138,6 +3061,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "cbyyrgtf8miji0t37tv",
@@ -3161,6 +3085,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "5wnvsc4lm5ji0t3ghv",
@@ -3184,6 +3109,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "w32k0g82c4ji0t3j84",
@@ -3207,6 +3133,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "9iw8csth9lhji0t3lws",
@@ -3230,6 +3157,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "rh6v5rqwxc9ji0t3peb",
@@ -3253,6 +3181,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "sp8syrha31ji0t3wl7",
@@ -3276,6 +3205,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "oqpsr8q178fji0t3zdg",
@@ -3299,6 +3229,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "ufpq4a2prveji0t4f7f",
@@ -3322,6 +3253,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "7bdauc463zhji0t4mtw",
@@ -3345,6 +3277,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "0ts3ykbstfzpji0t4sl0",
@@ -3368,6 +3301,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "txvq1ogff1rji0t53yk",
@@ -3391,6 +3325,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "k1q1zcbbr0qji0t577f",
@@ -3414,6 +3349,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "aktgk720reuji0t5ba4",
@@ -3438,6 +3374,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "nv4hm8zcduji0t5e99",
@@ -3461,6 +3398,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "xukdcq68gtiji0t5iqj",
@@ -3484,6 +3422,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "ia5zjzr2oxji0t5t6j",
@@ -3508,6 +3447,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "tv1z92j9hyhji0t640b",
@@ -3531,6 +3471,7 @@ var completedArray = [
       "HowToCite": "yjt",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "5kwwapm90xuji0t6884",
@@ -3555,6 +3496,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "ffg6395zwgpji0t6em5",
@@ -3579,6 +3521,7 @@ var completedArray = [
       "HowTocite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "739f2xqwtqnji0t6jw4",
@@ -3602,6 +3545,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "ldws15qw3lji0t6n78",
@@ -3625,6 +3569,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "nkxm5vjs7bmji0t6rpm",
@@ -3648,6 +3593,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "jxu25xj5qzjidagtus",
@@ -3671,6 +3617,7 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   },
   {
       "UID": "tkvai112duji0t6vur",
@@ -3694,5 +3641,6 @@ var completedArray = [
       "HowToCite": "Tappan, G. G., Cushing, W.M., Cotillon, S.E., Mathis, M.L., Hutchinson, J.A., and Dalsted, K.J., 2016, West Africa Land Use Land Cover Time Series: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F73N21JF",
       "LastUpdatedBy": "githika.cs@gmail.com",
       "LastUpdatedTime": "2018-6-1 14:19:0"
+  , "Extent": "Full Country"
   }
 ];

@@ -392,6 +392,7 @@ function expandcompletedArray() {
                         MapYear: completedArray[c].MapYear,
                         Organization: completedArray[c].Organization,
                         DataSource: completedArray[c].DataSource,
+                        Extent:completedArray[c].Extent,
                         NumberOfClasses: completedArray[c].NumberOfClasses,
                         ReleasedYear: completedArray[c].ReleasedYear,
                         Notes: completedArray[c].Notes,
@@ -548,7 +549,7 @@ function convertCategoryNameToID(which) {
 
 //function populate the data from the completedArray 
 function populatePanelByCountry(which) {
-    
+   
     if (document.getElementById("accordionholder").style.display == "none") {
         toggleAccordion();
     }
@@ -616,6 +617,11 @@ function populatePanelByCountry(which) {
                             }
                             document.getElementById("spanforf").innerHTML = sortedcompleted[x].DataSource;
                             document.getElementById("ef").value = sortedcompleted[x].DataSource;
+                            if (sortedcompleted[x].Extent == "")
+
+                                document.getElementById("spanforext").innerHTML = "Full Country";
+                            else
+                                document.getElementById("spanforext").innerHTML = sortedcompleted[x].Extent;
                             document.getElementById("spanforg").innerHTML = "Planned";
                             document.getElementById("eg").value = "Planned";
                             if (sortedcompleted[x].ReleasedYear == 0) {
@@ -732,8 +738,14 @@ function populatePanelByCountry(which) {
                                 document.getElementById("ee").value = sortedcompleted[x].NumberOfClasses;
                                 document.getElementById("spanfore").innerHTML = sortedcompleted[x].NumberOfClasses;
                             }
+
                             document.getElementById("spanforf").innerHTML = sortedcompleted[x].DataSource;
                             document.getElementById("ef").value = sortedcompleted[x].DataSource;
+                            if (sortedcompleted[x].Extent == "")
+
+                                document.getElementById("spanforext").innerHTML = "Full Country";
+                            else
+                                document.getElementById("spanforext").innerHTML = sortedcompleted[x].Extent;
                             document.getElementById("spanforg").innerHTML = "In progress";
                             document.getElementById("eg").value = "In progress";
                             if (sortedcompleted[x].ReleasedYear == 0) {
@@ -851,6 +863,11 @@ function populatePanelByCountry(which) {
                             }
                             document.getElementById("spanforf").innerHTML = sortedcompleted[x].DataSource;
                             document.getElementById("ef").value = sortedcompleted[x].DataSource;
+                            if (sortedcompleted[x].Extent == "")
+
+                                document.getElementById("spanforext").innerHTML = "Full Country";
+                            else
+                                document.getElementById("spanforext").innerHTML = sortedcompleted[x].Extent;
                             document.getElementById("spanforg").innerHTML = "Completed";
                             document.getElementById("eg").value = "Completed";
                             if (sortedcompleted[x].ReleasedYear == 0) {
@@ -943,6 +960,10 @@ function populatePanelByCountry(which) {
     document.getElementById("numplanned").innerHTML = plannedCounter;
     document.getElementById("numinprogress").innerHTML = inprogressCounter;
     document.getElementById("accordionTitle").innerHTML = which;
+    if (document.getElementById("accordionTitle").innerHTML == "Democratic Congo") {
+        document.getElementById("accordionTitle").style.fontSize = "15px";
+    }
+    else document.getElementById("accordionTitle").style.fontSize = "24px";
     document.getElementById("ctry_hidden").innerHTML = which;
     document.getElementById("ctry").innerHTML = which;
     if (!foundcompleted) {

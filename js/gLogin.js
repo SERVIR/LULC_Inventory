@@ -155,7 +155,7 @@ function ViewDataFromRequests(_uid) {
                 document.getElementById("spanforh").innerHTML = completedArrayTemp[x].ReleasedYear;
 
             }
-
+            document.getElementById("spanforext").innerHTML = completedArrayTemp[x].Extent;
             document.getElementById("spanfork").innerHTML = completedArrayTemp[x].Notes;
             document.getElementById("spanforl").innerHTML = completedArrayTemp[x].PointOfContactName;
             document.getElementById("spanform").innerHTML = completedArrayTemp[x].POCEmail;
@@ -164,6 +164,51 @@ function ViewDataFromRequests(_uid) {
             document.getElementById("spanforlub").innerHTML = completedArrayTemp[x].LastUpdatedBy;
 
             document.getElementById("spanforlut").innerHTML = completedArrayTemp[x].LastUpdatedTime;
+            document.getElementById("updateCancelButton").onclick = function () { $('.modal_editUpdate').hide(); };
+
+            break;
+        }
+    }
+    $('.modal_editUpdate').show();
+    $("#links").hide();
+    $('#dtable').show();
+    $('#etable').hide();
+}
+
+function ViewDataFromDiscards(_uid) {
+    for (var x = 0; x < discardedArray.length; x++) {
+        if (discardedArray[x].UID == _uid) {
+            document.getElementById("spanfora").innerHTML = decodeURIComponent(discardedArray[x].Title);
+            document.getElementById("spanfora0").innerHTML = "View Data for " + decodeURIComponent(discardedArray[x].Title);
+            document.getElementById("spanforb").innerHTML = discardedArray[x].CategoryName;
+            document.getElementById("spanforc").innerHTML = discardedArray[x].MapYear;
+            document.getElementById("spanford").innerHTML = discardedArray[x].Organization;
+            if (discardedArray[x].NumberOfClasses == 0) {
+                document.getElementById("spanfore").innerHTML = "Not specified";
+            }
+            else {
+                document.getElementById("spanfore").innerHTML = discardedArray[x].NumberOfClasses;
+            }
+            document.getElementById("spanforext").innerHTML = discardedArray[x].Extent;
+
+            document.getElementById("spanforf").innerHTML = discardedArray[x].DataSource;
+            document.getElementById("spanforg").innerHTML = discardedArray[x].Status;
+            if (discardedArray[x].ReleasedYear == 0) {
+                document.getElementById("spanforh").innerHTML = "Not specified";
+            }
+            else {
+                document.getElementById("spanforh").innerHTML = discardedArray[x].ReleasedYear;
+
+            }
+
+            document.getElementById("spanfork").innerHTML = discardedArray[x].Notes;
+            document.getElementById("spanforl").innerHTML = discardedArray[x].PointOfContactName;
+            document.getElementById("spanform").innerHTML = discardedArray[x].POCEmail;
+            document.getElementById("spanforn").innerHTML = discardedArray[x].POCPhoneNumber;
+            document.getElementById("spanforo").innerHTML = discardedArray[x].HowToCite;
+            document.getElementById("spanforlub").innerHTML = discardedArray[x].LastUpdatedBy;
+
+            document.getElementById("spanforlut").innerHTML = discardedArray[x].LastUpdatedTime;
             document.getElementById("updateCancelButton").onclick = function () { $('.modal_editUpdate').hide(); };
 
             break;
@@ -205,6 +250,10 @@ function closeP() {
 function closeVR() {
     $('.modal_editupdate').hide();
 
+}
+function closeDR() {
+    $('.modal_discardedrequests').hide();
+    ViewRequests();
 }
 function closeR() {
 
@@ -406,6 +455,31 @@ function ViewRequests() {
 
 }
 
+function ViewDiscardedRequests() {
+
+    $("#statusMsgDiscard").html("");
+
+    $('.modal_discardedrequests').show();
+    var usrs = discardedArray;
+
+ 
+    var uids = [];
+    for (var i = 0; i < usrs.length; i++) {
+        uids.push(usrs[i].UID);
+    }
+    if (document.getElementById("selectCountry").selectedIndex == 0) {
+        CreateTableFromJSONDiscards(uids, "Choose a country");
+    
+    }
+
+    $('#selectCountryDiscard').on('change', function () {
+
+        $("#statusMsgDiscard").html("");
+        CreateTableFromJSONDiscards(uids, this.value);
+    })
+    document.getElementById("jsonTabDiscard").style.display = "";
+
+}
 
 function ViewProblems() {
     document.getElementById('selectStatus').selectedIndex = 0;

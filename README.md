@@ -1,10 +1,9 @@
-<a href="https://www.servirglobal.net//"><img src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/Servir_Logo_Flat_Color_Global_Small.png" alt="SERVIR Global" title="SERVIR Global" align="center" /></a>
+<a href="https://www.servirglobal.net//"><img src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/Servir_Logo_Flat_Color_Global_Small.png" alt="SERVIR Global" title="SERVIR Global" align="right" /></a>
 
 
 
 
 # Land Use / Land Cover Inventory for Africa
-============================================
 
 
 ## Introduction:
@@ -16,7 +15,7 @@ In the context of the AfriGEOSS Working Group on Land Cover for Africa (WGLCA), 
 
 This inventory is a collection of information regarding the multiple efforts on land cover and land use products for the continent of Africa. The input data were originally collected through the members of the AfriGEOSS WGLCA Executive Board. The purpose of this inventory is to have a single point of reference and complete understanding of the available land cover products in the continent, to raise awareness and promote use of the data that exists, and avoid duplication of efforts.
 
-** *Note* - This application does not contain the actual data, nor does it provide direct access to the datasets. Point of contact information is included for each inventory entry that can be used by users to follow up for additional information about the respective dataset.**
+**Note - This application does not contain the actual data, nor does it provide direct access to the datasets. Point of contact information is included for each inventory entry that can be used by users to follow up for additional information about the respective dataset.**
 
 ## Application Overview:
 Using a map-based interface segmented by country, users can view existing and submit new data inventory entries.  New inventory entries, categorizing the referenced datasets as Completed, In Progress, or Planned, are entered and submitted for acceptance and must be reviewed and either approved or rejected by application administrators.  Once approved, the new entry will be included in the list of available inventories for the corresponding country.

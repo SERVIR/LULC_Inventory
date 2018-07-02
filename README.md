@@ -1,8 +1,9 @@
-<a href="https://www.servirglobal.net//"><img src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/Servir_Logo_Flat_Color_Global_Small.png" alt="SERVIR Global" title="SERVIR Global" align="right" /></a>
+<a href="https://www.servirglobal.net//"><img src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/Servir_Logo_Flat_Color_Global_Small.png" alt="SERVIR Global" title="SERVIR Global" align="center" /></a>
 
 
 
-Land Use / Land Cover Inventory for Africa
+
+# Land Use / Land Cover Inventory for Africa
 ============================================
 
 
@@ -15,8 +16,7 @@ In the context of the AfriGEOSS Working Group on Land Cover for Africa (WGLCA), 
 
 This inventory is a collection of information regarding the multiple efforts on land cover and land use products for the continent of Africa. The input data were originally collected through the members of the AfriGEOSS WGLCA Executive Board. The purpose of this inventory is to have a single point of reference and complete understanding of the available land cover products in the continent, to raise awareness and promote use of the data that exists, and avoid duplication of efforts.
 
-Note - This application does not contain the actual data, nor does it provide direct access to the datasets. Point of contact information is included for each inventory entry that can be used by users to follow up for additional information about the respective dataset.
-
+** *Note* - This application does not contain the actual data, nor does it provide direct access to the datasets. Point of contact information is included for each inventory entry that can be used by users to follow up for additional information about the respective dataset.**
 
 ## Application Overview:
 Using a map-based interface segmented by country, users can view existing and submit new data inventory entries.  New inventory entries, categorizing the referenced datasets as Completed, In Progress, or Planned, are entered and submitted for acceptance and must be reviewed and either approved or rejected by application administrators.  Once approved, the new entry will be included in the list of available inventories for the corresponding country.
@@ -24,9 +24,9 @@ Using a map-based interface segmented by country, users can view existing and su
 <a href="https://servirglobal.net/MapResources/LULC_Africa/#"><img width="500" height="400" src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/1_Overview.png" title="Overview" alt="Overview"></a>
 
 The application operates in three modes:
-1.	Anonymous User - This occurs when a user accesses the online application, but is not logged into the application.  Effectively, this is a read only view of the country inventories.
-2.	Standard/Logged In User - In addition to viewing existing entries, this mode allows users to submit new entries for consideration for the available list of inventories.
-3.	Admin User - In addition to viewing existing and submitting new entries, this allows an admin to review submitted entries for acceptance or rejection, as well as loading and deleting bulk entries.
+- 1.	Anonymous User - This occurs when a user accesses the online application, but is not logged into the application.  Effectively, this is a read only view of the country inventories.
+- 2.	Standard/Logged In User - In addition to viewing existing entries, this mode allows users to submit new entries for consideration for the available list of inventories.
+- 3.	Admin User - In addition to viewing existing and submitting new entries, this allows an admin to review submitted entries for acceptance or rejection, as well as loading and deleting bulk entries.
 These three modes are covered in more detail below.
 
 
@@ -111,9 +111,9 @@ Clicking the “View Problems” menu item opens a dialog that allows the user t
 
 ### Bulk Data? (Import, Download, and Update/Delete):
 As an admin user, there may be times when it is necessary to manipulate data in bulk.  For this case, there are 3 different actions that can be taken when dealing with bulk data:
-1.)	Import
-2.)	Download
-3.)	Update/Delete  
+- 1.)	Import
+- 2.)	Download
+- 3.)	Update/Delete  
 
 #### Import:
 Import allows a list of inventory dataset entries to be imported into the application all at once.  This action requires using a template .xlsx/.csv file for storing the data that needs to be imported.  The current template file can be downloaded from within the Import tab of the “Bulk Data?” interface.

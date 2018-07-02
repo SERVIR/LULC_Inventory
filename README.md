@@ -121,7 +121,7 @@ As an admin user, there may be times when it is necessary to manipulate data in 
 #### Import:
 Import allows a list of inventory dataset entries to be imported into the application all at once.  This action requires using a template .xlsx/.csv file for storing the data that needs to be imported.  The current template file can be downloaded from within the Import tab of the “Bulk Data?” interface.
 
-<a href=""><img width="500" height="400" src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/11_Bulk_Import.png" title="BulkImport" alt="BulkImport"></a>
+<a href=""><img width="600" height="400" src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/11_Bulk_Import.png" title="BulkImport" alt="BulkImport"></a>
 
 After downloading and saving the template .xlsx file locally, simply populate the columns in the file (such as Title, Country Name, Year of Data Coverage, Responsible Organization, Point of Contact, etc.).  There should be one row for each entry that is desired.  Save the template file on your local machine with a .csv extension.  Then, using the “Choose File” button on the Import tab, browse to the source .csv file that contains the desired entries to be imported.  Once identified, click on Upload Files to perform the import.
 
@@ -141,6 +141,6 @@ Note – Again, be sure to use the .csv template from the “Download” functio
 
 Once the source .csv file is chosen, use the corresponding button to accomplish the Update or Delete of the representative entries in the source file.
 
-<a href=""><img width="500" height="400" src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/12_Bulk_UpdateDelete.png" title="BulkUpdateDelete" alt="BulkUpdateDelete"></a>
+<a href=""><img width="600" height="400" src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/12_Bulk_UpdateDelete.png" title="BulkUpdateDelete" alt="BulkUpdateDelete"></a>
 
 

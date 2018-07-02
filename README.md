@@ -15,7 +15,7 @@ In the context of the AfriGEOSS Working Group on Land Cover for Africa (WGLCA), 
 
 This inventory is a collection of information regarding the multiple efforts on land cover and land use products for the continent of Africa. The input data were originally collected through the members of the AfriGEOSS WGLCA Executive Board. The purpose of this inventory is to have a single point of reference and complete understanding of the available land cover products in the continent, to raise awareness and promote use of the data that exists, and avoid duplication of efforts.
 
-**Note - This application does not contain the actual data, nor does it provide direct access to the datasets. Point of contact information is included for each inventory entry that can be used by users to follow up for additional information about the respective dataset.**
+***Note - This application does not contain the actual data, nor does it provide direct access to the datasets. Point of contact information is included for each inventory entry that can be used by users to follow up for additional information about the respective dataset.***
 
 ## Application Overview:
 Using a map-based interface segmented by country, users can view existing and submit new data inventory entries.  New inventory entries, categorizing the referenced datasets as Completed, In Progress, or Planned, are entered and submitted for acceptance and must be reviewed and either approved or rejected by application administrators.  Once approved, the new entry will be included in the list of available inventories for the corresponding country.
@@ -23,9 +23,10 @@ Using a map-based interface segmented by country, users can view existing and su
 <a href="https://servirglobal.net/MapResources/LULC_Africa/#"><img width="500" height="400" src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/1_Overview.png" title="Overview" alt="Overview"></a>
 
 The application operates in three modes:
-- 1.	Anonymous User - This occurs when a user accesses the online application, but is not logged into the application.  Effectively, this is a read only view of the country inventories.
-- 2.	Standard/Logged In User - In addition to viewing existing entries, this mode allows users to submit new entries for consideration for the available list of inventories.
-- 3.	Admin User - In addition to viewing existing and submitting new entries, this allows an admin to review submitted entries for acceptance or rejection, as well as loading and deleting bulk entries.
+1.) **Anonymous User** - This occurs when a user accesses the online application, but is not logged into the application.  Effectively, this is a read only view of the country inventories.
+2.) **Standard/Logged In User** - In addition to viewing existing entries, this mode allows users to submit new entries for consideration for the available list of inventories.
+3.) **Admin User** - In addition to viewing existing and submitting new entries, this allows an admin to review submitted entries for acceptance or rejection, as well as loading and deleting bulk entries.
+
 These three modes are covered in more detail below.
 
 
@@ -41,7 +42,7 @@ As mentioned above, the inventories are broken down by category (Completed, In P
 
 <a href="https://servirglobal.net/MapResources/LULC_Africa/#"><img width="500" height="400" src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/3_ViewData.png" title="ViewData" alt="ViewData"></a>
 
-Note - The numbered and colored bubbles on the map provide a visual indication of how many inventories entries exist associated with each category.
+***Note - The numbered and colored bubbles on the map provide a visual indication of how many inventories entries exist associated with each category.***
 
 Users have the ability to alternate between a satellite imagery basemap and a topographic basemap by clicking on the basemap icon in the upper left of the map.
 
@@ -67,16 +68,16 @@ In addition to the anonymous user experience, standard/logged in users can click
 
 The user will populate the data fields in the “Add data” dialog and click the “Submit data!” button.  (If a value is not specified for the “Status” field, the value will default to “Completed”.)  After submission, the entry is recorded into a queue that can be seen by administrator users, which will have the ability to approve or reject the submissions.  If the submission is approved, it will ultimately show up in the list of available inventories for the specified country.  The user’s email address is captured in the submission so that if there are problems with the submissions, the admin can contact the user with details.
 
-Note – New entries are assigned a unique identifier (UID), which is used as the primary key for the entry as long as it exists in the application.  This UID is used by the application when updating or deleting entries.
+***Note – New entries are assigned a unique identifier (UID), which is used as the primary key for the entry as long as it exists in the application.  This UID is used by the application when updating or deleting entries.***
 
-Note - The completedArray.js data file contains the submitted inventory data and is stored on the server in the following location: C:\inetpub\wwwroot\LULC_Map\js
+***Note - The completedArray.js data file contains the submitted inventory data and is stored on the server in the following location: C:\inetpub\wwwroot\LULC_Map\js***
 
 ### Report a Problem:
 Just like in the case of an anonymous user, a logged in user can report a problem with the application.  The reported issues can be seen by administrator users.  In this case, since the user is logged in, the user does not have to key in their email address as it is already known from the account login.
 
 
 ## Admin User Experience:
-Admin users, once logged in, have access to more functionality for managing the inventory entries.  In addition to the functionality of standard logged in users, admin users have the option to directly edit, delete, or unapprove previously approved inventory entries.  Also, admin users have access to more menu options such as Add Admins, View Requests (for approval or discard), View Problems, and Bulk Data processing – which are all covered in more detail below.
+Admin users, once logged in, have access to more functionality for managing the inventory entries.  In addition to the functionality of standard logged in users, admin users have the option to directly edit, delete, or unapprove previously approved inventory entries.  Also, admin users have access to more menu options such as **Add Admins, View Requests** (for approval or discard), **View Problems, and Bulk Data** processing – which are all covered in more detail below.
 
 ### Edit, Delete, or Unapprove Previously Approved Inventory Entries:
 Clicking on a country and further clicking on the title of an existing (previously approved) entry opens the View Data dialog to see the details of the inventory.  When logged in as an admin user, the dialog will contain buttons for Editing, Deleting, and Unapproving the current entry.  These buttons are shown circled in the screenshot below.
@@ -96,7 +97,7 @@ Only admin users have the ability to add other user’s accounts as administrato
 
 Currently, there is no admin interface (nor associated requirement) for removing admin users.  So if it is required to remove a user from the list of administrators, this must be done manually by editing the .json configuration file and deleting the email address entry of the desired admin user.
 
-Note - The users.js configuration file contains the admin users is stored on the server in the following location: C:\inetpub\wwwroot\LULC_Map\js  Care should be taken when modifying the configuration file manually as changes to the format can impact the use of the application.
+***Note - The users.js configuration file contains the admin users is stored on the server in the following location: C:\inetpub\wwwroot\LULC_Map\js  Care should be taken when modifying the configuration file manually as changes to the format can impact the use of the application.***
 
 ### View Requests:
 Clicking the “View Requests” menu item opens a dialog that allows the user to filter and view the pending inventory submissions.  These can be filtered by country and/or by submitting user.  Clicking on an inventory submission row highlights the row, and displays two buttons, “Approve” and “Discard”.  If the entry is approved, the entry will be marked as such, and will show up as an available inventory for future users of the application.  If the entry is to be discarded, the admin user should notify the respective contact and provide details as to why the submission was rejected.
@@ -110,30 +111,30 @@ Clicking the “View Problems” menu item opens a dialog that allows the user t
 
 ### Bulk Data? (Import, Download, and Update/Delete):
 As an admin user, there may be times when it is necessary to manipulate data in bulk.  For this case, there are 3 different actions that can be taken when dealing with bulk data:
-- 1.)	Import
-- 2.)	Download
-- 3.)	Update/Delete  
+1.) Import
+2.) Download
+3.) Update/Delete  
 
 #### Import:
 Import allows a list of inventory dataset entries to be imported into the application all at once.  This action requires using a template .xlsx/.csv file for storing the data that needs to be imported.  The current template file can be downloaded from within the Import tab of the “Bulk Data?” interface.
 
 <a href="https://servirglobal.net/MapResources/LULC_Africa/#"><img width="600" height="400" src="https://www.servirglobal.net/Portals/0/Images/LULC_Inventory/11_Bulk_Import.png" title="BulkImport" alt="BulkImport"></a>
 
-After downloading and saving the template .xlsx file locally, simply populate the columns in the file (such as Title, Country Name, Year of Data Coverage, Responsible Organization, Point of Contact, etc.).  There should be one row for each entry that is desired.  Save the template file on your local machine with a .csv extension.  Then, using the “Choose File” button on the Import tab, browse to the source .csv file that contains the desired entries to be imported.  Once identified, click on Upload Files to perform the import.
+After downloading and saving the template .xlsx file locally, simply populate the columns in the file (such as Title, Country Name, Year of Data Coverage, Responsible Organization, Point of Contact, etc.).  There should be one row for each entry that is desired.  **Save the template file on your local machine with a .csv extension.**  Then, using the “Choose File” button on the Import tab, browse to the source .csv file that contains the desired entries to be imported.  Once identified, click on Upload Files to perform the import.
 
 In a typical workflow where a user has a large number of entries to import, an administrator might download and save an empty template .csv file and send it to someone wanting to submit many entries.  After receiving the populated .csv file from the source provider, and reviewing the input file, the administrator could then use this interface to bulk import the inventory entries into the application for the user.  This workflow scenario would have to be coordinated before-hand between the end user and an administrator user.
 
-Note – Be sure to download and use the template from this screen - saved as a .csv for use with the Import functionality.  This is important because there is no UID field in this template .csv file - as this value will be established during the import.
+***Note – Be sure to download and use the template from this screen - saved as a .csv for use with the Import functionality.  This is important because there is no UID field in this template .csv file - as this value will be established during the import.***
 
 #### Download:
 The Download tab contains functionality to simply generate and download a file containing the inventory entries associated with the particular country that is selected by the user.  The user will select a country from the list of countries and click the “Generate CSV” button.  The format of the file will be .csv.  Once the file is generated, it will start the auto download procedure commonly used in a browser file download.
 
-Note – When using Download, the records exported will contain their corresponding UID field.  This field is used as the key when updating or deleting via the Bulk Data interface, so please be sure to use the proper “Download” version of the .csv template when performing bulk updates or deletes.  The Import functionality uses a slightly different version of the template!
+***Note – When using Download, the records exported will contain their corresponding UID field.  This field is used as the key when updating or deleting via the Bulk Data interface, so please be sure to use the proper “Download” version of the .csv template when performing bulk updates or deletes.  The Import functionality uses a slightly different version of the template!***
 
 #### Update/Delete:
 Using the same template (.csv) file that is used in the Download functionality, the idea is to either update existing entries in the system that are represented in the source .csv file, or delete them.  Only include entries in the source .csv file that are meant to be edited or delete – depending on the desired operation.  As noted above, the UID is used as the key when updating or deleting entries.  It should also be noted that the following fields are not available for update via the Bulk Data Update function:  uid, status, country id, or country name.
 
-Note – Again, be sure to use the .csv template from the “Download” functionality for use with bulk Update or Delete.
+***Note – Again, be sure to use the .csv template from the “Download” functionality for use with bulk Update or Delete.***
 
 Once the source .csv file is chosen, use the corresponding button to accomplish the Update or Delete of the representative entries in the source file.
 
